@@ -1,13 +1,33 @@
-﻿using TP_01.Entidades.Enumerados;
-
-namespace TP_01.Entidades.Entidades
+﻿namespace TP_01.Entidades.Entidades
 {
     public static class Calculadora
     {
         #region Metodos Estaticos Publicos
         public static double Operar(Numero numeroUno, Numero numeroDos, string operador)
         {
-            return 0;
+            double resultado = double.MinValue;
+            char charOperador;
+            string strOperador;
+            if (char.TryParse(operador, out charOperador))
+            {
+                strOperador = ValidarOperador(charOperador);
+                switch (strOperador)
+                {
+                    case "+":
+                        resultado = numeroUno + numeroDos;
+                        break;
+                    case "-":
+                        resultado = numeroUno - numeroDos;
+                        break;
+                    case "*":
+                        resultado = numeroUno * numeroDos;
+                        break;
+                    case "/":
+                        resultado = numeroUno / numeroDos;
+                        break;
+                }
+            }            
+            return resultado;
         }
         #endregion
 
@@ -15,11 +35,9 @@ namespace TP_01.Entidades.Entidades
         private static string ValidarOperador(char operador)
         {
             string operadorActual = string.Empty;
-            if (operador != (char)EnumOperadores.OperadorSuma || operador != (char)EnumOperadores.OperadorResta
-                || operador != (char)EnumOperadores.OperadorMultiplicacion 
-                || operador != (char)EnumOperadores.OperadorDivision)
+            if (operador != '+' && operador != '-' && operador != '*' && operador != '/')
             {
-                operadorActual = EnumOperadores.OperadorSuma.ToString();
+                operadorActual = "+";
 
             }
             else

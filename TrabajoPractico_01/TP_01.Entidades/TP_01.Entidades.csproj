@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="Entidades\Calculadora.cs" />
     <Compile Include="Entidades\Numero.cs" />
-    <Compile Include="Entidades\NumeroBinario.cs" />
-    <Compile Include="Enumerados\EnumOperadores.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

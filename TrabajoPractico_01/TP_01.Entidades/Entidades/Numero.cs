@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace TP_01.Entidades.Entidades
 {
@@ -14,18 +10,9 @@ namespace TP_01.Entidades.Entidades
         #endregion
 
         #region Propiedades
-        public double SetNumero(string strNumero)
+        public void SetNumero(string strNumero)
         {
-            double numero;
-            if (EsBinario(strNumero))
-            {
-                numero = Convert.ToDouble(BinarioDecimal(strNumero));
-            }
-            else
-            {
-                numero = ValidarNumero(strNumero);
-            }
-            return numero;
+            this.numero = ValidarNumero(strNumero);
         }
         #endregion
 
@@ -42,14 +29,14 @@ namespace TP_01.Entidades.Entidades
 
         public Numero(string strNumero)
         {
-            this.numero = SetNumero(strNumero);
+            SetNumero(strNumero);
         }
         #endregion
 
         #region Metodos Publicos
         public string BinarioDecimal(string binario)
         {
-            return Convert.ToInt32(binario, 2).ToString();
+            return EsBinario(binario) ? Convert.ToInt32(binario, 2).ToString() : "No se puede convertir a decimal";
         }
 
         public string DecimalBinario(double numero)
@@ -70,7 +57,7 @@ namespace TP_01.Entidades.Entidades
         #region Metodos Privados
         private bool EsBinario(string numero)
         {
-            Regex regex = new Regex("{0-1}");
+            Regex regex = new Regex("[0-1]");
             return regex.IsMatch(numero);
         }
 
@@ -90,22 +77,22 @@ namespace TP_01.Entidades.Entidades
         #region Operadores
         public static double operator -(Numero numeroUno, Numero numeroDos)
         {
-            return 0;
+            return numeroUno.numero - numeroDos.numero;
         }
 
         public static double operator *(Numero numeroUno, Numero numeroDos)
         {
-            return 0;
+            return numeroUno.numero * numeroDos.numero;
         }
 
         public static double operator /(Numero numeroUno, Numero numeroDos)
         {
-            return 0;
+            return numeroDos.numero == 0 ? double.MinValue : numeroUno.numero / numeroDos.numero;
         }
 
         public static double operator +(Numero numeroUno, Numero numeroDos)
         {
-            return 0;
+            return numeroUno.numero + numeroDos.numero;
         }
         #endregion
     }
