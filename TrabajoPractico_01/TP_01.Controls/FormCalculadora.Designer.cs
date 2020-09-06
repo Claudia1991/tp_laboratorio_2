@@ -1,6 +1,6 @@
 ﻿namespace TP_01.Controls
 {
-    partial class FormCalculadora
+    partial class MiCalculadora
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -55,6 +55,7 @@
             // 
             // cmbOperador
             // 
+            this.cmbOperador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOperador.FormattingEnabled = true;
             this.cmbOperador.Location = new System.Drawing.Point(192, 38);
             this.cmbOperador.Name = "cmbOperador";
@@ -77,6 +78,7 @@
             this.btnOperar.TabIndex = 4;
             this.btnOperar.Text = "Operar";
             this.btnOperar.UseVisualStyleBackColor = true;
+            this.btnOperar.Click += new System.EventHandler(this.btnOperar_Click);
             // 
             // btnLimpiar
             // 
@@ -86,6 +88,7 @@
             this.btnLimpiar.TabIndex = 5;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnCerrar
             // 
@@ -95,6 +98,7 @@
             this.btnCerrar.TabIndex = 6;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnConvertirABinario
             // 
@@ -104,6 +108,7 @@
             this.btnConvertirABinario.TabIndex = 7;
             this.btnConvertirABinario.Text = "Convertir a Binario";
             this.btnConvertirABinario.UseVisualStyleBackColor = true;
+            this.btnConvertirABinario.Click += new System.EventHandler(this.btnConvertirABinario_Click);
             // 
             // btnConvertirADecimal
             // 
@@ -113,8 +118,9 @@
             this.btnConvertirADecimal.TabIndex = 8;
             this.btnConvertirADecimal.Text = "Convertir a Decimal";
             this.btnConvertirADecimal.UseVisualStyleBackColor = true;
+            this.btnConvertirADecimal.Click += new System.EventHandler(this.btnConvertirADecimal_Click);
             // 
-            // FormCalculadora
+            // MiCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,7 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormCalculadora";
+            this.Name = "MiCalculadora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora de Claudia Jara del curso 2°C";
             this.ResumeLayout(false);

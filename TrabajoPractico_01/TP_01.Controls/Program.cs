@@ -16,7 +16,7 @@ namespace TP_01.Controls
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormCalculadora());
+            Application.Run(new MiCalculadora());
         }
     }
 }
