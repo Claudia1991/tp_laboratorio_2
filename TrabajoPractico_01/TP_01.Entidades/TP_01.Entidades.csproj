@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entidades\Calculadora.cs" />
     <Compile Include="Entidades\Numero.cs" />
+    <Compile Include="Helpers\MensajesHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

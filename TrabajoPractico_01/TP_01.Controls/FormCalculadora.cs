@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using TP_01.Entidades.Entidades;
+using TP_01.Entidades.Helpers;
 
 namespace TP_01.Controls
 {
@@ -26,12 +27,13 @@ namespace TP_01.Controls
         {
             if (string.IsNullOrEmpty(lblResultado.Text))
             {
-                lblInformativo.Text = "No se puede realizar la operacion solicitada.";
+                lblInformativo.Text = MensajesHelper.ErrorOperacion();
             }
             else
             {
                 Numero numeroADecimal = new Numero(lblResultado.Text);
                 lblResultado.Text = numeroADecimal.DecimalBinario(lblResultado.Text);
+                lblInformativo.Text = MensajesHelper.OperacionExitosa();
             }
         }
 
@@ -39,12 +41,21 @@ namespace TP_01.Controls
         {
             if (string.IsNullOrEmpty(lblResultado.Text))
             {
-                lblInformativo.Text = "No se puede realizar la operacion solicitada.";
+                lblInformativo.Text = MensajesHelper.ErrorOperacion();
             }
             else
             {
                 Numero numeroADecimal = new Numero(lblResultado.Text);
-                lblResultado.Text = numeroADecimal.BinarioDecimal(lblResultado.Text);
+                string resultado = string.Empty;
+                resultado = numeroADecimal.BinarioDecimal(lblResultado.Text);
+                if (resultado != MensajesHelper.ErrorConversionBinarioDecimal())
+                {
+                    lblResultado.Text = resultado;
+                }
+                else
+                {
+                    lblInformativo.Text = MensajesHelper.ErrorOperacion();
+                }
             }
         }
 
@@ -60,13 +71,13 @@ namespace TP_01.Controls
             //Verificar que los txt ingresados sean numeros
             if (string.IsNullOrEmpty(txtNumeroUno.Text) || string.IsNullOrEmpty(txtNumeroDos.Text) || !sonNumerosValidos)
             {
-                lblInformativo.Text = "Ocurrió un error al realizar la operación";
+                lblInformativo.Text = MensajesHelper.ErrorOperacion();
             }
             else
             {
                 double resultado;
                 resultado = Operar(txtNumeroUno.Text, txtNumeroDos.Text, cmbOperador.SelectedValue.ToString());
-                lblInformativo.Text = resultado == double.MinValue ? "Ocurrió un error al realizar la operación" : "Operación realizada con éxito.";
+                lblInformativo.Text = resultado == double.MinValue ? MensajesHelper.ErrorOperacion() : MensajesHelper.OperacionExitosa();
                 lblResultado.Text = resultado.ToString();
             }
         }
