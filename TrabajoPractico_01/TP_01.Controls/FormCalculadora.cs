@@ -25,15 +25,16 @@ namespace TP_01.Controls
 
         private void btnConvertirABinario_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(lblResultado.Text))
+            if (string.IsNullOrEmpty(lblResultado.Text.))
             {
-                lblInformativo.Text = MensajesHelper.ErrorOperacion();
+                MessageBox.Show(MensajesHelper.ErrorOperacion(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 Numero numeroADecimal = new Numero(lblResultado.Text);
                 lblResultado.Text = numeroADecimal.DecimalBinario(lblResultado.Text);
-                lblInformativo.Text = MensajesHelper.OperacionExitosa();
+                MessageBox.Show(MensajesHelper.OperacionExitosa(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
@@ -41,7 +42,8 @@ namespace TP_01.Controls
         {
             if (string.IsNullOrEmpty(lblResultado.Text))
             {
-                lblInformativo.Text = MensajesHelper.ErrorOperacion();
+                MessageBox.Show(MensajesHelper.ErrorOperacion(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
             else
             {
@@ -51,10 +53,12 @@ namespace TP_01.Controls
                 if (resultado != MensajesHelper.ErrorConversionBinarioDecimal())
                 {
                     lblResultado.Text = resultado;
+                    MessageBox.Show(MensajesHelper.OperacionExitosa(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    lblInformativo.Text = MensajesHelper.ErrorOperacion();
+                    MessageBox.Show(MensajesHelper.ErrorConversionBinarioDecimal(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                 }
             }
         }
@@ -66,19 +70,29 @@ namespace TP_01.Controls
 
         private void btnOperar_Click(object sender, EventArgs e)
         {
-            Regex regex = new Regex("[0-9]");
-            bool sonNumerosValidos = regex.IsMatch(txtNumeroUno.Text) && regex.IsMatch(txtNumeroDos.Text);
             //Verificar que los txt ingresados sean numeros
-            if (string.IsNullOrEmpty(txtNumeroUno.Text) || string.IsNullOrEmpty(txtNumeroDos.Text) || !sonNumerosValidos)
+            string numeroUno = txtNumeroUno.Text;
+            string nuemroDos = txtNumeroDos.Text;
+            if (!EsNumeroValido(numeroUno) || !EsNumeroValido(nuemroDos))
             {
-                lblInformativo.Text = MensajesHelper.ErrorOperacion();
+                MessageBox.Show(MensajesHelper.ErrorOperacion(), "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Error); 
             }
             else
             {
                 double resultado;
-                resultado = Operar(txtNumeroUno.Text, txtNumeroDos.Text, cmbOperador.SelectedValue.ToString());
-                lblInformativo.Text = resultado == double.MinValue ? MensajesHelper.ErrorOperacion() : MensajesHelper.OperacionExitosa();
+                string resultadoInformacion;
+                resultado = Operar(numeroUno, nuemroDos, cmbOperador.SelectedValue.ToString());
+                resultadoInformacion = resultado == double.MinValue ? MensajesHelper.ErrorDivisionPorCero() : MensajesHelper.OperacionExitosa();
+                MessageBox.Show(resultadoInformacion, "Mensaje al usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblResultado.Text = resultado.ToString();
+            }
+        }
+
+        private void txtNumeroDos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnOperar_Click(sender, e);
             }
         }
         #endregion
@@ -89,7 +103,6 @@ namespace TP_01.Controls
             txtNumeroUno.Text = string.Empty;
             txtNumeroDos.Text = string.Empty;
             lblResultado.Text = string.Empty;
-            lblInformativo.Text = string.Empty;
             cmbOperador.SelectedIndex = 0;
         }
 
@@ -110,6 +123,17 @@ namespace TP_01.Controls
             cmbOperador.DataSource = operadores;
             cmbOperador.ValueMember = "Operador";
             cmbOperador.DisplayMember = "Operador";
+        }
+
+        /// <summary>
+        /// Valida que el string se pueda parsear a numero.
+        /// </summary>
+        /// <param name="numero">Numero a parsear</param>
+        /// <returns>Devuelve true o false.</returns>
+        private bool EsNumeroValido(string numero)
+        {
+            Regex regex = new Regex("[0-9]");
+            return !string.IsNullOrEmpty(numero) && regex.IsMatch(numero) && !numero.Contains(" ");
         }
         #endregion
     }

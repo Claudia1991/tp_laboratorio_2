@@ -37,7 +37,7 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnConvertirABinario = new System.Windows.Forms.Button();
             this.btnConvertirADecimal = new System.Windows.Forms.Button();
-            this.lblInformativo = new System.Windows.Forms.Label();
+            this.lblTituloResultado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtNumeroUno
@@ -52,7 +52,8 @@
             this.txtNumeroDos.Location = new System.Drawing.Point(429, 50);
             this.txtNumeroDos.Name = "txtNumeroDos";
             this.txtNumeroDos.Size = new System.Drawing.Size(117, 20);
-            this.txtNumeroDos.TabIndex = 1;
+            this.txtNumeroDos.TabIndex = 2;
+            this.txtNumeroDos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroDos_KeyPress);
             // 
             // cmbOperador
             // 
@@ -61,13 +62,14 @@
             this.cmbOperador.Location = new System.Drawing.Point(224, 49);
             this.cmbOperador.Name = "cmbOperador";
             this.cmbOperador.Size = new System.Drawing.Size(140, 21);
-            this.cmbOperador.TabIndex = 2;
+            this.cmbOperador.TabIndex = 1;
             // 
             // lblResultado
             // 
             this.lblResultado.AutoSize = true;
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblResultado.Location = new System.Drawing.Point(426, 9);
+            this.lblResultado.Location = new System.Drawing.Point(299, 9);
+            this.lblResultado.MaximumSize = new System.Drawing.Size(300, 17);
             this.lblResultado.Name = "lblResultado";
             this.lblResultado.Size = new System.Drawing.Size(0, 17);
             this.lblResultado.TabIndex = 3;
@@ -122,22 +124,21 @@
             this.btnConvertirADecimal.UseVisualStyleBackColor = true;
             this.btnConvertirADecimal.Click += new System.EventHandler(this.btnConvertirADecimal_Click);
             // 
-            // lblInformativo
+            // lblTituloResultado
             // 
-            this.lblInformativo.AutoSize = true;
-            this.lblInformativo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformativo.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblInformativo.Location = new System.Drawing.Point(15, 165);
-            this.lblInformativo.Name = "lblInformativo";
-            this.lblInformativo.Size = new System.Drawing.Size(0, 13);
-            this.lblInformativo.TabIndex = 9;
+            this.lblTituloResultado.AutoSize = true;
+            this.lblTituloResultado.Location = new System.Drawing.Point(101, 11);
+            this.lblTituloResultado.Name = "lblTituloResultado";
+            this.lblTituloResultado.Size = new System.Drawing.Size(164, 13);
+            this.lblTituloResultado.TabIndex = 10;
+            this.lblTituloResultado.Text = "Resultado de la operacion: ";
             // 
             // MiCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 190);
-            this.Controls.Add(this.lblInformativo);
+            this.Controls.Add(this.lblTituloResultado);
             this.Controls.Add(this.btnConvertirADecimal);
             this.Controls.Add(this.btnConvertirABinario);
             this.Controls.Add(this.btnCerrar);
@@ -170,7 +171,7 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnConvertirABinario;
         private System.Windows.Forms.Button btnConvertirADecimal;
-        private System.Windows.Forms.Label lblInformativo;
+        private System.Windows.Forms.Label lblTituloResultado;
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using TP_01.Entidades.Helpers;
 
 namespace TP_01.Entidades.Entidades
 {
@@ -10,9 +11,12 @@ namespace TP_01.Entidades.Entidades
         #endregion
 
         #region Propiedades
-        public void SetNumero(string strNumero)
+        public string SetNumero
         {
-            this.numero = ValidarNumero(strNumero);
+            set
+            {
+                this.numero = ValidarNumero(value);
+            }
         }
         #endregion
 
@@ -29,38 +33,62 @@ namespace TP_01.Entidades.Entidades
 
         public Numero(string strNumero)
         {
-            SetNumero(strNumero);
+            SetNumero = strNumero;
         }
         #endregion
 
         #region Metodos Publicos
+        /// <summary>
+        /// Convierte un numero binario a decimal.
+        /// </summary>
+        /// <param name="binario">El numero binario a convertir.</param>
+        /// <returns>Devuelve el numero decimal en caso ok sino un mensaje de error.</returns>
         public string BinarioDecimal(string binario)
         {
-            return EsBinario(binario) ? Convert.ToInt32(binario, 2).ToString() : "No se puede convertir a decimal";
+            return EsBinario(binario) ? Convert.ToInt32(binario, 2).ToString() : MensajesHelper.ErrorConversionBinarioDecimal();
         }
 
+        /// <summary>
+        /// Convierte a numero binario la parte entera de un numero flotante.
+        /// </summary>
+        /// <param name="numero">El numero a convertir.</param>
+        /// <returns>El numero binario.</returns>
         public string DecimalBinario(double numero)
         {
             int valorAbsoluto = (int)Math.Abs(numero);
             return Convert.ToString(valorAbsoluto,2);
         }
 
+        /// <summary>
+        /// Convierte a numero binario un string.
+        /// </summary>
+        /// <param name="strNumero">El numero a convertir.</param>
+        /// <returns>El numero binario.</returns>
         public string DecimalBinario(string strNumero)
         {
             double numero;
             double.TryParse(strNumero, out numero);
             return  DecimalBinario(numero);
-
         }
         #endregion
 
         #region Metodos Privados
+        /// <summary>
+        /// Verifica si un string contiene solo ceros y unos.
+        /// </summary>
+        /// <param name="numero">El numero a verificar.</param>
+        /// <returns>Devuelve true si es un string binario, caso contrario false.</returns>
         private bool EsBinario(string numero)
         {
             Regex regex = new Regex("[0-1]");
             return regex.IsMatch(numero);
         }
 
+        /// <summary>
+        /// Valida si un string se puede parsear a double.
+        /// </summary>
+        /// <param name="strNumero">El string a parsear.</param>
+        /// <returns>Devuelve cero en caso de error, sino el numero parseado.</returns>
         private double ValidarNumero(string strNumero)
         {
             double numero;
