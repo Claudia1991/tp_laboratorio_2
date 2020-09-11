@@ -102,7 +102,7 @@ namespace TP_01.Entidades.Entidades
         }
         #endregion
 
-        #region Operadores
+        #region Sobrecarga de Operadores
         public static double operator -(Numero numeroUno, Numero numeroDos)
         {
             return numeroUno.numero - numeroDos.numero;

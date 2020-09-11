@@ -38,6 +38,7 @@
             this.btnConvertirABinario = new System.Windows.Forms.Button();
             this.btnConvertirADecimal = new System.Windows.Forms.Button();
             this.lblTituloResultado = new System.Windows.Forms.Label();
+            this.lblInformacion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtNumeroUno
@@ -68,6 +69,7 @@
             // 
             this.lblResultado.AutoSize = true;
             this.lblResultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblResultado.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lblResultado.Location = new System.Drawing.Point(299, 9);
             this.lblResultado.MaximumSize = new System.Drawing.Size(300, 17);
             this.lblResultado.Name = "lblResultado";
@@ -131,13 +133,24 @@
             this.lblTituloResultado.Name = "lblTituloResultado";
             this.lblTituloResultado.Size = new System.Drawing.Size(164, 13);
             this.lblTituloResultado.TabIndex = 10;
-            this.lblTituloResultado.Text = "Resultado de la operacion: ";
+            this.lblTituloResultado.Text = "Resultado de la operación: ";
+            // 
+            // lblInformacion
+            // 
+            this.lblInformacion.AutoSize = true;
+            this.lblInformacion.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblInformacion.Location = new System.Drawing.Point(14, 165);
+            this.lblInformacion.Name = "lblInformacion";
+            this.lblInformacion.Size = new System.Drawing.Size(246, 13);
+            this.lblInformacion.TabIndex = 11;
+            this.lblInformacion.Text = "Utilice coma para números con decimales.";
             // 
             // MiCalculadora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 190);
+            this.Controls.Add(this.lblInformacion);
             this.Controls.Add(this.lblTituloResultado);
             this.Controls.Add(this.btnConvertirADecimal);
             this.Controls.Add(this.btnConvertirABinario);
@@ -172,6 +185,7 @@
         private System.Windows.Forms.Button btnConvertirABinario;
         private System.Windows.Forms.Button btnConvertirADecimal;
         private System.Windows.Forms.Label lblTituloResultado;
+        private System.Windows.Forms.Label lblInformacion;
     }
 }
 
