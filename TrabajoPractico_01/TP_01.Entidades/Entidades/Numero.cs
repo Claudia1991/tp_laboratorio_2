@@ -81,7 +81,7 @@ namespace TP_01.Entidades.Entidades
         private bool EsBinario(string numero)
         {
             Regex regex = new Regex("[0-1]");
-            return regex.IsMatch(numero);
+            return regex.IsMatch(numero) && !numero.Contains(",");
         }
 
         /// <summary>
