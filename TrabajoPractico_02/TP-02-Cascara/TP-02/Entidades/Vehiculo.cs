@@ -1,73 +1,87 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
     /// <summary>
     /// La clase Vehiculo no deberá permitir que se instancien elementos de este tipo.
     /// </summary>
-    public sealed class Vehiculo
+    public abstract class Vehiculo
     {
-        enum EMarca
+        #region Enumerados
+        public enum EMarca
         {
             Chevrolet, Ford, Renault, Toyota, BMW, Honda, HarleyDavidson
         }
-        enum ETamanio
+
+        public enum ETamanio
         {
             Chico, Mediano, Grande
         }
+        #endregion
+
+        #region Campos
         EMarca marca;
         string chasis;
         ConsoleColor color;
+        #endregion
 
+        #region Propiedades
         /// <summary>
         /// ReadOnly: Retornará el tamaño
         /// </summary>
-        abstract ETamanio Tamanio { get; set; }
+        public ETamanio Tamanio { get; }
+        #endregion
 
+        #region Metodo Publico
         /// <summary>
         /// Publica todos los datos del Vehiculo.
         /// </summary>
         /// <returns></returns>
-        sealed string Mostrar()
+        public string Mostrar()
         {
-            return this;
+            return (string)this;
         }
+        #endregion
 
-        private static explicit operator string(Vehiculo p)
+
+        #region Operadores
+        /// <summary>
+        /// Operador de casteo explicito a string de un vehiculo.
+        /// </summary>
+        /// <param name="vehiculo">El string del detalle de un vehiculo</param>
+        public static explicit operator string(Vehiculo vehiculo)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("CHASIS: {0}\r\n", p.chasis);
-            sb.AppendLine("MARCA : {0}\r\n", p.marca.ToString());
-            sb.AppendLine("COLOR : {0}\r\n", p.color.ToString());
+            sb.AppendLine(string.Format("CHASIS: {0}\r\n", vehiculo.chasis));
+            sb.AppendLine(string.Format("MARCA : {0}\r\n", vehiculo.marca.ToString()));
+            sb.AppendLine(string.Format("COLOR : {0}\r\n", vehiculo.color.ToString()));
             sb.AppendLine("---------------------");
 
-            return sb;
+            return sb.ToString();
         }
 
         /// <summary>
         /// Dos vehiculos son iguales si comparten el mismo chasis
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
-        public static bool operator ==(Vehiculo v1, Vehiculo v2)
+        /// <param name="vehiculoUno">El primer vehiculo a comparar</param>
+        /// <param name="vehiculoDos">El segundo vehiculo a comparar</param>
+        /// <returns>Devuelve true si son iguales, false caso contrario.</returns>
+        public static bool operator ==(Vehiculo vehiculoUno, Vehiculo vehiculoDos)
         {
-            return (v1.chasis == v2.chasis);
+            return (vehiculoUno.chasis == vehiculoDos.chasis);
         }
         /// <summary>
         /// Dos vehiculos son distintos si su chasis es distinto
         /// </summary>
-        /// <param name="v1"></param>
-        /// <param name="v2"></param>
-        /// <returns></returns>
-        public static bool operator !=(Vehiculo v1, Vehiculo v2)
+        /// <param name="vehiculoUno">El primer vehiculo a comparar</param>
+        /// <param name="vehiculoDos">El segundo vehiculo a comparar</param>
+        /// <returns>Devuelve true si no son iguales, false caso contrario.</returns>
+        public static bool operator !=(Vehiculo vehiculoUno, Vehiculo vehiculoDos)
         {
-            return (v1.chasis == v2.chasis);
+            return !(vehiculoUno.chasis == vehiculoDos.chasis);
         }
+        #endregion
     }
 }
