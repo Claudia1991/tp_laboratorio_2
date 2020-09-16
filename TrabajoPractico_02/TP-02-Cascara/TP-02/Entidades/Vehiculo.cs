@@ -26,11 +26,20 @@ namespace Entidades
         ConsoleColor color;
         #endregion
 
+        #region Constructor
+        public Vehiculo(EMarca marca, string chasis, ConsoleColor color)
+        {
+            this.marca = marca;
+            this.chasis = chasis;
+            this.color = color;
+        }
+        #endregion
+
         #region Propiedades
         /// <summary>
         /// ReadOnly: Retornará el tamaño
         /// </summary>
-        public ETamanio Tamanio { get; }
+        public virtual ETamanio Tamanio { get; }
         #endregion
 
         #region Metodo Publico
@@ -38,7 +47,7 @@ namespace Entidades
         /// Publica todos los datos del Vehiculo.
         /// </summary>
         /// <returns></returns>
-        public string Mostrar()
+        public virtual string Mostrar()
         {
             return (string)this;
         }
