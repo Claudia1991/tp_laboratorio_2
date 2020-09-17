@@ -56,6 +56,9 @@ namespace Entidades
         /// <returns></returns>
         public string Listar(Taller taller, ETipo tipo)
         {
+            /*Logica:
+             * Verifico que cada vehiculo(clase abstracta) sea de un tipo(clase que herada la clase abstracta)
+             */
             StringBuilder sb = new StringBuilder();
 
             sb.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
@@ -65,13 +68,22 @@ namespace Entidades
                 switch (tipo)
                 {
                     case ETipo.Ciclomotor:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        if (vehiculo is Ciclomotor)
+                        {
+                            sb.AppendLine(vehiculo.Mostrar());
+                        }
                         break;
                     case ETipo.Sedan:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        if (vehiculo is Sedan)
+                        {
+                            sb.AppendLine(vehiculo.Mostrar());
+                        }
                         break;
                     case ETipo.SUV:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        if (vehiculo is Suv)
+                        {
+                            sb.AppendLine(vehiculo.Mostrar());
+                        }
                         break;
                     default:
                         sb.AppendLine(vehiculo.Mostrar());
@@ -92,14 +104,14 @@ namespace Entidades
         /// <returns></returns>
         public static Taller operator +(Taller taller, Vehiculo vehiculo)
         {
-            foreach (Vehiculo v in taller.vehiculos)
+            /*Logica:
+             * Verifico la capacidad maxima del taller
+             * Verifico que no exista un vehiculo igual en el taller.
+             */
+            if (taller.vehiculos.Count < taller.espacioDisponible && !taller.vehiculos.Any(v => v == vehiculo))
             {
-                if (v == vehiculo || taller.vehiculos.Count == taller.espacioDisponible) {
-                    return taller;
-                }
+                taller.vehiculos.Add(vehiculo);
             }
-
-            taller.vehiculos.Add(vehiculo);
             return taller;
         }
         /// <summary>
@@ -110,15 +122,13 @@ namespace Entidades
         /// <returns></returns>
         public static Taller operator -(Taller taller, Vehiculo vehiculo)
         {
-            foreach (Vehiculo v in taller.vehiculos)
+            /*Logica:
+             * Verifico que exista el vehiculo a remover en el taller, y lo remuevo
+             */
+            if (taller.vehiculos.Any(v => v == vehiculo))
             {
-                if (v == vehiculo)
-                {
-                    taller.vehiculos.Remove(vehiculo);
-                    break;
-                }
+                taller.vehiculos.Remove(vehiculo);
             }
-
             return taller;
         }
         #endregion

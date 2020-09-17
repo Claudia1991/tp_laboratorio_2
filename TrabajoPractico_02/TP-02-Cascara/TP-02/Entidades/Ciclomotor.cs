@@ -14,6 +14,7 @@ namespace Entidades
         }
         #endregion
 
+        #region Propiedades
         /// <summary>
         /// Las motos son chicas
         /// </summary>
@@ -24,7 +25,9 @@ namespace Entidades
                 return ETamanio.Chico;
             }
         }
+        #endregion
 
+        #region Metodos Sobreescritos
         public override sealed string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
@@ -37,5 +40,6 @@ namespace Entidades
 
             return sb.ToString();
         }
+        #endregion
     }
 }
