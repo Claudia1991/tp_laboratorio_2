@@ -7,16 +7,16 @@ namespace Entidades
     {
         #region Constructor
         public Suv(EMarca marca, string chasis, ConsoleColor color)
-            : base(marca,chasis, color)
+            : base(chasis, marca, color)
         {
         }
         #endregion
 
-        #region Campos
+        #region Propiedades
         /// <summary>
         /// Las camionetas son grandes
         /// </summary>
-        public override ETamanio Tamanio
+        protected override sealed ETamanio Tamanio
         {
             get
             {
@@ -28,15 +28,15 @@ namespace Entidades
         #region Metodos sobreescritos
         public override sealed string Mostrar()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            sb.AppendLine("SUV");
-            sb.AppendLine(base.Mostrar());
-            sb.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
-            sb.AppendLine("---------------------");
-            sb.AppendLine("---------------------");
+            stringBuilder.AppendLine("SUV");
+            stringBuilder.AppendLine(base.Mostrar());
+            stringBuilder.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
+            stringBuilder.AppendLine("---------------------");
+            stringBuilder.AppendLine("---------------------");
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
         #endregion
     }

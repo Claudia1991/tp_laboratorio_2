@@ -12,8 +12,8 @@ namespace Entidades
     public sealed class Taller
     {
         #region Campos
-        List<Vehiculo> vehiculos;
-        int espacioDisponible;
+        private List<Vehiculo> vehiculos;
+        private int espacioDisponible;
         #endregion
 
         #region Enumerados
@@ -28,7 +28,8 @@ namespace Entidades
         {
             this.vehiculos = new List<Vehiculo>();
         }
-        public Taller(int espacioDisponible): this()
+
+        public Taller(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
         }
@@ -59,10 +60,10 @@ namespace Entidades
             /*Logica:
              * Verifico que cada vehiculo(clase abstracta) sea de un tipo(clase que herada la clase abstracta)
              */
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            sb.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
-            sb.AppendLine("");
+            stringBuilder.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
+            stringBuilder.AppendLine("");
             foreach (Vehiculo vehiculo in taller.vehiculos)
             {
                 switch (tipo)
@@ -70,28 +71,28 @@ namespace Entidades
                     case ETipo.Ciclomotor:
                         if (vehiculo is Ciclomotor)
                         {
-                            sb.AppendLine(vehiculo.Mostrar());
+                            stringBuilder.AppendLine(vehiculo.Mostrar());
                         }
                         break;
                     case ETipo.Sedan:
                         if (vehiculo is Sedan)
                         {
-                            sb.AppendLine(vehiculo.Mostrar());
+                            stringBuilder.AppendLine(vehiculo.Mostrar());
                         }
                         break;
                     case ETipo.SUV:
                         if (vehiculo is Suv)
                         {
-                            sb.AppendLine(vehiculo.Mostrar());
+                            stringBuilder.AppendLine(vehiculo.Mostrar());
                         }
                         break;
                     default:
-                        sb.AppendLine(vehiculo.Mostrar());
+                        stringBuilder.AppendLine(vehiculo.Mostrar());
                         break;
                 }
             }
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
         #endregion
 

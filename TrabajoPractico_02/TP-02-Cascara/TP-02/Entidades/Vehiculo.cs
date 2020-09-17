@@ -21,13 +21,13 @@ namespace Entidades
         #endregion
 
         #region Campos
-        EMarca marca;
-        string chasis;
-        ConsoleColor color;
+        private EMarca marca;
+        private string chasis;
+        private ConsoleColor color;
         #endregion
 
         #region Constructor
-        public Vehiculo(EMarca marca, string chasis, ConsoleColor color)
+        public Vehiculo(string chasis, EMarca marca, ConsoleColor color)
         {
             this.marca = marca;
             this.chasis = chasis;
@@ -39,7 +39,7 @@ namespace Entidades
         /// <summary>
         /// ReadOnly: Retornará el tamaño
         /// </summary>
-        public virtual ETamanio Tamanio { get; }
+        protected virtual ETamanio Tamanio { get; }
         #endregion
 
         #region Metodo Publico
@@ -61,14 +61,14 @@ namespace Entidades
         /// <param name="vehiculo">El string del detalle de un vehiculo</param>
         public static explicit operator string(Vehiculo vehiculo)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            sb.AppendLine(string.Format("CHASIS: {0}\r", vehiculo.chasis));
-            sb.AppendLine(string.Format("MARCA : {0}\r", vehiculo.marca.ToString()));
-            sb.AppendLine(string.Format("COLOR : {0}\r", vehiculo.color.ToString()));
-            sb.AppendLine("---------------------");
+            stringBuilder.AppendLine(string.Format("CHASIS: {0}\r", vehiculo.chasis));
+            stringBuilder.AppendLine(string.Format("MARCA : {0}\r", vehiculo.marca.ToString()));
+            stringBuilder.AppendLine(string.Format("COLOR : {0}\r", vehiculo.color.ToString()));
+            stringBuilder.AppendLine("---------------------");
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
 
         /// <summary>

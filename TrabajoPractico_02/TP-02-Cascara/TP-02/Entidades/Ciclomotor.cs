@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
     public class Ciclomotor : Vehiculo
     {
         #region Constructor
-        public Ciclomotor(EMarca marca, string chasis, ConsoleColor color): base(marca, chasis, color)
+        public Ciclomotor(EMarca marca, string chasis, ConsoleColor color): base(chasis, marca, color)
         {
         }
         #endregion
@@ -18,7 +15,7 @@ namespace Entidades
         /// <summary>
         /// Las motos son chicas
         /// </summary>
-        public override ETamanio Tamanio
+        protected sealed override ETamanio Tamanio
         {
             get
             {
@@ -28,17 +25,17 @@ namespace Entidades
         #endregion
 
         #region Metodos Sobreescritos
-        public override sealed string Mostrar()
+        public sealed override string Mostrar()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            sb.AppendLine("CICLOMOTOR");
-            sb.AppendLine(base.Mostrar());
-            sb.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
-            sb.AppendLine("---------------------");
-            sb.AppendLine("---------------------");
+            stringBuilder.AppendLine("CICLOMOTOR");
+            stringBuilder.AppendLine(base.Mostrar());
+            stringBuilder.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
+            stringBuilder.AppendLine("---------------------");
+            stringBuilder.AppendLine("---------------------");
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
         #endregion
     }

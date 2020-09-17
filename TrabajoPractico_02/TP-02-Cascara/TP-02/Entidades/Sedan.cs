@@ -10,7 +10,7 @@ namespace Entidades
         #endregion
 
         #region Campos
-        ETipo tipo;
+        private ETipo tipo;
         #endregion
 
         #region Constructores
@@ -21,9 +21,15 @@ namespace Entidades
         /// <param name="chasis"></param>
         /// <param name="color"></param>
         public Sedan(EMarca marca, string chasis, ConsoleColor color)
-            : base(marca, chasis,  color)
+            : base(chasis, marca,  color)
         {
             tipo = ETipo.Monovolumen;
+        }
+
+        public Sedan(EMarca marca, string chasis, ConsoleColor color, ETipo tipo)
+            : base(chasis, marca, color)
+        {
+            this.tipo = tipo;
         }
         #endregion
 
@@ -31,7 +37,7 @@ namespace Entidades
         /// <summary>
         /// Los automoviles son medianos
         /// </summary>
-        public override ETamanio Tamanio
+        protected sealed override ETamanio Tamanio
         {
             get
             {
@@ -41,18 +47,18 @@ namespace Entidades
         #endregion
 
         #region Metodo sobrecargado
-        public override sealed string Mostrar()
+        public sealed override string Mostrar()
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
 
-            sb.AppendLine("SEDAN");
-            sb.AppendLine(base.Mostrar());
-            sb.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
-            sb.AppendLine("TIPO : " + this.tipo);
-            sb.AppendLine("---------------------");
-            sb.AppendLine("---------------------");
+            stringBuilder.AppendLine("SEDAN");
+            stringBuilder.AppendLine(base.Mostrar());
+            stringBuilder.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
+            stringBuilder.AppendLine("TIPO : " + this.tipo);
+            stringBuilder.AppendLine("---------------------");
+            stringBuilder.AppendLine("---------------------");
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
         #endregion
     }
