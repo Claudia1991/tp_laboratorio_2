@@ -6,7 +6,7 @@ namespace Entidades
     public class Sedan : Vehiculo
     {
         #region Enumerados
-        public enum ETipo { CuatroPuertas, CincoPuertas, Monovolumen }
+        public enum ETipo { Sedan, Monovolumen }
         #endregion
 
         #region Campos
@@ -46,6 +46,7 @@ namespace Entidades
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine("SEDAN");
+            sb.AppendLine(base.Mostrar());
             sb.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
             sb.AppendLine("TIPO : " + this.tipo);
             sb.AppendLine("---------------------");
