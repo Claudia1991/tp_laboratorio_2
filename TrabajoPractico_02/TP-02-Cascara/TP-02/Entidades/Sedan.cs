@@ -50,6 +50,7 @@ namespace Entidades
             sb.AppendLine(string.Format("TAMAÑO : {0}", this.Tamanio));
             sb.AppendLine("TIPO : " + this.tipo);
             sb.AppendLine("---------------------");
+            sb.AppendLine("---------------------");
 
             return sb.ToString();
         }
