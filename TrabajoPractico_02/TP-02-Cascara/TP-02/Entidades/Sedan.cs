@@ -6,7 +6,7 @@ namespace Entidades
     public class Sedan : Vehiculo
     {
         #region Enumerados
-        public enum ETipo { Sedan, Monovolumen }
+        public enum ETipo { CuatroPuertas, CincoPuertas }
         #endregion
 
         #region Campos
@@ -23,7 +23,7 @@ namespace Entidades
         public Sedan(EMarca marca, string chasis, ConsoleColor color)
             : base(chasis, marca,  color)
         {
-            tipo = ETipo.Monovolumen;
+            tipo = ETipo.CuatroPuertas;
         }
 
         public Sedan(EMarca marca, string chasis, ConsoleColor color, ETipo tipo)
