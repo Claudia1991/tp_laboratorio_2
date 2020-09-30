@@ -6,7 +6,7 @@ namespace Entidades
     public class Ciclomotor : Vehiculo
     {
         #region Constructor
-        public Ciclomotor(EMarca marca, string chasis, ConsoleColor color): base(chasis, marca, color)
+        public Ciclomotor(EMarca marca, string chasis, ConsoleColor color) : base(chasis, marca, color)
         {
         }
         #endregion
@@ -15,7 +15,7 @@ namespace Entidades
         /// <summary>
         /// Las motos son chicas
         /// </summary>
-        protected  override ETamanio Tamanio
+        protected override ETamanio Tamanio
         {
             get
             {

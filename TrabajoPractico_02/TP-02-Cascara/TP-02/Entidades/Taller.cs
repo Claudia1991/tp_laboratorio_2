@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
@@ -19,7 +17,7 @@ namespace Entidades
         #region Enumerados
         public enum ETipo
         {
-            Ciclomotor, Sedan, SUV, Todos
+           Ciclomotor, Sedan, SUV, Todos
         }
         #endregion
 
@@ -28,7 +26,6 @@ namespace Entidades
         {
             this.vehiculos = new List<Vehiculo>();
         }
-
         public Taller(int espacioDisponible) : this()
         {
             this.espacioDisponible = espacioDisponible;
@@ -62,7 +59,7 @@ namespace Entidades
              */
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles", taller.vehiculos.Count, taller.espacioDisponible);
+            stringBuilder.AppendFormat("Tenemos {0} lugares ocupados de un total de {1} disponibles.", taller.vehiculos.Count, taller.espacioDisponible);
             stringBuilder.AppendLine("");
             foreach (Vehiculo vehiculo in taller.vehiculos)
             {
@@ -102,7 +99,7 @@ namespace Entidades
         /// </summary>
         /// <param name="taller">Objeto donde se agregará el elemento</param>
         /// <param name="vehiculo">Objeto a agregar</param>
-        /// <returns></returns>
+        /// <returns>Retorna el taller.</returns>
         public static Taller operator +(Taller taller, Vehiculo vehiculo)
         {
             /*Logica:
@@ -115,12 +112,13 @@ namespace Entidades
             }
             return taller;
         }
+
         /// <summary>
         /// Quitará un elemento de la lista
         /// </summary>
         /// <param name="taller">Objeto donde se quitará el elemento</param>
         /// <param name="vehiculo">Objeto a quitar</param>
-        /// <returns></returns>
+        /// <returns>Retorna el taller.</returns>
         public static Taller operator -(Taller taller, Vehiculo vehiculo)
         {
             /*Logica:

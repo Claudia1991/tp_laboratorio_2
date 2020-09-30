@@ -20,7 +20,7 @@ namespace TP_02_2018
             Ciclomotor c2 = new Ciclomotor(Vehiculo.EMarca.HarleyDavidson, "LEM666", ConsoleColor.Red);
 
             Sedan m1 = new Sedan(Vehiculo.EMarca.Toyota, "HJK789", ConsoleColor.White);
-            Sedan m2 = new Sedan(Vehiculo.EMarca.Chevrolet, "IOP852", ConsoleColor.Blue);
+            Sedan m2 = new Sedan(Vehiculo.EMarca.Chevrolet, "IOP852", ConsoleColor.Blue, Sedan.ETipo.CincoPuertas);
 
             Suv a1 = new Suv(Vehiculo.EMarca.Ford, "QWE968", ConsoleColor.Gray);
             Suv a2 = new Suv(Vehiculo.EMarca.Renault, "TYU426", ConsoleColor.DarkBlue);
@@ -30,11 +30,9 @@ namespace TP_02_2018
             // Agrego 8 ítems (los últimos 2 no deberían poder agregarse ni el m1 repetido) y muestro
             taller += c1;
             taller += c2;
-
             taller += m1;
             taller += m1;
             taller += m2;
-
             taller += a1;
             taller += a2;
             taller += a3;

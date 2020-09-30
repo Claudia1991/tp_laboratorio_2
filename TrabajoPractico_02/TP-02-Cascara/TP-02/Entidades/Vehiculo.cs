@@ -13,7 +13,6 @@ namespace Entidades
         {
             Chevrolet, Ford, Renault, Toyota, BMW, Honda, HarleyDavidson
         }
-
         public enum ETamanio
         {
             Chico, Mediano, Grande
@@ -26,6 +25,13 @@ namespace Entidades
         private ConsoleColor color;
         #endregion
 
+        #region Propiedades
+        /// <summary>
+        /// ReadOnly: Retornará el tamaño
+        /// </summary>
+        protected virtual ETamanio Tamanio { get; }
+        #endregion
+
         #region Constructor
         public Vehiculo(string chasis, EMarca marca, ConsoleColor color)
         {
@@ -35,14 +41,7 @@ namespace Entidades
         }
         #endregion
 
-        #region Propiedades
-        /// <summary>
-        /// ReadOnly: Retornará el tamaño
-        /// </summary>
-        protected virtual ETamanio Tamanio { get; }
-        #endregion
-
-        #region Metodo Publico
+        #region Metodos Publicos
         /// <summary>
         /// Publica todos los datos del Vehiculo.
         /// </summary>
@@ -53,19 +52,14 @@ namespace Entidades
         }
         #endregion
 
-
         #region Operadores
-        /// <summary>
-        /// Operador de casteo explicito a string de un vehiculo.
-        /// </summary>
-        /// <param name="vehiculo">El string del detalle de un vehiculo</param>
         public static explicit operator string(Vehiculo vehiculo)
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            stringBuilder.AppendLine(string.Format("CHASIS: {0}\r", vehiculo.chasis));
-            stringBuilder.AppendLine(string.Format("MARCA : {0}\r", vehiculo.marca.ToString()));
-            stringBuilder.AppendLine(string.Format("COLOR : {0}\r", vehiculo.color.ToString()));
+            stringBuilder.AppendLine(string.Format("CHASIS: {0}\r\n", vehiculo.chasis));
+            stringBuilder.AppendLine(string.Format("MARCA : {0}\r\n", vehiculo.marca.ToString()));
+            stringBuilder.AppendLine(string.Format("COLOR : {0}\r\n", vehiculo.color.ToString()));
             stringBuilder.AppendLine("---------------------");
 
             return stringBuilder.ToString();
@@ -74,19 +68,20 @@ namespace Entidades
         /// <summary>
         /// Dos vehiculos son iguales si comparten el mismo chasis
         /// </summary>
-        /// <param name="vehiculoUno">El primer vehiculo a comparar</param>
-        /// <param name="vehiculoDos">El segundo vehiculo a comparar</param>
-        /// <returns>Devuelve true si son iguales, false caso contrario.</returns>
+        /// <param name="vehiculoUno"></param>
+        /// <param name="vehiculoDos"></param>
+        /// <returns></returns>
         public static bool operator ==(Vehiculo vehiculoUno, Vehiculo vehiculoDos)
         {
             return (vehiculoUno.chasis == vehiculoDos.chasis);
         }
+
         /// <summary>
         /// Dos vehiculos son distintos si su chasis es distinto
         /// </summary>
-        /// <param name="vehiculoUno">El primer vehiculo a comparar</param>
-        /// <param name="vehiculoDos">El segundo vehiculo a comparar</param>
-        /// <returns>Devuelve true si no son iguales, false caso contrario.</returns>
+        /// <param name="vehiculoUno"></param>
+        /// <param name="vehiculoDos"></param>
+        /// <returns></returns>
         public static bool operator !=(Vehiculo vehiculoUno, Vehiculo vehiculoDos)
         {
             return !(vehiculoUno.chasis == vehiculoDos.chasis);

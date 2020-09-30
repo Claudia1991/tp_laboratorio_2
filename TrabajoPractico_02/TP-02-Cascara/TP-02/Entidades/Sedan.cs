@@ -21,7 +21,7 @@ namespace Entidades
         /// <param name="chasis"></param>
         /// <param name="color"></param>
         public Sedan(EMarca marca, string chasis, ConsoleColor color)
-            : base(chasis, marca,  color)
+            : base(chasis, marca, color)
         {
             tipo = ETipo.CuatroPuertas;
         }
