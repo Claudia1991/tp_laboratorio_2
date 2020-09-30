@@ -37,7 +37,7 @@ namespace Entidades
         /// <summary>
         /// Los automoviles son medianos
         /// </summary>
-        protected sealed override ETamanio Tamanio
+        protected override ETamanio Tamanio
         {
             get
             {
@@ -47,7 +47,7 @@ namespace Entidades
         #endregion
 
         #region Metodo sobrecargado
-        public sealed override string Mostrar()
+        public override string Mostrar()
         {
             StringBuilder stringBuilder = new StringBuilder();
 

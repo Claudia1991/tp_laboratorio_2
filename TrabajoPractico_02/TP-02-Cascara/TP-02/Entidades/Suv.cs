@@ -16,7 +16,7 @@ namespace Entidades
         /// <summary>
         /// Las camionetas son grandes
         /// </summary>
-        protected override sealed ETamanio Tamanio
+        protected override ETamanio Tamanio
         {
             get
             {
@@ -26,7 +26,7 @@ namespace Entidades
         #endregion
 
         #region Metodos sobreescritos
-        public override sealed string Mostrar()
+        public override string Mostrar()
         {
             StringBuilder stringBuilder = new StringBuilder();
 
