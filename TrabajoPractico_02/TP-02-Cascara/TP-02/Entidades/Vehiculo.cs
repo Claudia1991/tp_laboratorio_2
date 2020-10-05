@@ -29,7 +29,7 @@ namespace Entidades
         /// <summary>
         /// ReadOnly: Retornará el tamaño
         /// </summary>
-        protected virtual ETamanio Tamanio { get; }
+        protected abstract ETamanio Tamanio { get; }
         #endregion
 
         #region Constructor
