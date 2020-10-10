@@ -2,19 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Entidades
 {
     public class Bar
     {
+        #region Campos
         private List<Empleado> empleados;
         private List<Gente> gente;
         private static Bar singleton;
+        #endregion
 
-        public List<Empleado> Empleados { get { return this.empleados; } }
-        public List<Gente> Gente { get { return this.gente; } }
+        #region Propiedades
+        public List<Empleado> Empleados
+        {
+            get
+            {
+                return this.empleados;
+            }
+        }
 
+        public List<Gente> Gente
+        {
+            get
+            {
+                return this.gente;
+            }
+        }
+        #endregion
+
+        #region Constructores
         private Bar()
         {
             this.empleados = new List<Empleado>();
@@ -29,23 +46,41 @@ namespace Entidades
             }
             return singleton;
         }
+        #endregion
 
+        #region Sobrecargas
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine("Muestro las personas en el bar.");
+            stringBuilder.AppendLine("----------[EMPLEADOS]----------");
             foreach (Empleado empleado in empleados)
             {
-                stringBuilder.AppendLine(empleado.Mostrar());
+                if (empleado.Dni != -1)
+                {
+                    stringBuilder.AppendLine(empleado.Mostrar());
+
+                }
             }
+            stringBuilder.AppendLine("----------[EMPLEADOS]----------");
+
+            stringBuilder.AppendLine("----------[GENTE]----------");
 
             foreach (Gente gente in gente)
             {
                 stringBuilder.AppendLine(gente.Mostrar());
             }
+            stringBuilder.AppendLine("----------[GENTE]----------");
+
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Agrega empleados al bar.
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <param name="empleado"></param>
+        /// <returns>Devuelve true si pudo agregar, false caso contrario.</returns>
         public static bool operator +(Bar bar, Empleado empleado)
         {
             //Verifico que no haya un empleado igual, sino lo agrego
@@ -57,6 +92,13 @@ namespace Entidades
             }
             return sePudoAgregar;
         }
+
+        /// <summary>
+        /// Agrega gente al bar si hay los empleados disponibles.
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <param name="gente"></param>
+        /// <returns>Devuelve true si pudo agregar, false caso contrario.</returns>
         public static bool operator +(Bar bar, Gente gente)
         {
             bool sePudoAgregar = false;
@@ -68,36 +110,34 @@ namespace Entidades
             return sePudoAgregar;
         }
 
-        public static bool operator -(Bar bar, Empleado empleado)
+        public bool BorrarPersonasDelBar(Bar bar, Type tipo)
         {
             bool sePudoBorrar = false;
-            if (bar.Gente.Count > 0)
-            {
-                bar.empleados.RemoveAt(bar.Empleados.Count - 1);
+            int indiceAEliminar = tipo == typeof(Empleado) ? bar.Empleados.Count - 1 : 0;
 
-                sePudoBorrar = true;
-            }
-            return sePudoBorrar;
-        }
-        public static bool operator -(Bar bar, Gente gente)
-        {
-            bool sePudoBorrar = false;
-            if (bar.Gente.Count > 0)
+            if ( tipo == typeof(Empleado) && bar.Empleados.Count >0)
             {
-                bar.gente.RemoveAt(0);
+                bar.empleados.RemoveAt(indiceAEliminar);
+                sePudoBorrar = true;
+            }else if (tipo == typeof(Gente) && bar.Gente.Count > 0)
+            {
+                bar.gente.RemoveAt(indiceAEliminar);
                 sePudoBorrar = true;
             }
+
             return sePudoBorrar;
         }
 
+        /// <summary>
+        /// Verifica si se puede agregar mas clientes segun la cantidad de empleados del bar
+        /// </summary>
+        /// <param name="cantidadEmpleados"></param>
+        /// <param name="cantidadActualGente"></param>
+        /// <returns>Devuelve true si se puede agregar, false en otro caso.</returns>
         private static bool SePuedeAgregarGente(int cantidadEmpleados, int cantidadActualGente)
         {
-            //falta la validacion de verda, jeje
-            //por cada empleado, 10 gente
-            //bool sePuedeAgregarGente = false;
-            //cantidadEmpleados * 10 <=can
-
-            return cantidadEmpleados * 10 >= cantidadActualGente;
+            return cantidadEmpleados * 10 > cantidadActualGente;
         }
+        #endregion
     }
 }

@@ -1,20 +1,16 @@
 ﻿using Entidades;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VistaForm
 {
     public partial class CuentaGanadoForm : Form
     {
+        #region Campos
         private Bar bar;
-        private Random random = new Random();
+        private DatosForm datosForm;
+        private InformeForm informeForm;
+        #endregion
 
         public CuentaGanadoForm()
         {
@@ -29,18 +25,14 @@ namespace VistaForm
             //Verifico si agrega , por la cantidad
             if (bar.Empleados.Count < empleados)
             {
-                //agrego
-                Empleado empleado = new Empleado("Prueba", (short)random.Next());
-                bool sePudo = bar + empleado;
-
+                using (datosForm = new DatosForm(bar, typeof(Empleado)))
+                {
+                    datosForm.ShowDialog();
+                }
             }
             else if (bar.Empleados.Count > empleados)
             {
-                //elimino
-                Empleado empleado = new Empleado("Prueba", (short)random.Next());
-
-                bool sePudo = bar - empleado;
-
+                bar.BorrarPersonasDelBar(bar, typeof(Empleado));
             }
         }
 
@@ -50,24 +42,24 @@ namespace VistaForm
             //Verifico si agrega , por la cantidad
             if (bar.Gente.Count < genteActual)
             {
-                //agrego
-                Gente gente = new Gente((short)random.Next());
-                bool sePudo = bar + gente;
-
+                using (datosForm = new DatosForm(bar, typeof(Gente)))
+                {
+                    datosForm.ShowDialog();
+                }
             }
             else if (bar.Gente.Count > genteActual)
             {
-                //elimino, se que esto se puede mejorar, para eliminar gente
-                Gente gente = new Gente((short)random.Next());
-                bool sePudo = bar - gente;
-
+                bar.BorrarPersonasDelBar(bar, typeof(Gente));
             }
 
         }
 
         private void btnInforme_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(bar.ToString(),"Informe del ganado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using (informeForm = new InformeForm(bar.ToString()))
+            {
+                informeForm.ShowDialog();
+            }
         }
     }
 }

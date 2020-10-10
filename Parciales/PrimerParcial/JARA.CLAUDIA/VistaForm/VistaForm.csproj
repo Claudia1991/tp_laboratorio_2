@@ -52,10 +52,28 @@
     <Compile Include="CuentaGanadoForm.Designer.cs">
       <DependentUpon>CuentaGanadoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DatosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatosForm.Designer.cs">
+      <DependentUpon>DatosForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformeForm.Designer.cs">
+      <DependentUpon>InformeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CuentaGanadoForm.resx">
       <DependentUpon>CuentaGanadoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatosForm.resx">
+      <DependentUpon>DatosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeForm.resx">
+      <DependentUpon>InformeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

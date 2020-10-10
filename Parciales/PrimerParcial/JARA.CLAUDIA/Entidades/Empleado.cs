@@ -8,8 +8,21 @@ namespace Entidades
 {
     public class Empleado : Persona
     {
+        #region Campos
         private int dni;
+        #endregion
 
+        #region Propiedades
+        public int Dni
+        {
+            get
+            {
+                return this.dni;
+            }
+        }
+        #endregion
+
+        #region Constructores
         public Empleado(string nombre, short edad) : base(nombre, edad)
         {
             this.dni = -1;
@@ -19,7 +32,10 @@ namespace Entidades
         {
             this.dni = dni;
         }
+        #endregion
 
+
+        #region Metodos
         /// <summary>
         /// Valida que el empleado sea mayor de 21 años y su nombre tengo por lo menos dos caracteres
         /// </summary>
@@ -62,5 +78,6 @@ namespace Entidades
         {
             return !(empleadoUno == empleadoDos);
         }
+        #endregion
     }
 }
