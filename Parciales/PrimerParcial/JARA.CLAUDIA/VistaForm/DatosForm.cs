@@ -49,6 +49,7 @@ namespace VistaForm
         {
             this.bar = bar;
             this.tipo = tipo;
+            this.regex = new Regex("[0-9]");
         }
         #endregion
 
@@ -68,23 +69,20 @@ namespace VistaForm
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrio un error", "Nuevo empleado.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        MessageBox.Show("Ocurrio un error. Verifique la edad. Edad minima: 22. Longitud minima nombre: 2", "Nuevo empleado.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                        MessageBox.Show("Verifique los datos para cargar el nuevo empleado", "Nuevo empleado.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show("Verifique los datos para cargar el nuevo empleado", "Nuevo empleado.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 if (EsEdadValida())
                 {
-                    short edadCliente;
-                    Int16.TryParse(Edad, out edadCliente);
-                    Gente cliente = new Gente(edadCliente);
+
+                    Gente cliente = CreanGente(Edad);
                     bool seAgregoCliente = bar + cliente;
                     if (seAgregoCliente)
                     {
@@ -93,14 +91,12 @@ namespace VistaForm
                     }
                     else
                     {
-                        MessageBox.Show("Ocurrio un error", "Nuevo Cliente.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                        MessageBox.Show("Cupo maximo de clientes: 10.", "Nuevo Cliente.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Verifique los datos para cargar el cliente", "Nuevo cliente.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    MessageBox.Show("Verifique los datos para cargar el cliente. Edad minima: 19.", "Nuevo cliente.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -123,7 +119,6 @@ namespace VistaForm
         /// <returns></returns>
         private bool EsDniValido()
         {
-            regex = new Regex("[0,9]");
             return string.IsNullOrEmpty(Dni) || regex.IsMatch(Dni);
         }
 
@@ -133,8 +128,7 @@ namespace VistaForm
         /// <returns></returns>
         private bool EsEdadValida()
         {
-            regex = new Regex(@"^\d$");
-            return regex.IsMatch(Edad);
+            return !string.IsNullOrEmpty(Edad) && regex.IsMatch(Edad);
         }
 
         /// <summary>
@@ -172,10 +166,21 @@ namespace VistaForm
             return empleado;
         }
 
+        /// <summary>
+        /// Crea la gente segun la edad
+        /// </summary>
+        /// <param name="edad"></param>
+        /// <returns>Devuelve la gente</returns>
+        private Gente CreanGente(string edad)
+        {
+            short edadCliente;
+            Int16.TryParse(edad, out edadCliente);
+            return new Gente(edadCliente);
+        }
+
         private void DatosForm_Load(object sender, EventArgs e)
         {
             HabilitarControlesSegunPersona();
-
         }
         #endregion
     }

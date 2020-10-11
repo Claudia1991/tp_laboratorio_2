@@ -51,6 +51,7 @@ namespace Entidades
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendFormat("Nombre: {0}", this.Nombre);
+            stringBuilder.AppendLine("");
             stringBuilder.AppendFormat("Edad: {0}", this.Edad);
             return stringBuilder.ToString();
         }

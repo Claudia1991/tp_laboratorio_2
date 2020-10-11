@@ -59,6 +59,7 @@
             // 
             this.nudEmpleados.Location = new System.Drawing.Point(173, 23);
             this.nudEmpleados.Name = "nudEmpleados";
+            this.nudEmpleados.ReadOnly = true;
             this.nudEmpleados.Size = new System.Drawing.Size(120, 20);
             this.nudEmpleados.TabIndex = 2;
             this.nudEmpleados.ValueChanged += new System.EventHandler(this.nudEmpleados_ValueChanged);
@@ -67,6 +68,7 @@
             // 
             this.nudGente.Location = new System.Drawing.Point(173, 69);
             this.nudGente.Name = "nudGente";
+            this.nudGente.ReadOnly = true;
             this.nudGente.Size = new System.Drawing.Size(120, 20);
             this.nudGente.TabIndex = 3;
             this.nudGente.ValueChanged += new System.EventHandler(this.nudGente_ValueChanged);
@@ -96,6 +98,7 @@
             this.Name = "CuentaGanadoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contador de Claudia Jara";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CuentaGanadoForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.nudEmpleados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGente)).EndInit();
             this.ResumeLayout(false);

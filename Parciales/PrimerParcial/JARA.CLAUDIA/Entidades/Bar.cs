@@ -29,6 +29,14 @@ namespace Entidades
                 return this.gente;
             }
         }
+
+        public bool EstaLleno
+        {
+            get
+            {
+                return Empleados.Count * 10 == Gente.Count;
+            }
+        }
         #endregion
 
         #region Constructores
@@ -110,6 +118,12 @@ namespace Entidades
             return sePudoAgregar;
         }
 
+        /// <summary>
+        /// Elimina personas del bar segun sea cliente o empleado.
+        /// </summary>
+        /// <param name="bar"></param>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public bool BorrarPersonasDelBar(Bar bar, Type tipo)
         {
             bool sePudoBorrar = false;

@@ -36,6 +36,7 @@
             // 
             this.rtbInforme.Location = new System.Drawing.Point(12, 12);
             this.rtbInforme.Name = "rtbInforme";
+            this.rtbInforme.ReadOnly = true;
             this.rtbInforme.Size = new System.Drawing.Size(496, 160);
             this.rtbInforme.TabIndex = 0;
             this.rtbInforme.Text = "";

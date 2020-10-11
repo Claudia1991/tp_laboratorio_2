@@ -35,6 +35,7 @@
             this.txtEdad = new System.Windows.Forms.TextBox();
             this.txtDni = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -87,13 +88,24 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(162, 143);
+            this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAceptar.Location = new System.Drawing.Point(235, 143);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(144, 23);
+            this.btnAceptar.Size = new System.Drawing.Size(71, 23);
             this.btnAceptar.TabIndex = 6;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(162, 142);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // DatosForm
             // 
@@ -101,6 +113,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LawnGreen;
             this.ClientSize = new System.Drawing.Size(332, 197);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
             this.Controls.Add(this.txtDni);
             this.Controls.Add(this.txtEdad);
@@ -127,5 +140,6 @@
         private System.Windows.Forms.TextBox txtEdad;
         private System.Windows.Forms.TextBox txtDni;
         private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
