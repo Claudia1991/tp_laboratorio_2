@@ -1,4 +1,4 @@
-﻿using ClasesAbstractas;
+﻿using EntidadesAbstractas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace ClasesInstanciables
         #region Enumerados
         public enum EEstadoCuenta
         {
-            Aldia,
+            AlDia,
             Deudor,
             Becado
         }

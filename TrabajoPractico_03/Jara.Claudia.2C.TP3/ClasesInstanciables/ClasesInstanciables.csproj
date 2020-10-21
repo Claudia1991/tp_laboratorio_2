@@ -48,9 +48,9 @@
     <Compile Include="Universidad.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClasesAbstractas\ClasesAbstractas.csproj">
+    <ProjectReference Include="..\ClasesAbstractas\EntidadesAbstractas.csproj">
       <Project>{E5D7B6D1-D81E-4FB3-AF0A-31BCA6768E31}</Project>
-      <Name>ClasesAbstractas</Name>
+      <Name>EntidadesAbstractas</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

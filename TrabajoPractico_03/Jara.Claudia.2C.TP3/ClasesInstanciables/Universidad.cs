@@ -64,7 +64,7 @@ namespace ClasesInstanciables
         #endregion
 
         #region Metodos
-        public bool  Guardar(Universidad universidad)
+        public static bool  Guardar(Universidad universidad)
         {
             return true;
         }

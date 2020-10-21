@@ -48,7 +48,7 @@ namespace ClasesInstanciables
         #endregion
 
         #region Metodos
-        public bool Guardar(Jornada jornada)
+        public static bool Guardar(Jornada jornada)
         {
             return true;
         }
