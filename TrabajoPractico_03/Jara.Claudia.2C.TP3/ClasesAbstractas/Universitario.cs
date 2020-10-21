@@ -30,7 +30,7 @@ namespace ClasesAbstractas
             return base.Equals(obj);
         }
 
-        protected string MostrarDatos()
+        protected virtual string MostrarDatos()
         {
             return string.Empty;
         }
