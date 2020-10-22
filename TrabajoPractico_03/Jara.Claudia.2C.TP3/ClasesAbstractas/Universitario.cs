@@ -15,36 +15,39 @@ namespace EntidadesAbstractas
         #region Constructor
         public Universitario()
         {
-
+            this.legajo = 0;
         }
 
-        public Universitario(int legajo, string nombre, string apellido, string dni, ENacionalidad nacionalidad)
+        public Universitario(int legajo, string nombre, string apellido, string dni, ENacionalidad nacionalidad) : base(nombre, apellido, dni, nacionalidad)
         {
-
+            this.legajo = legajo;
         }
         #endregion
 
         #region Metodos
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            return obj != null ? this.GetType().Equals(obj) : false;
         }
 
         protected virtual string MostrarDatos()
         {
-            return string.Empty;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendFormat("Legajo: {0}", this.legajo);
+            stringBuilder.AppendLine(base.ToString());
+            return stringBuilder.ToString();
         }
 
         protected abstract string ParticipaEnClase();
 
         public static  bool operator ==(Universitario universitarioUno, Universitario universitarioDos)
         {
-            return true;
+            return universitarioUno.Equals(universitarioDos) && (universitarioUno.legajo == universitarioDos.legajo || universitarioUno.DNI == universitarioDos.DNI);
         }
 
         public static bool operator !=(Universitario universitarioUno, Universitario universitarioDos)
         {
-            return true;
+            return !(universitarioUno == universitarioDos);
         }
         #endregion
     }
