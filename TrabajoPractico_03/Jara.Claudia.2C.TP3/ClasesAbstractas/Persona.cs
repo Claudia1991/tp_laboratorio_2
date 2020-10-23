@@ -130,11 +130,21 @@ namespace EntidadesAbstractas
                     {
                         dni = dato;
                     }
+                    else
+                    {
+                        throw new NacionalidadInvalidaException();
+
+                    }
                     break;
                 case ENacionalidad.Extranjero:
                     if (dato >= 90000000 && dato <= 99999999)
                     {
                         dni = dato;
+                    }
+                    else
+                    {
+                        throw new NacionalidadInvalidaException();
+
                     }
                     break;
                 default:
@@ -150,8 +160,8 @@ namespace EntidadesAbstractas
             switch (nacionalidad)
             {
                 case ENacionalidad.Argentino:
-                    regex = new Regex("{0-9}{1,8}");
-                    if (regex.IsMatch(dato) && int.TryParse(dato, out dniParseado) && ValidarDni(nacionalidad, dniParseado) != -1)
+                    regex = new Regex("[0-9]{1,8}");
+                    if (regex.IsMatch(dato) && int.TryParse(dato, out dniParseado))
                     {
                         dni = ValidarDni(nacionalidad, dniParseado);
                     }
@@ -161,8 +171,8 @@ namespace EntidadesAbstractas
                     }
                     break;
                 case ENacionalidad.Extranjero:
-                    regex = new Regex("{0-9}{8}");
-                    if (regex.IsMatch(dato) && int.TryParse(dato, out dniParseado) && ValidarDni(nacionalidad, dniParseado) != -1)
+                    regex = new Regex("[0-9]{8}");
+                    if (regex.IsMatch(dato) && int.TryParse(dato, out dniParseado))
                     {
                         dni = ValidarDni(nacionalidad, dniParseado);
                     }
