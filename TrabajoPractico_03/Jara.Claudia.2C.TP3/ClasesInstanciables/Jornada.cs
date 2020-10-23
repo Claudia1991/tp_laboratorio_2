@@ -18,32 +18,52 @@ namespace ClasesInstanciables
         #region Propiedades
         public List<Alumno> Alumnos
         {
-            get;
-            set;
+            get
+            {
+                return this.alumnos;
+            }
+            set
+            {
+                this.alumnos = value;
+            }
         }
 
         public EClases Clases
         {
-            get;
-            set;
+            get
+            {
+                return this.clase;
+            }
+            set
+            {
+                this.clase = value;
+            }
         }
 
         public Profesor Instructor
         {
-            get;
-            set;
+            get
+            {
+                return this.instructor;
+            }
+            set
+            {
+                this.instructor = value;
+            }
         }
         #endregion
 
         #region Constructor
         private Jornada()
         {
+            this.alumnos = new List<Alumno>();
 
         }
 
-        public Jornada(EClases clase, Profesor instructor)
+        public Jornada(EClases clase, Profesor instructor) : this()
         {
-
+            this.clase = clase;
+            this.instructor = instructor;
         }
         #endregion
 
@@ -53,31 +73,42 @@ namespace ClasesInstanciables
             return true;
         }
 
-        public string Leer()
+        public static string Leer()
         {
             return string.Empty;
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendFormat("Clase: {0} - Profesor: {1}", this.Clases, this.Instructor);
+            stringBuilder.AppendFormat("Alumnos: {0}", this.Alumnos.Select(a => a.Nombre));
+
+            return stringBuilder.ToString();
         }
         #endregion
 
         #region Sobrecarga de operadores
         public static bool operator !=(Jornada jornada, Alumno alumno)
         {
-            return true;
+            return !(jornada==alumno);
         }
 
         public static bool operator ==(Jornada jornada, Alumno alumno)
         {
-            return true;
+            /* Logica: Una Jornada será igual a un Alumno si el mismo participa de la clase.*/
+            return alumno == jornada.Clases;
         }
 
         public static Jornada operator +(Jornada jornada, Alumno alumno)
         {
-            return new Jornada();
+            /* Logica: Agregar Alumnos a la clase por medio del operador +, validando que no estén previamente
+                cargados.*/
+            if (jornada != alumno)
+            {
+                jornada.alumnos.Add(alumno);
+            }
+            return jornada;
         }
         #endregion
     }
