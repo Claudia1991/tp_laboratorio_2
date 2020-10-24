@@ -7,6 +7,7 @@ using static ClasesInstanciables.Universidad;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public class Jornada
     {
         #region Campos
@@ -82,6 +83,7 @@ namespace ClasesInstanciables
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendFormat("Clase: {0} - Profesor: {1}", this.Clases, this.Instructor);
+            stringBuilder.AppendLine();
             stringBuilder.AppendFormat("Alumnos: {0}", this.Alumnos.Select(a => a.Nombre));
 
             return stringBuilder.ToString();

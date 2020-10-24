@@ -5,6 +5,7 @@ using static ClasesInstanciables.Universidad;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public sealed class Alumno : Universitario
     {
         #region Enumerados
@@ -42,13 +43,14 @@ namespace ClasesInstanciables
         #region Metodos Protegidos
         protected override string ParticipaEnClase()
         {
-            return $"TOMA CLASE DE: {this.claseQueToma}";
+            return $"TOMA CLASE DE: {this.claseQueToma.ToString()}";
         }
 
         protected override string MostrarDatos()
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(base.ToString());
+            stringBuilder.AppendLine();
             stringBuilder.AppendFormat("Clases que toma: {0}, Estado de cuenta: {1}", this.ParticipaEnClase(), this.estadoCuenta);
             return stringBuilder.ToString();
         }

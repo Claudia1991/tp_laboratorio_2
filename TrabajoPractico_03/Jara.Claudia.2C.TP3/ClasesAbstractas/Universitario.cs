@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace EntidadesAbstractas
 {
+    [Serializable]
     public abstract class Universitario : Persona
     {
         #region Campos
@@ -33,7 +32,7 @@ namespace EntidadesAbstractas
         protected virtual string MostrarDatos()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("Legajo: {0}", this.legajo);
+            stringBuilder.AppendFormat("Legajo: {0} - ", this.legajo);
             stringBuilder.AppendLine(base.ToString());
             return stringBuilder.ToString();
         }

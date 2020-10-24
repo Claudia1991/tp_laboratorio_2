@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public class Universidad
     {
         #region Enumerado
@@ -87,34 +88,42 @@ namespace ClasesInstanciables
         #region Metodos
         public static bool  Guardar(Universidad universidad)
         {
+            /*Logica: Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de sus
+Profesores, Alumnos y Jornadas.*/
             return true;
         }
 
         public static Universidad Leer()
         {
+            /*Logica: Leer de clase retornará un Universidad con todos los datos previamente serializados.*/
             return new Universidad();
         }
 
         private static string MostrarDatos(Universidad universidad)
         {
             StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine("========== JORNADAS ==========");
             foreach (Jornada jornada in universidad.Jornadas)
             {
                 stringBuilder.AppendLine(jornada.ToString());
-
             }
+            stringBuilder.AppendLine("========== JORNADAS ==========");
 
+            stringBuilder.AppendLine("========== ALUMNOS ==========");
             foreach (Alumno alumno in universidad.Alumnos)
             {
                 stringBuilder.AppendLine(alumno.ToString());
 
             }
+            stringBuilder.AppendLine("========== ALUMNOS ==========");
 
+            stringBuilder.AppendLine("========== PROFESORES ==========");
             foreach (Profesor profesor in universidad.Instructores)
             {
                 stringBuilder.AppendLine(profesor.ToString());
 
             }
+            stringBuilder.AppendLine("========== PROFESORES ==========");
             return stringBuilder.ToString();
         }
 
@@ -176,19 +185,30 @@ namespace ClasesInstanciables
             Profesor profesor = universidad == clase;
             Jornada jornada = new Jornada(clase, profesor);
             jornada.Alumnos = universidad.Alumnos.Where(a => a == clase).Select(a => a).ToList();
+            universidad.jornada.Add(jornada);
             return universidad;
         }
 
         public static bool operator ==(Universidad universidad, Alumno alumno)
         {
             /* Logica: Un Universidad será igual a un Alumno si el mismo está inscripto en él.*/
-            return universidad.Alumnos.Any(a => a == alumno);
+            bool existeAlumno = false;
+            if (universidad.Alumnos.Count >0)
+            {
+                universidad.Alumnos.Any(a => a == alumno);
+            }
+            return existeAlumno;
         }
 
         public static bool operator ==(Universidad universidad, Profesor profesor)
         {
             /*Logica: Un Universidad será igual a un Profesor si el mismo está dando clases en él.*/
-            return universidad.Instructores.Any(p => p == profesor);
+            bool existeProfesor = false;
+            if (universidad.Instructores.Count >0)
+            {
+                universidad.Instructores.Any(p => p == profesor);
+            }
+            return existeProfesor;
         }
 
         public static Profesor operator ==(Universidad universidad, EClases clase)
@@ -197,7 +217,7 @@ namespace ClasesInstanciables
                 Sino, lanzará la Excepción SinProfesorException. El distinto retornará el primer Profesor que no
                 pueda dar la clase.*/
             Profesor profesor = universidad.Instructores.FirstOrDefault(p => p == clase);
-            if (profesor == null)
+            if (object.ReferenceEquals(profesor, null))
             {
                 throw new SinProfesorException();
             }

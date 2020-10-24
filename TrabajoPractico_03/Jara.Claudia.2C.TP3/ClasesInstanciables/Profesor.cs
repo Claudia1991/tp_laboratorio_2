@@ -7,6 +7,7 @@ using System.Linq;
 
 namespace ClasesInstanciables
 {
+    [Serializable]
     public sealed class Profesor : Universitario
     {
         #region Campos
@@ -34,7 +35,7 @@ namespace ClasesInstanciables
         #region Metodos 
         protected override string ParticipaEnClase()
         {
-            return $"CLASES DEL DIA: {this.clasesDelDia.Select(x => x.ToString())}";
+            return $"CLASES DEL DIA: {ObtenerClasesDelDia()}";
         }
 
         private void _randomClases()
@@ -54,6 +55,16 @@ namespace ClasesInstanciables
         public override string ToString()
         {
             return string.Concat(this.MostrarDatos(), this.ParticipaEnClase());
+        }
+
+        private string ObtenerClasesDelDia()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (EClases clase in this.clasesDelDia)
+            {
+                stringBuilder.AppendFormat("Clase: {0} ", clase);
+            }
+            return stringBuilder.ToString();
         }
         #endregion
 

@@ -1,13 +1,11 @@
 ﻿using Excepciones;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace EntidadesAbstractas
 {
+    [XmlInclude(typeof(Universitario))]
     public abstract class Persona
     {
 
@@ -187,7 +185,7 @@ namespace EntidadesAbstractas
 
         private string ValidarNombreApellido(string dato)
         {
-            regex = new Regex("{a-zA-Z}{2,20}");
+            regex = new Regex("[a-zA-Z]{2,20}");
             string nombre = string.Empty;
             if (!string.IsNullOrEmpty(dato) && regex.IsMatch(dato))
             {
