@@ -88,8 +88,7 @@ namespace ClasesInstanciables
         #region Metodos
         public static bool  Guardar(Universidad universidad)
         {
-            /*Logica: Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de sus
-Profesores, Alumnos y Jornadas.*/
+            /*Logica: Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de susp rofesores, Alumnos y Jornadas.*/
             return true;
         }
 
