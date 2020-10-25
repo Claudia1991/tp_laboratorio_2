@@ -24,7 +24,7 @@ namespace Archivos
             {
                 if (!File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
                 {
-                    using (streamWriter = new StreamWriter(archivos, false, Encoding.UTF8))
+                    using (streamWriter = new StreamWriter(Path.Combine(nombreCarpetaArchivos, archivos), false, Encoding.UTF8))
                     {
                         streamWriter.WriteLine(datos);
                         sePudoGuadar = true;
@@ -49,7 +49,7 @@ namespace Archivos
             {
                 if (File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
                 {
-                    using (streamReader = new StreamReader(archivos))
+                    using (streamReader = new StreamReader(Path.Combine(nombreCarpetaArchivos, archivos)))
                     {
                         datos = streamReader.ReadToEnd();
                         sePudoLeer = true;

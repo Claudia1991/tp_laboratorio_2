@@ -1,4 +1,5 @@
-﻿using Excepciones;
+﻿using Archivos;
+using Excepciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -89,13 +90,18 @@ namespace ClasesInstanciables
         public static bool  Guardar(Universidad universidad)
         {
             /*Logica: Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de susp rofesores, Alumnos y Jornadas.*/
+            Xml<Universidad> xml = new Xml<Universidad>();
+            xml.Guardar("Universidad.xml", universidad);
             return true;
         }
 
         public static Universidad Leer()
         {
             /*Logica: Leer de clase retornará un Universidad con todos los datos previamente serializados.*/
-            return new Universidad();
+            Xml<Universidad> xml = new Xml<Universidad>();
+            Universidad universidad;
+            xml.Leer("Universidad.xml", out universidad);
+            return universidad;
         }
 
         private static string MostrarDatos(Universidad universidad)

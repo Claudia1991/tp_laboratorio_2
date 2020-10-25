@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Archivos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,12 +72,20 @@ namespace ClasesInstanciables
         #region Metodos
         public static bool Guardar(Jornada jornada)
         {
-            return true;
+            /*Logica: Guardar de clase guardará los datos de la Jornada en un archivo de texto.
+            • Leer de clase retornará los datos de la Jornada como texto.*/
+            bool sePudoGuardar = false;
+            Texto texto = new Texto();
+            sePudoGuardar = texto.Guardar("Jornada.txt", jornada.ToString());
+            return sePudoGuardar;
         }
 
         public static string Leer()
         {
-            return string.Empty;
+            string datosJornada = string.Empty;
+            Texto texto = new Texto();
+            texto.Leer("Jornada.txt", out datosJornada);
+            return datosJornada;
         }
 
         public override string ToString()

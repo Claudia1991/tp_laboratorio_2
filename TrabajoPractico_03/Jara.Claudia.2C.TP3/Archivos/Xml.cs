@@ -1,21 +1,18 @@
-﻿using ClasesInstanciables;
-using Excepciones;
+﻿using Excepciones;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace Archivos
 {
-    public class Xml<T> : IArchivo<T> where T : Universidad
+    public class Xml<T> : IArchivo<T>
     {
         #region Campos
         private string nombreCarpetaArchivos = "Archivos Guardados";
         private XmlTextWriter xmlTextWriter;
+        private XmlTextReader xmlTextReader;
         private XmlSerializer xmlSerializer;
 
         #endregion
@@ -28,9 +25,9 @@ namespace Archivos
             {
                 if (!File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
                 {
-                    using (xmlTextWriter = new XmlTextWriter(archivos, Encoding.UTF8))
+                    using (xmlTextWriter = new XmlTextWriter(Path.Combine(nombreCarpetaArchivos, archivos), Encoding.UTF8))
                     {
-                        xmlSerializer = new XmlSerializer(typeof(Universidad));
+                        xmlSerializer = new XmlSerializer(typeof(T));
                         xmlSerializer.Serialize(xmlTextWriter, datos);
                         sePudoGuadar = true;
                     }
@@ -52,11 +49,21 @@ namespace Archivos
         {
             //Deserializamos en bytes y devolvemos un objeto
             bool sePudoLeer = false;
-            Universidad universidad = new Universidad();
-            datos = (T)universidad;
             try
             {
-
+                if (File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
+                {
+                    using (xmlTextReader = new XmlTextReader(Path.Combine(nombreCarpetaArchivos, archivos)))
+                    {
+                        xmlSerializer = new XmlSerializer(typeof(T));
+                        datos = (T)xmlSerializer.Deserialize(xmlTextReader);
+                        sePudoLeer = true;
+                    }
+                }
+                else
+                {
+                    throw new ArchivosException("Noo existe el archivo");
+                }
             }
             catch (Exception ex)
             {
