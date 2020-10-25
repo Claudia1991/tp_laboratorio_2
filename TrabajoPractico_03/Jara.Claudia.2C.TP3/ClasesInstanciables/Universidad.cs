@@ -200,7 +200,7 @@ namespace ClasesInstanciables
             bool existeAlumno = false;
             if (universidad.Alumnos.Count >0)
             {
-                universidad.Alumnos.Any(a => a == alumno);
+                existeAlumno = universidad.Alumnos.Any(a => a == alumno);
             }
             return existeAlumno;
         }

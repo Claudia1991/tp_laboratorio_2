@@ -91,10 +91,19 @@ namespace ClasesInstanciables
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("Clase: {0} - Profesor: {1}", this.Clases, this.Instructor);
+            stringBuilder.AppendFormat("Clase: {0} - Profesor: {1} ", this.Clases, this.Instructor.ToString());
             stringBuilder.AppendLine();
-            stringBuilder.AppendFormat("Alumnos: {0}", this.Alumnos.Select(a => a.Nombre));
+            stringBuilder.AppendFormat("Alumnos: {0}", this.ObtenerNombreAlumnos());
+            return stringBuilder.ToString();
+        }
 
+        private string ObtenerNombreAlumnos()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (Alumno alumno in this.Alumnos)
+            {
+                stringBuilder.AppendLine(alumno.ToString());
+            }
             return stringBuilder.ToString();
         }
         #endregion

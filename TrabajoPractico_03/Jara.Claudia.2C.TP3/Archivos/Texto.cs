@@ -1,10 +1,7 @@
 ﻿using Excepciones;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Archivos
 {
@@ -14,6 +11,16 @@ namespace Archivos
         private string nombreCarpetaArchivos = "Archivos Guardados";
         private StreamWriter streamWriter;
         private StreamReader streamReader;
+        #endregion
+
+        #region Constructor
+        public Texto()
+        {
+            if (!Directory.Exists(nombreCarpetaArchivos))
+            {
+                Directory.CreateDirectory(nombreCarpetaArchivos);
+            }
+        }
         #endregion
 
         #region Metodos

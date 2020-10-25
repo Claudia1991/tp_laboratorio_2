@@ -26,7 +26,7 @@ namespace EntidadesAbstractas
         #region Metodos
         public override bool Equals(object obj)
         {
-            return obj != null ? this.GetType().Equals(obj) : false;
+            return obj != null ? this.GetType() == obj.GetType() : false;
         }
 
         protected virtual string MostrarDatos()

@@ -14,7 +14,16 @@ namespace Archivos
         private XmlTextWriter xmlTextWriter;
         private XmlTextReader xmlTextReader;
         private XmlSerializer xmlSerializer;
+        #endregion
 
+        #region Constructor
+        public Xml()
+        {
+            if (!Directory.Exists(nombreCarpetaArchivos))
+            {
+                Directory.CreateDirectory(nombreCarpetaArchivos);
+            }
+        }
         #endregion
 
         #region Metodos

@@ -114,7 +114,7 @@ namespace EntidadesAbstractas
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.AppendFormat("Nombre: {0} - Apellido: {1} - DNI: {2} - Nacionalidad: {3}", Nombre, Apellido, DNI, Nacionalidad);
+            stringBuilder.AppendFormat("Nombre: {0} - Apellido: {1} - DNI: {2} - Nacionalidad: {3} -", Nombre, Apellido, DNI, Nacionalidad);
             return stringBuilder.ToString();
         }
 
