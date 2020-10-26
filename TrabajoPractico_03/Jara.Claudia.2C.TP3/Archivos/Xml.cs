@@ -32,32 +32,26 @@ namespace Archivos
             bool sePudoGuadar = false;
             try
             {
-                if (!File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
+                using (xmlTextWriter = new XmlTextWriter(Path.Combine(nombreCarpetaArchivos, archivos), Encoding.UTF8))
                 {
-                    using (xmlTextWriter = new XmlTextWriter(Path.Combine(nombreCarpetaArchivos, archivos), Encoding.UTF8))
-                    {
-                        xmlSerializer = new XmlSerializer(typeof(T));
-                        xmlSerializer.Serialize(xmlTextWriter, datos);
-                        sePudoGuadar = true;
-                    }
+                    xmlTextWriter.Formatting = Formatting.Indented;
+                    xmlSerializer = new XmlSerializer(typeof(T));
+                    xmlSerializer.Serialize(xmlTextWriter, datos);
+                    sePudoGuadar = true;
                 }
-                else
-                {
-                    throw new ArchivosException("Existe el archivo");
-                }
+                
             }
             catch (Exception ex)
             {
                 throw new ArchivosException(ex);
             }
             return sePudoGuadar;
-            /*Aca es donde serializo, ya que me estan pasando el objeto*/
         }
 
         public bool Leer(string archivos, out T datos)
         {
-            //Deserializamos en bytes y devolvemos un objeto
             bool sePudoLeer = false;
+            datos = default(T);
             try
             {
                 if (File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
@@ -65,8 +59,11 @@ namespace Archivos
                     using (xmlTextReader = new XmlTextReader(Path.Combine(nombreCarpetaArchivos, archivos)))
                     {
                         xmlSerializer = new XmlSerializer(typeof(T));
-                        datos = (T)xmlSerializer.Deserialize(xmlTextReader);
-                        sePudoLeer = true;
+                        if (xmlSerializer.CanDeserialize(xmlTextReader))
+                        {
+                            datos = (T)xmlSerializer.Deserialize(xmlTextReader);
+                            sePudoLeer = true;
+                        }
                     }
                 }
                 else

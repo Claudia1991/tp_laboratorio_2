@@ -24,22 +24,21 @@ namespace Archivos
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Guarda el string en un archivo de texto.
+        /// </summary>
+        /// <param name="archivos"></param>
+        /// <param name="datos"></param>
+        /// <returns></returns>
         public bool Guardar(string archivos, string datos)
         {
             bool sePudoGuadar = false;
             try
             {
-                if (!File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
+                using (streamWriter = new StreamWriter(Path.Combine(nombreCarpetaArchivos, archivos), false, Encoding.UTF8))
                 {
-                    using (streamWriter = new StreamWriter(Path.Combine(nombreCarpetaArchivos, archivos), false, Encoding.UTF8))
-                    {
-                        streamWriter.WriteLine(datos);
-                        sePudoGuadar = true;
-                    }
-                }
-                else
-                {
-                    throw new ArchivosException(string.Format("Ya existe un archivo con ese nombre: {0}", archivos));
+                    streamWriter.WriteLine(datos);
+                    sePudoGuadar = true;
                 }
             }
             catch (Exception ex)
@@ -49,6 +48,12 @@ namespace Archivos
             return sePudoGuadar;
         }
 
+        /// <summary>
+        /// Lee los datos desde un archivo de texto.
+        /// </summary>
+        /// <param name="archivos"></param>
+        /// <param name="datos"></param>
+        /// <returns>Devuelve true si lo pudo leer, false en cualquier otro caso.</returns>
         public bool Leer(string archivos, out string datos)
         {
             bool sePudoLeer = false;
@@ -64,7 +69,7 @@ namespace Archivos
                 }
                 else
                 {
-                    throw new ArchivosException(string.Format("No existe archivo en la ruta: {0}", archivos));
+                    throw new ArchivosException(string.Format("No existe archivo en la ruta: {0}", Path.Combine(nombreCarpetaArchivos, archivos)));
                 }
             }
             catch (Exception ex)

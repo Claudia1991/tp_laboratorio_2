@@ -111,6 +111,10 @@ namespace EntidadesAbstractas
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Devuelve los datos de la persona
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -118,6 +122,12 @@ namespace EntidadesAbstractas
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Valida el dni segun la nacionalidad
+        /// </summary>
+        /// <param name="nacionalidad"></param>
+        /// <param name="dato"></param>
+        /// <returns></returns>
         private int ValidarDni(ENacionalidad nacionalidad, int dato)
         {
             int dni = -1;
@@ -151,6 +161,12 @@ namespace EntidadesAbstractas
             return dni;
         }
 
+        /// <summary>
+        /// Valida el dni
+        /// </summary>
+        /// <param name="nacionalidad"></param>
+        /// <param name="dato"></param>
+        /// <returns></returns>
         private int ValidarDni(ENacionalidad nacionalidad, string dato)
         {
             int dni = 0;
@@ -183,6 +199,11 @@ namespace EntidadesAbstractas
             return dni;
         }
 
+        /// <summary>
+        /// Valida el nombre
+        /// </summary>
+        /// <param name="dato"></param>
+        /// <returns></returns>
         private string ValidarNombreApellido(string dato)
         {
             regex = new Regex("[a-zA-Z]{2,20}");

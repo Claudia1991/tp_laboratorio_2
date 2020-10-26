@@ -87,14 +87,22 @@ namespace ClasesInstanciables
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Guarda la universidad serializada en XML
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <returns></returns>
         public static bool  Guardar(Universidad universidad)
         {
             /*Logica: Guardar de clase serializará los datos del Universidad en un XML, incluyendo todos los datos de susp rofesores, Alumnos y Jornadas.*/
             Xml<Universidad> xml = new Xml<Universidad>();
-            xml.Guardar("Universidad.xml", universidad);
-            return true;
+            return xml.Guardar("Universidad.xml", universidad);
         }
 
+        /// <summary>
+        /// Lee la universidad serializada en XML
+        /// </summary>
+        /// <returns></returns>
         public static Universidad Leer()
         {
             /*Logica: Leer de clase retornará un Universidad con todos los datos previamente serializados.*/
@@ -104,6 +112,11 @@ namespace ClasesInstanciables
             return universidad;
         }
 
+        /// <summary>
+        /// Devuelve los datos de la universidad, con sus jornadas, alumnos y profesores
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <returns></returns>
         private static string MostrarDatos(Universidad universidad)
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -132,6 +145,10 @@ namespace ClasesInstanciables
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Devuelve los datos de la universidad
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return MostrarDatos(this);
@@ -139,22 +156,46 @@ namespace ClasesInstanciables
         #endregion
 
         #region Sobrecarga de Operadores
+        /// <summary>
+        /// Verifica que el alumno no este en la universidd
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static bool operator !=(Universidad universidad, Alumno alumno)
         {
             return !(universidad == alumno);
         }
 
+        /// <summary>
+        /// Verifica que el profesor no este en la universidad
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="profesor"></param>
+        /// <returns></returns>
         public static bool operator !=(Universidad universidad, Profesor profesor)
         {
             return !(universidad == profesor);
         }
 
+        /// <summary>
+        /// Devuelve el primer profesor que no de la clase
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="clase"></param>
+        /// <returns></returns>
         public static Profesor operator !=(Universidad universidad, EClases clase)
         {
             Profesor profesor = universidad.Instructores.FirstOrDefault(p => p != clase);
             return profesor;
         }
 
+        /// <summary>
+        /// Agrega un alumno a la universidad
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static Universidad operator +(Universidad universidad, Alumno alumno)
         {
             /*Logica: Se agregarán Alumnos y Profesores mediante el operador +, validando que no estén previamente
@@ -171,6 +212,12 @@ namespace ClasesInstanciables
             return universidad;
         }
 
+        /// <summary>
+        /// Se agrega un profesor a la universidad
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="profesor"></param>
+        /// <returns></returns>
         public static Universidad operator +(Universidad universidad, Profesor profesor)
         {
             /*Logica: Se agregarán Alumnos y Profesores mediante el operador +, validando que no estén previamente
@@ -182,6 +229,12 @@ namespace ClasesInstanciables
             return universidad;
         }
 
+        /// <summary>
+        /// Agrega una clase a la universidad y se arma la jornada
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="clase"></param>
+        /// <returns></returns>
         public static Universidad operator +(Universidad universidad, EClases clase)
         {
             /*Logica: Al agregar una clase a un Universidad se deberá generar y agregar una nueva Jornada indicando la
@@ -194,6 +247,12 @@ namespace ClasesInstanciables
             return universidad;
         }
 
+        /// <summary>
+        /// Verifica si el alumno esta en la universidad
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static bool operator ==(Universidad universidad, Alumno alumno)
         {
             /* Logica: Un Universidad será igual a un Alumno si el mismo está inscripto en él.*/
@@ -205,6 +264,12 @@ namespace ClasesInstanciables
             return existeAlumno;
         }
 
+        /// <summary>
+        /// Verifica si el profesor esta en la universidad
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="profesor"></param>
+        /// <returns></returns>
         public static bool operator ==(Universidad universidad, Profesor profesor)
         {
             /*Logica: Un Universidad será igual a un Profesor si el mismo está dando clases en él.*/
@@ -216,6 +281,12 @@ namespace ClasesInstanciables
             return existeProfesor;
         }
 
+        /// <summary>
+        /// Devuelve el primer profesor que de la clase
+        /// </summary>
+        /// <param name="universidad"></param>
+        /// <param name="clase"></param>
+        /// <returns></returns>
         public static Profesor operator ==(Universidad universidad, EClases clase)
         {
             /* Logica: La igualación entre un Universidad y una Clase retornará el primer Profesor capaz de dar esa clase.

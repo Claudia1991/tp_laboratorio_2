@@ -70,6 +70,11 @@ namespace ClasesInstanciables
         #endregion
 
         #region Metodos
+        /// <summary>
+        /// Guarda la jornada en un archivo de texto.
+        /// </summary>
+        /// <param name="jornada"></param>
+        /// <returns></returns>
         public static bool Guardar(Jornada jornada)
         {
             /*Logica: Guardar de clase guardará los datos de la Jornada en un archivo de texto.
@@ -80,6 +85,10 @@ namespace ClasesInstanciables
             return sePudoGuardar;
         }
 
+        /// <summary>
+        /// Lee la jornada desde un archivo de texto
+        /// </summary>
+        /// <returns></returns>
         public static string Leer()
         {
             string datosJornada = string.Empty;
@@ -97,6 +106,10 @@ namespace ClasesInstanciables
             return stringBuilder.ToString();
         }
 
+        /// <summary>
+        /// Obtiene los alumnos en la jornada
+        /// </summary>
+        /// <returns></returns>
         private string ObtenerNombreAlumnos()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -109,17 +122,35 @@ namespace ClasesInstanciables
         #endregion
 
         #region Sobrecarga de operadores
+        /// <summary>
+        /// Verifica si el alumno no toma clase de la jornada
+        /// </summary>
+        /// <param name="jornada"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static bool operator !=(Jornada jornada, Alumno alumno)
         {
             return !(jornada==alumno);
         }
 
+        /// <summary>
+        /// Verifica si el alumno toma clase de la jornada
+        /// </summary>
+        /// <param name="jornada"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static bool operator ==(Jornada jornada, Alumno alumno)
         {
             /* Logica: Una Jornada será igual a un Alumno si el mismo participa de la clase.*/
             return alumno == jornada.Clases;
         }
 
+        /// <summary>
+        /// Agrega alumnos a la jornada
+        /// </summary>
+        /// <param name="jornada"></param>
+        /// <param name="alumno"></param>
+        /// <returns></returns>
         public static Jornada operator +(Jornada jornada, Alumno alumno)
         {
             /* Logica: Agregar Alumnos a la clase por medio del operador +, validando que no estén previamente
