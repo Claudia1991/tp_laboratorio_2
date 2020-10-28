@@ -62,10 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArchivosTest.cs" />
     <Compile Include="ClaseInstanciableAlumnoTest.cs" />
     <Compile Include="ClaseInstanciableUniversidadTest.cs" />
-    <Compile Include="JornadaTest.cs" />
+    <Compile Include="ClaseInstanciableJornadaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -38,6 +38,18 @@ namespace EntidadesAbstractas
             }
         }
 
+        public ENacionalidad Nacionalidad
+        {
+            get
+            {
+                return this.nacionalidad;
+            }
+            set
+            {
+                this.nacionalidad = value;
+            }
+        }
+
         public int DNI
         {
             get
@@ -50,17 +62,7 @@ namespace EntidadesAbstractas
             }
         }
 
-        public ENacionalidad Nacionalidad
-        {
-            get
-            {
-                return this.nacionalidad;
-            }
-            set
-            {
-                this.nacionalidad = value;
-            }
-        }
+        
 
         public string Nombre
         {
@@ -92,7 +94,7 @@ namespace EntidadesAbstractas
         {
         }
 
-        public Persona(string nombre, string apellido, ENacionalidad nacionalidad) : this()
+        public Persona(string nombre, string apellido, ENacionalidad nacionalidad)
         {
             Nombre = nombre;
             Apellido = apellido;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using static ClasesInstanciables.Universidad;
 using EntidadesAbstractas;
 using System.Text;
-using System.Linq;
 
 namespace ClasesInstanciables
 {

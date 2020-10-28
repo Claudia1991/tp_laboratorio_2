@@ -6,8 +6,11 @@ namespace PruebasUnitarias
     [TestClass]
     public class ClaseInstanciableUniversidadTest
     {
+        #region Campos
         private Universidad universidad;
+        #endregion
 
+        #region Test Method
         [TestInitialize]
         public void TestInitializer()
         {
@@ -37,6 +40,7 @@ namespace PruebasUnitarias
 
             Assert.IsTrue(Universidad.Guardar(universidad));
         }
+        #endregion
 
         #region Metodos Privados
         private void CargarDatosUniversidad()
@@ -48,17 +52,13 @@ namespace PruebasUnitarias
                 Alumno.EEstadoCuenta.AlDia);
                 universidad += a4;
                 Alumno a5 = new Alumno(5, "Carlos", "Gonzalez", "12236456",
-                EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Programacion,
+                EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.SPD,
                 Alumno.EEstadoCuenta.AlDia);
                 universidad += a5;
                 Alumno a6 = new Alumno(6, "Juan", "Perez", "12234656",
                 EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Laboratorio,
                 Alumno.EEstadoCuenta.Deudor);
                 universidad += a6;
-                Alumno a7 = new Alumno(7, "Joaquin", "Suarez", "91122456",
-                EntidadesAbstractas.Persona.ENacionalidad.Extranjero, Universidad.EClases.Laboratorio,
-                Alumno.EEstadoCuenta.AlDia);
-                universidad += a7;
                 Alumno a8 = new Alumno(8, "Rodrigo", "Smith", "22236456",
                 EntidadesAbstractas.Persona.ENacionalidad.Argentino, Universidad.EClases.Legislacion,
                 Alumno.EEstadoCuenta.AlDia);
@@ -66,9 +66,6 @@ namespace PruebasUnitarias
                 Profesor i1 = new Profesor(1, "Juan", "Lopez", "12224458",
                 EntidadesAbstractas.Persona.ENacionalidad.Argentino);
                 universidad += i1;
-                Profesor i2 = new Profesor(2, "Roberto", "Juarez", "32234456",
-                EntidadesAbstractas.Persona.ENacionalidad.Argentino);
-                universidad += i2;
                 universidad += Universidad.EClases.Programacion;
                 universidad += Universidad.EClases.Laboratorio;
                 universidad += Universidad.EClases.Legislacion;

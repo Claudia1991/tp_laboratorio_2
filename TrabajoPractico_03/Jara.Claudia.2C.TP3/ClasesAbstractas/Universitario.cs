@@ -14,7 +14,6 @@ namespace EntidadesAbstractas
         #region Constructor
         public Universitario()
         {
-            this.legajo = 0;
         }
 
         public Universitario(int legajo, string nombre, string apellido, string dni, ENacionalidad nacionalidad) : base(nombre, apellido, dni, nacionalidad)

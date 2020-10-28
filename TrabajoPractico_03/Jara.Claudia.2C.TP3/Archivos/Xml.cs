@@ -39,19 +39,20 @@ namespace Archivos
                     xmlSerializer.Serialize(xmlTextWriter, datos);
                     sePudoGuadar = true;
                 }
-                
+                return sePudoGuadar;
+
+
             }
             catch (Exception ex)
             {
                 throw new ArchivosException(ex);
             }
-            return sePudoGuadar;
         }
 
         public bool Leer(string archivos, out T datos)
         {
             bool sePudoLeer = false;
-            datos = default(T);
+            datos = default;
             try
             {
                 if (File.Exists(Path.Combine(nombreCarpetaArchivos, archivos)))
@@ -70,12 +71,13 @@ namespace Archivos
                 {
                     throw new ArchivosException("Noo existe el archivo");
                 }
+                return sePudoLeer;
+
             }
             catch (Exception ex)
             {
                 throw new ArchivosException(ex);
             }
-            return sePudoLeer;
         }
         #endregion
     }
