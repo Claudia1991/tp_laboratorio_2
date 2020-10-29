@@ -66,11 +66,16 @@
     <Compile Include="ClaseInstanciableUniversidadTest.cs" />
     <Compile Include="ClaseInstanciableJornadaTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ArchivosUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Archivos\Archivos.csproj">
+      <Project>{131E9BFC-9AA5-418C-B375-F4AA48BB9D40}</Project>
+      <Name>Archivos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClasesAbstractas\EntidadesAbstractas.csproj">
       <Project>{E5D7B6D1-D81E-4FB3-AF0A-31BCA6768E31}</Project>
       <Name>EntidadesAbstractas</Name>

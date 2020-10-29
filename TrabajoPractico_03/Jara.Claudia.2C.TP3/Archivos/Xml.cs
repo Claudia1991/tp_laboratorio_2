@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace Archivos
 {
-    public class Xml<T> : IArchivo<T>
+    public class Xml<T> : IArchivo<T> where T : class
     {
         #region Campos
         private string nombreCarpetaArchivos = "Archivos Guardados";
@@ -32,12 +32,15 @@ namespace Archivos
             bool sePudoGuadar = false;
             try
             {
-                using (xmlTextWriter = new XmlTextWriter(Path.Combine(nombreCarpetaArchivos, archivos), Encoding.UTF8))
+                if (datos != null)
                 {
-                    xmlTextWriter.Formatting = Formatting.Indented;
-                    xmlSerializer = new XmlSerializer(typeof(T));
-                    xmlSerializer.Serialize(xmlTextWriter, datos);
-                    sePudoGuadar = true;
+                    using (xmlTextWriter = new XmlTextWriter(Path.Combine(nombreCarpetaArchivos, archivos), Encoding.UTF8))
+                    {
+                        xmlTextWriter.Formatting = Formatting.Indented;
+                        xmlSerializer = new XmlSerializer(typeof(T));
+                        xmlSerializer.Serialize(xmlTextWriter, datos);
+                        sePudoGuadar = true;
+                    }
                 }
                 return sePudoGuadar;
 

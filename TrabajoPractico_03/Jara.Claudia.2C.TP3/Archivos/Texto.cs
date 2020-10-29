@@ -35,10 +35,13 @@ namespace Archivos
             bool sePudoGuadar = false;
             try
             {
-                using (streamWriter = new StreamWriter(Path.Combine(nombreCarpetaArchivos, archivos), false, Encoding.UTF8))
+                if (datos != null)
                 {
-                    streamWriter.WriteLine(datos);
-                    sePudoGuadar = true;
+                    using (streamWriter = new StreamWriter(Path.Combine(nombreCarpetaArchivos, archivos), false, Encoding.UTF8))
+                    {
+                        streamWriter.WriteLine(datos);
+                        sePudoGuadar = true;
+                    }
                 }
             }
             catch (Exception ex)
