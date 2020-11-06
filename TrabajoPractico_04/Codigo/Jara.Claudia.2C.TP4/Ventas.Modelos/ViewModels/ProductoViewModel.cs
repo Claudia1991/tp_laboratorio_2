@@ -8,5 +8,7 @@ namespace Ventas.Modelos.ViewModels
 {
     public class ProductoViewModel : BaseViewModel
     {
+        public string Descripcion { get; set; }
+        public float Precio { get; set; }
     }
 }
