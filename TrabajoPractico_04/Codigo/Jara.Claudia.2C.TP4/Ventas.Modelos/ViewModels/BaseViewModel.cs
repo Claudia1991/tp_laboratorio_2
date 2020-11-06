@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ventas.Modelos.ViewModels
 {
-    public class BaseViewModel
+    public abstract class BaseViewModel
     {
         public int Id { get; set; }
     }

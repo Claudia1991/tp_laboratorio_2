@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Ventas.Modelos.DataModels;
 
 namespace Ventas.DAO
 {
-    public interface IDao<T>
+    public interface IDao<T> where T : BaseDataModel
     {
+        T GetElementById(int id);
+        bool UpdateElement(T element);
+        bool DeleteElementById(int id);
+        List<T> GetAllElements();
     }
 }
