@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
+using System.Data.SqlClient;
 
 namespace Ventas.Data
 {
-    public class Connection
+    public static class Connection
     {
+        private static SqlConnection sqlConnection;
+
+        public static SqlConnection GetConnection()
+        {
+            if (sqlConnection == null)
+            {
+                sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["SistemaVentasDB"].ConnectionString);
+            }
+            return sqlConnection;
+        }
     }
 }
