@@ -9,6 +9,11 @@ namespace Ventas.DAO
 {
     public class VentasDao : IDao<BaseDataModel>
     {
+        public bool CreateElement(BaseDataModel element)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool DeleteElementById(int id)
         {
             throw new NotImplementedException();

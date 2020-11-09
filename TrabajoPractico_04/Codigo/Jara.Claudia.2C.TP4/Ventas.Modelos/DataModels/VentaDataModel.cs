@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ventas.Modelos.DataModels
 {
-    class VentaDataModel
+    public class VentaDataModel
     {
     }
 }

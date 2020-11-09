@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1267
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventas.Vista", "Ventas.Vista\Ventas.Vista.csproj", "{AEB9F795-2741-490F-845B-FCCFDDB1FEBC}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventas.Excepcion", "Ventas.Excepcion\Ventas.Excepcion.csproj", "{37F18860-1A03-481D-AF88-EC0F209A4005}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventas.Test", "Ventas.Test\Ventas.Test.csproj", "{6BE3B3AA-5440-4927-901E-48F7C8466C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ventas.Utilities", "Ventas.Utilities\Ventas.Utilities.csproj", "{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6BE3B3AA-5440-4927-901E-48F7C8466C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE3B3AA-5440-4927-901E-48F7C8466C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE3B3AA-5440-4927-901E-48F7C8466C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

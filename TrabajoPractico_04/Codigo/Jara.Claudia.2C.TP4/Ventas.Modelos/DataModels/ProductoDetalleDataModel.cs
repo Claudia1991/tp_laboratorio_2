@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ventas.Bussines
+namespace Ventas.Modelos.DataModels
 {
-    public class Class1
+    public class ProductoDetalleDataModel : ProductoDataModel
     {
     }
 }

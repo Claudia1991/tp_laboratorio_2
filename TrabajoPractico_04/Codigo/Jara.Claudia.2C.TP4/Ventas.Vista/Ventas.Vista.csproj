@@ -33,9 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaModificacionProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaModificacionProductoForm.Designer.cs">
+      <DependentUpon>AltaModificacionProductoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +77,9 @@
     <Compile Include="VentasForm.Designer.cs">
       <DependentUpon>VentasForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AltaModificacionProductoForm.resx">
+      <DependentUpon>AltaModificacionProductoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProductoForm.resx">
       <DependentUpon>ProductoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +98,7 @@
     <EmbeddedResource Include="VentasForm.resx">
       <DependentUpon>VentasForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -97,6 +111,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ventas.Bussines\Ventas.Bussines.csproj">
+      <Project>{896E02A1-0ECB-40FD-975B-02C21A63EB2B}</Project>
+      <Name>Ventas.Bussines</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ventas.Modelos\Ventas.Modelos.csproj">
+      <Project>{11664D91-B7A0-48F5-97DC-709965BE20C1}</Project>
+      <Name>Ventas.Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

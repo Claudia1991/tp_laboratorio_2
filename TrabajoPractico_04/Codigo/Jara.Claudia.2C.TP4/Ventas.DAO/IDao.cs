@@ -8,6 +8,7 @@ namespace Ventas.DAO
         T GetElementById(int id);
         bool UpdateElement(T element);
         bool DeleteElementById(int id);
+        bool CreateElement(T element);
         List<T> GetAllElements();
     }
 }

@@ -74,21 +74,32 @@
             this.btnAgregarALista.TabIndex = 2;
             this.btnAgregarALista.Text = "Agregar a la Lista";
             this.btnAgregarALista.UseVisualStyleBackColor = true;
+            this.btnAgregarALista.Click += new System.EventHandler(this.btnAgregarALista_Click);
             // 
             // cmbProductos
             // 
             this.cmbProductos.FormattingEnabled = true;
-            this.cmbProductos.Location = new System.Drawing.Point(197, 28);
+            this.cmbProductos.Location = new System.Drawing.Point(118, 28);
             this.cmbProductos.Name = "cmbProductos";
-            this.cmbProductos.Size = new System.Drawing.Size(121, 21);
+            this.cmbProductos.Size = new System.Drawing.Size(200, 21);
             this.cmbProductos.TabIndex = 1;
             // 
             // nudCantidadProductos
             // 
             this.nudCantidadProductos.Location = new System.Drawing.Point(22, 28);
+            this.nudCantidadProductos.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudCantidadProductos.Name = "nudCantidadProductos";
-            this.nudCantidadProductos.Size = new System.Drawing.Size(120, 20);
+            this.nudCantidadProductos.Size = new System.Drawing.Size(66, 20);
             this.nudCantidadProductos.TabIndex = 0;
+            this.nudCantidadProductos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // gpbVentas
             // 
@@ -109,6 +120,7 @@
             this.btnVender.TabIndex = 1;
             this.btnVender.Text = "Vender";
             this.btnVender.UseVisualStyleBackColor = true;
+            this.btnVender.Click += new System.EventHandler(this.btnVender_Click);
             // 
             // btnCancelar
             // 
@@ -118,6 +130,7 @@
             this.btnCancelar.TabIndex = 0;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // msBarra
             // 
@@ -135,12 +148,14 @@
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
             this.productosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.productosToolStripMenuItem.Text = "Productos";
+            this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // reporteToolStripMenuItem
             // 
             this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
             this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.reporteToolStripMenuItem.Text = "Reporte";
+            this.reporteToolStripMenuItem.Click += new System.EventHandler(this.reporteToolStripMenuItem_Click);
             // 
             // VentasForm
             // 
@@ -156,6 +171,7 @@
             this.Name = "VentasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistemas de Ventas";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.VentasForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
             this.gpbProductos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadProductos)).EndInit();

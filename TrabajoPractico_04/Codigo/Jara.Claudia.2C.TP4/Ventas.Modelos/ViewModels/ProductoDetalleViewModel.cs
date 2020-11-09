@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ventas.Modelos.ViewModels
 {
-    public class ProductoViewModel : BaseViewModel
+    public class ProductoDetalleViewModel : BaseViewModel
     {
-        public string Descripcion { get; set; }
-        public double Precio { get; set; }
+        public int CantidadPorProducto { get; set; }
+        public double PrecioTotalPorProducto { get; set; }
     }
 }
