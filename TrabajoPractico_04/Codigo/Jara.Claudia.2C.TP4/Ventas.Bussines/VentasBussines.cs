@@ -43,7 +43,7 @@ namespace Ventas.Bussines
         public static bool Vender(VentaViewModel venta)
         {
             //aca habria que usar el mapper, y llamar a los daos,
-            //primero guardo en venta dao, y luego pongo el ventadetalles
+            //primero guardo en venta 
             return true;
         }
     }
