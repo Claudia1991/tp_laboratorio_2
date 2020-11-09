@@ -3,5 +3,11 @@
     public abstract class BaseViewModel
     {
         public int Id { get; set; }
+
+        protected BaseViewModel() { }
+        protected BaseViewModel(int id)
+        {
+            Id = id;
+        }
     }
 }

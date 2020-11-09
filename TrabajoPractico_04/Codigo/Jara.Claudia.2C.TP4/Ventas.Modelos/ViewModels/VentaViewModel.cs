@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ventas.Modelos.ViewModels
 {
     public class VentaViewModel : BaseViewModel
     {
-        public int IdVenta { get; set; }
         public DateTime Fecha { get; set; }
         public double MontoTotal { get; set; }
+        public VentaDetalleViewModel DetalleVenta { get; set; }
+
+        public VentaViewModel() { }
+
+        public VentaViewModel(int id, DateTime fecha, double montoTotal, VentaDetalleViewModel ventaDetalle) : base(id)
+        {
+            Fecha = fecha;
+            MontoTotal = montoTotal;
+            DetalleVenta = ventaDetalle;
+        }
     }
 }

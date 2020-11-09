@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ventas.Bussines;
 using Ventas.Modelos.ViewModels;
@@ -14,13 +9,14 @@ namespace Ventas.Vista
 {
     public partial class VentasForm : Form
     {
-        private List<ProductoDetalleViewModel> productoDetalles;
+        private VentaViewModel venta;
         private List<ProductoViewModel> productos;
 
         public VentasForm()
         {
             InitializeComponent();
             InicializarProductos();
+            InicializarCampos();
             this.btnAgregarALista.Enabled = false;
             this.btnVender.Enabled = false;
             this.dgvVenta.Enabled = false;
@@ -51,6 +47,12 @@ namespace Ventas.Vista
             this.cmbProductos.DisplayMember = "Descripcion - Precio" ;
         }
 
+        private void InicializarCampos()
+        {
+            this.venta = new VentaViewModel();
+            this.productos = new List<ProductoViewModel>();
+        }
+
         private void VentasForm_MouseMove(object sender, MouseEventArgs e)
         {
             if (VerificarSiSePuedeAgregarProductoALaLista())
@@ -76,20 +78,38 @@ namespace Ventas.Vista
         private void btnAgregarALista_Click(object sender, EventArgs e)
         {
             ProductoViewModel producto = productos.First(p=>p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
-            VentasBussines.AgregarProductoALaLista(productoDetalles, producto);
-            this.dgvVenta.DataSource = productoDetalles;
+            int cantidad = (int)this.nudCantidadProductos.Value;
+            VentasBussines.AgregarProductoALaLista(venta, producto, cantidad);
+            this.dgvVenta.DataSource = venta.DetalleVenta.Productos;
+            this.lblMontoTotalVenta.Text = venta.MontoTotal.ToString();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
+            bool seVendio = VentasBussines.Vender(this.venta); 
+            if (seVendio)
+            {
+                MessageBox.Show("Se vendio, sos cra'.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Limpiar();
+            }
+            else
+            {
+                MessageBox.Show("No se vendio,igual sos cra'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            this.Limpiar();
+        }
+
+        private void Limpiar()
+        {
             this.nudCantidadProductos.Value = 1;
             this.cmbProductos.SelectedIndex = -1;
             this.dgvVenta.DataSource = null;
+            this.lblMontoTotalVenta.Text = string.Empty;
         }
     }
 }
