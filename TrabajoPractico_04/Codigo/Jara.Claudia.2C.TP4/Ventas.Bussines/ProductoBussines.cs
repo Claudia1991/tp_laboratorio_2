@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ventas.DAO;
 using Ventas.Modelos.DataModels;
 using Ventas.Modelos.ViewModels;

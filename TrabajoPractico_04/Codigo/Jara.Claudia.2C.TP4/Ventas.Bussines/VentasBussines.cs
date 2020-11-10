@@ -1,11 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Ventas.DAO;
+using Ventas.Modelos.DataModels;
 using Ventas.Modelos.ViewModels;
+using Ventas.Utilities;
 
 namespace Ventas.Bussines
 {
     public static class VentasBussines
     {
+        private static VentasDao ventasDao;
+
+        static VentasBussines()
+        {
+            ventasDao = new VentasDao();
+        }
         public static VentaViewModel AgregarProductoALaLista(VentaViewModel venta, ProductoViewModel producto, int cantidad)
         {
             //aca se agrega el producto a la lista, verificar que si el producto ya esta agregado, agregar la cantidad, no el mismo producto
@@ -42,9 +50,13 @@ namespace Ventas.Bussines
 
         public static bool Vender(VentaViewModel venta)
         {
-            //aca habria que usar el mapper, y llamar a los daos,
-            //primero guardo en venta 
-            return true;
+            VentaDataModel ventaDataModel = Mapper.Map<VentaViewModel, VentaDataModel>(venta);
+            return ventasDao.CreateElement(ventaDataModel);
+        }
+
+        public static string ObtenerTodasLasVentas()
+        {
+            return ventasDao.GetAllElements().ToString();
         }
     }
 }

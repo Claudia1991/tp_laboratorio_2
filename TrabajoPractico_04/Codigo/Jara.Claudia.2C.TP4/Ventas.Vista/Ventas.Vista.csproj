@@ -121,6 +121,10 @@
       <Project>{11664D91-B7A0-48F5-97DC-709965BE20C1}</Project>
       <Name>Ventas.Modelos</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ventas.Utilities\Ventas.Utilities.csproj">
+      <Project>{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}</Project>
+      <Name>Ventas.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

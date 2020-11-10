@@ -31,9 +31,8 @@
             this.gpbAcciones = new System.Windows.Forms.GroupBox();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnImprimir = new System.Windows.Forms.Button();
-            this.btnPorFecha = new System.Windows.Forms.Button();
             this.btnTotalVentas = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstReporte = new System.Windows.Forms.ListBox();
             this.gpbAcciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,67 +40,68 @@
             // 
             this.gpbAcciones.Controls.Add(this.btnAtras);
             this.gpbAcciones.Controls.Add(this.btnImprimir);
-            this.gpbAcciones.Controls.Add(this.btnPorFecha);
             this.gpbAcciones.Controls.Add(this.btnTotalVentas);
-            this.gpbAcciones.Location = new System.Drawing.Point(12, 12);
+            this.gpbAcciones.Location = new System.Drawing.Point(16, 15);
+            this.gpbAcciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gpbAcciones.Name = "gpbAcciones";
-            this.gpbAcciones.Size = new System.Drawing.Size(134, 273);
+            this.gpbAcciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbAcciones.Size = new System.Drawing.Size(179, 212);
             this.gpbAcciones.TabIndex = 0;
             this.gpbAcciones.TabStop = false;
             this.gpbAcciones.Text = "Acciones";
             // 
             // btnAtras
             // 
-            this.btnAtras.Location = new System.Drawing.Point(27, 232);
+            this.btnAtras.Location = new System.Drawing.Point(36, 157);
+            this.btnAtras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(75, 23);
+            this.btnAtras.Size = new System.Drawing.Size(100, 28);
             this.btnAtras.TabIndex = 3;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
             // btnImprimir
             // 
-            this.btnImprimir.Location = new System.Drawing.Point(27, 165);
+            this.btnImprimir.Location = new System.Drawing.Point(36, 97);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(75, 23);
+            this.btnImprimir.Size = new System.Drawing.Size(100, 28);
             this.btnImprimir.TabIndex = 2;
             this.btnImprimir.Text = "Imprimir";
             this.btnImprimir.UseVisualStyleBackColor = true;
-            // 
-            // btnPorFecha
-            // 
-            this.btnPorFecha.Location = new System.Drawing.Point(27, 95);
-            this.btnPorFecha.Name = "btnPorFecha";
-            this.btnPorFecha.Size = new System.Drawing.Size(75, 23);
-            this.btnPorFecha.TabIndex = 1;
-            this.btnPorFecha.Text = "Por Fecha";
-            this.btnPorFecha.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // btnTotalVentas
             // 
-            this.btnTotalVentas.Location = new System.Drawing.Point(27, 33);
+            this.btnTotalVentas.Location = new System.Drawing.Point(36, 41);
+            this.btnTotalVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTotalVentas.Name = "btnTotalVentas";
-            this.btnTotalVentas.Size = new System.Drawing.Size(75, 23);
+            this.btnTotalVentas.Size = new System.Drawing.Size(100, 28);
             this.btnTotalVentas.TabIndex = 0;
             this.btnTotalVentas.Text = "Total Ventas";
             this.btnTotalVentas.UseVisualStyleBackColor = true;
+            this.btnTotalVentas.Click += new System.EventHandler(this.btnTotalVentas_Click);
             // 
-            // listBox1
+            // lstReporte
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(242, 21);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(451, 264);
-            this.listBox1.TabIndex = 1;
+            this.lstReporte.FormattingEnabled = true;
+            this.lstReporte.ItemHeight = 16;
+            this.lstReporte.Location = new System.Drawing.Point(323, 26);
+            this.lstReporte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstReporte.Name = "lstReporte";
+            this.lstReporte.Size = new System.Drawing.Size(600, 324);
+            this.lstReporte.TabIndex = 1;
             // 
             // ReporteForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(719, 320);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(959, 394);
+            this.Controls.Add(this.lstReporte);
             this.Controls.Add(this.gpbAcciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ReporteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sistema de Ventas - Reportes";
@@ -115,8 +115,7 @@
         private System.Windows.Forms.GroupBox gpbAcciones;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.Button btnPorFecha;
         private System.Windows.Forms.Button btnTotalVentas;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstReporte;
     }
 }

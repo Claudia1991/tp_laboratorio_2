@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchivosException.cs" />
     <Compile Include="ProductoException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VentaException.cs" />

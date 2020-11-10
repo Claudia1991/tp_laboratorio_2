@@ -81,41 +81,90 @@ namespace Ventas.DAO
 
         public List<VentaDataModel> GetAllElements()
         {
+            List<VentaDataModel> ventas = new List<VentaDataModel>();
+            int idVenta;
+            int idProducto;
             try
             {
+                string sqlQueryVentas = "select v.id, v.monto, v.fecha, vd.idVenta, vd.idProducto,p.descripcion, p.precioUnitario vd.cantidad, vd.precioPorProducto " +
+                    "from ventas vd " +
+                    "inner join ventas_detalle vd on v.id = vd.idVenta " +
+                    "inner join producto p on p.id = vd.idProducto " +
+                    "order by v.id " +
+                    "group by v.id";
+                using (sqlConnection)
+                {
+                    SqlCommand sqlCommand = new SqlCommand(sqlQueryVentas, sqlConnection);
 
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+
+                    while (sqlDataReader.Read())
+                    {
+
+                        ventas.Add(new VentaDataModel());
+                    }
+                }
             }
             catch (Exception)
             {
 
                 throw;
             }
+            return ventas;
         }
 
         public VentaDataModel GetElementById(int id)
         {
+            VentaDataModel venta = new VentaDataModel();
+            List<ProductoDetalleDataModel> productoDetalles = new List<ProductoDetalleDataModel>();
             try
             {
+                string sqlQueryVentas = "select * from ventas where id = @id";
+                string sqlQueryVentasDetalle = "select * from ventas_detalle where id = @idVenta";
+                using (sqlConnection)
+                {
+                    SqlCommand sqlCommand = new SqlCommand(sqlQueryVentas, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("id", id);
 
+                    sqlConnection.Open();
+                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                    if (sqlDataReader != null)
+                    {
+                        sqlCommand.CommandText = sqlQueryVentasDetalle;
+                        sqlCommand.Parameters.AddWithValue("id", id);
+
+                        SqlDataReader sqlDataReaderVentaDetalle = sqlCommand.ExecuteReader();
+                        while (sqlDataReaderVentaDetalle.Read())
+                        {
+                            productoDetalles.Add(
+                                new ProductoDetalleDataModel(Convert.ToInt32(sqlDataReaderVentaDetalle[0]), 
+                                                            Convert.ToString(sqlDataReaderVentaDetalle[1]),
+                                                            sqlDataReaderVentaDetalle.GetDouble(2), 
+                                                            Convert.ToInt32(sqlDataReaderVentaDetalle[3]),
+                                                            sqlDataReaderVentaDetalle.GetDouble(4)));
+                        }
+                        venta = new VentaDataModel(Convert.ToInt32(sqlDataReader[0]), 
+                                                    Convert.ToDateTime(sqlDataReader[1]), 
+                                                    sqlDataReader.GetDouble(2),
+                                                    new VentaDetalleDataModel() 
+                                                    { 
+                                                        Productos = productoDetalles 
+                                                    });
+                    }
+                }
             }
             catch (Exception)
             {
 
                 throw;
             }
+            return venta;
         }
 
         public bool UpdateElement(VentaDataModel element)
         {
-            try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            throw new NotImplementedException();
         }
     }
 }

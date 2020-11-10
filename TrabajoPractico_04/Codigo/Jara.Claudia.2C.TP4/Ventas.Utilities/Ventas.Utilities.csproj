@@ -49,14 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IArchivos.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="MapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Texto.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Ventas.Excepcion\Ventas.Excepcion.csproj">
+      <Project>{37F18860-1A03-481D-AF88-EC0F209A4005}</Project>
+      <Name>Ventas.Excepcion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ventas.Modelos\Ventas.Modelos.csproj">
       <Project>{11664d91-b7a0-48f5-97dc-709965be20c1}</Project>
       <Name>Ventas.Modelos</Name>

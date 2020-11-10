@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ventas.Modelos.DataModels;
+﻿using Ventas.Modelos.DataModels;
 using Ventas.Modelos.ViewModels;
 
 
@@ -28,6 +22,8 @@ namespace Ventas.Utilities
                              .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                              .ForMember(d => d.Descripcion, o => o.MapFrom(s => s.Descripcion))
                              .ForMember(d => d.Precio, o => o.MapFrom(s => s.Precio));
+                cfg.CreateMap<VentaDataModel, VentaViewModel>()
+                             .ReverseMap();
             });
 
             return configuration;
