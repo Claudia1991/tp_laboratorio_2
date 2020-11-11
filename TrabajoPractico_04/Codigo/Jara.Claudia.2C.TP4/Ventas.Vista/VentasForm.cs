@@ -10,7 +10,6 @@ namespace Ventas.Vista
     public partial class VentasForm : Form
     {
         private VentaViewModel venta;
-        private List<ProductoViewModel> productos;
 
         public VentasForm()
         {
@@ -40,17 +39,14 @@ namespace Ventas.Vista
 
         private void InicializarProductos()
         {
-            productos = ProductoBussines.ObtenerProductos();
-
-            this.cmbProductos.DataSource = productos;
-            this.cmbProductos.ValueMember = "Id" ;
-            this.cmbProductos.DisplayMember = "Descripcion - Precio" ;
+            this.cmbProductos.DataSource = ProductoBussines.ObtenerProductos(); 
+            this.cmbProductos.ValueMember = "Id";
+            this.cmbProductos.DisplayMember = "Descripcion";
         }
 
         private void InicializarCampos()
         {
             this.venta = new VentaViewModel();
-            this.productos = new List<ProductoViewModel>();
         }
 
         private void VentasForm_MouseMove(object sender, MouseEventArgs e)
@@ -77,7 +73,7 @@ namespace Ventas.Vista
 
         private void btnAgregarALista_Click(object sender, EventArgs e)
         {
-            ProductoViewModel producto = productos.First(p=>p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
+            ProductoViewModel producto = ProductoBussines.ObtenerProductos().First(p=>p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
             int cantidad = (int)this.nudCantidadProductos.Value;
             VentasBussines.AgregarProductoALaLista(venta, producto, cantidad);
             this.dgvVenta.DataSource = venta.DetalleVenta.Productos;

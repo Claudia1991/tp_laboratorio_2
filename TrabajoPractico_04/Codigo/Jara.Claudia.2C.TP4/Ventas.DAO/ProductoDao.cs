@@ -8,30 +8,26 @@ namespace Ventas.DAO
 {
     public class ProductoDao : BaseDao, IDao<ProductoDataModel>
     {
-        public ProductoDao()
-        {
-            sqlConnection = Connection.GetConnection();
-        }
-
         public bool CreateElement(ProductoDataModel element)
         {
             bool seCreoElement = false;
             try
             {
-                string sqlQuery = "insert into productos values (@descripcion, @precio)";
-                using (sqlConnection)
-                {
-                    SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("descripcion", element.Descripcion);
-                    sqlCommand.Parameters.AddWithValue("precio", element.Precio);
-                    sqlConnection.Open();
-                    seCreoElement =  sqlCommand.ExecuteNonQuery() > 0;
-                }
+                string sqlQuery = "insert into producto values (@descripcion, @precio)";
+                sqlConnection = Connection.GetConnection();
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("descripcion", element.Descripcion);
+                sqlCommand.Parameters.AddWithValue("precio", element.Precio);
+                sqlConnection.Open();
+                seCreoElement =  sqlCommand.ExecuteNonQuery() > 0;
             }
             catch (Exception)
             {
-
                 throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
             return seCreoElement;
         }
@@ -41,32 +37,33 @@ namespace Ventas.DAO
             bool seElimino = false;
             try
             {
-                string sqlQuery = "delete from productos where id = @id";
-                using (sqlConnection)
-                {
+                string sqlQuery = "delete from producto where id = @id";
+                sqlConnection = Connection.GetConnection();
                     SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
                     sqlCommand.Parameters.AddWithValue("id", id);
                     
                     sqlConnection.Open();
                     seElimino = sqlCommand.ExecuteNonQuery() > 0;
-                }
             }
             catch (Exception)
             {
 
                 throw;
             }
+            finally
+            {
+                sqlConnection.Close();
+            }
             return seElimino;
         }
 
         public List<ProductoDataModel> GetAllElements()
         {
-            List<ProductoDataModel> productos = null;
+            List<ProductoDataModel> productos = new List<ProductoDataModel>();
             try
             {
-                string sqlQuery = "select * from productos";
-                using (sqlConnection)
-                {
+                string sqlQuery = "select * from producto";
+                sqlConnection = Connection.GetConnection();
                     SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
 
                     sqlConnection.Open();
@@ -74,14 +71,17 @@ namespace Ventas.DAO
 
                     while (sqlDataReader.Read())
                     {
-                        productos.Add(new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), sqlDataReader.GetFloat(2)));
+                        productos.Add(new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), Convert.ToDouble(sqlDataReader[2])));
                     }
-                }
+                
             }
             catch (Exception)
             {
-
                 throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
             return productos;
         }
@@ -92,23 +92,25 @@ namespace Ventas.DAO
             try
             {
                 string sqlQuery = "select * from productos where id = @id";
-                using (sqlConnection)
-                {
-                    SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("id", id);
+                sqlConnection = Connection.GetConnection();
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("id", id);
 
-                    sqlConnection.Open();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                    if (sqlDataReader != null)
-                    {
-                        producto = new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), sqlDataReader.GetDouble(2));
-                    }
+                sqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                if (sqlDataReader != null)
+                {
+                    producto = new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), sqlDataReader.GetDouble(2));
                 }
             }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
             return producto;
         }
@@ -118,23 +120,25 @@ namespace Ventas.DAO
             bool seActualizo = false;
             try
             {
-                string sqlQuery = "update productos set descripcion = @descripcion," +
+                string sqlQuery = "update producto set descripcion = @descripcion," +
                                   "precio = @precion where id = @id";
-                using (sqlConnection)
-                {
-                    SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("id", element.Id);
-                    sqlCommand.Parameters.AddWithValue("descripcion", element.Descripcion);
-                    sqlCommand.Parameters.AddWithValue("precio", element.Precio);
+                sqlConnection = Connection.GetConnection();
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("id", element.Id);
+                sqlCommand.Parameters.AddWithValue("descripcion", element.Descripcion);
+                sqlCommand.Parameters.AddWithValue("precio", element.Precio);
 
-                    sqlConnection.Open();
-                    seActualizo = sqlCommand.ExecuteNonQuery() > 0;
-                }
+                sqlConnection.Open();
+                seActualizo = sqlCommand.ExecuteNonQuery() > 0;
             }
             catch (Exception)
             {
 
                 throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
             }
             return seActualizo;
         }

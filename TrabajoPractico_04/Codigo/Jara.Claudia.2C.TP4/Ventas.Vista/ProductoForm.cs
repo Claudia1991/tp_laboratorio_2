@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ventas.Bussines;
+using Ventas.Modelos.ViewModels;
 
 namespace Ventas.Vista
 {
@@ -55,7 +49,8 @@ namespace Ventas.Vista
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (ProductoBussines.EliminarProducto(Convert.ToInt32(this.dgvProductos.SelectedRows[0].DataGridView[0,0])))
+            ProductoViewModel producto = (ProductoViewModel)this.dgvProductos.SelectedRows[0].DataBoundItem;
+            if (ProductoBussines.EliminarProducto(producto.Id))
             {
                 MessageBox.Show("Se elimino correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

@@ -52,9 +52,12 @@
             // 
             this.dgvVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVenta.Location = new System.Drawing.Point(55, 50);
-            this.dgvVenta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvVenta.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvVenta.MultiSelect = false;
             this.dgvVenta.Name = "dgvVenta";
+            this.dgvVenta.ReadOnly = true;
             this.dgvVenta.RowHeadersWidth = 51;
+            this.dgvVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVenta.Size = new System.Drawing.Size(956, 185);
             this.dgvVenta.TabIndex = 0;
             // 
@@ -64,9 +67,9 @@
             this.gpbProductos.Controls.Add(this.cmbProductos);
             this.gpbProductos.Controls.Add(this.nudCantidadProductos);
             this.gpbProductos.Location = new System.Drawing.Point(55, 328);
-            this.gpbProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.gpbProductos.Name = "gpbProductos";
-            this.gpbProductos.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbProductos.Padding = new System.Windows.Forms.Padding(4);
             this.gpbProductos.Size = new System.Drawing.Size(461, 123);
             this.gpbProductos.TabIndex = 1;
             this.gpbProductos.TabStop = false;
@@ -75,7 +78,7 @@
             // btnAgregarALista
             // 
             this.btnAgregarALista.Location = new System.Drawing.Point(263, 87);
-            this.btnAgregarALista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregarALista.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregarALista.Name = "btnAgregarALista";
             this.btnAgregarALista.Size = new System.Drawing.Size(161, 28);
             this.btnAgregarALista.TabIndex = 2;
@@ -87,7 +90,7 @@
             // 
             this.cmbProductos.FormattingEnabled = true;
             this.cmbProductos.Location = new System.Drawing.Point(157, 34);
-            this.cmbProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProductos.Name = "cmbProductos";
             this.cmbProductos.Size = new System.Drawing.Size(265, 24);
             this.cmbProductos.TabIndex = 1;
@@ -95,7 +98,7 @@
             // nudCantidadProductos
             // 
             this.nudCantidadProductos.Location = new System.Drawing.Point(29, 34);
-            this.nudCantidadProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudCantidadProductos.Margin = new System.Windows.Forms.Padding(4);
             this.nudCantidadProductos.Minimum = new decimal(new int[] {
             1,
             0,
@@ -115,9 +118,9 @@
             this.gpbVentas.Controls.Add(this.btnVender);
             this.gpbVentas.Controls.Add(this.btnCancelar);
             this.gpbVentas.Location = new System.Drawing.Point(599, 328);
-            this.gpbVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbVentas.Margin = new System.Windows.Forms.Padding(4);
             this.gpbVentas.Name = "gpbVentas";
-            this.gpbVentas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbVentas.Padding = new System.Windows.Forms.Padding(4);
             this.gpbVentas.Size = new System.Drawing.Size(412, 123);
             this.gpbVentas.TabIndex = 2;
             this.gpbVentas.TabStop = false;
@@ -126,7 +129,7 @@
             // btnVender
             // 
             this.btnVender.Location = new System.Drawing.Point(304, 52);
-            this.btnVender.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVender.Margin = new System.Windows.Forms.Padding(4);
             this.btnVender.Name = "btnVender";
             this.btnVender.Size = new System.Drawing.Size(100, 28);
             this.btnVender.TabIndex = 1;
@@ -137,7 +140,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(40, 52);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 0;
@@ -153,21 +156,21 @@
             this.reporteToolStripMenuItem});
             this.msBarra.Location = new System.Drawing.Point(0, 0);
             this.msBarra.Name = "msBarra";
-            this.msBarra.Size = new System.Drawing.Size(1067, 30);
+            this.msBarra.Size = new System.Drawing.Size(1067, 28);
             this.msBarra.TabIndex = 3;
             this.msBarra.Text = "menuStrip1";
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // reporteToolStripMenuItem
             // 
             this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
-            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.reporteToolStripMenuItem.Text = "Reporte";
             this.reporteToolStripMenuItem.Click += new System.EventHandler(this.reporteToolStripMenuItem_Click);
             // 
@@ -201,7 +204,7 @@
             this.Controls.Add(this.msBarra);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.msBarra;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VentasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistemas de Ventas";
