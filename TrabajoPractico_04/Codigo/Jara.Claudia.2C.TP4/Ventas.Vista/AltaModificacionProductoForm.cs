@@ -23,8 +23,9 @@ namespace Ventas.Vista
             this.agregarElemento = agregarElemento;
         }
 
-        public AltaModificacionProductoForm(bool agregarElemento, string descripcion, string precio) : this(agregarElemento)
+        public AltaModificacionProductoForm(bool agregarElemento,string id,  string descripcion, string precio) : this(agregarElemento)
         {
+            this.txtIdProducto.Text = id;
             this.txtDescripcion.Text = descripcion;
             this.txtPrecio.Text = precio;
         }

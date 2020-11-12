@@ -14,22 +14,22 @@ namespace Ventas.DAO
 
             try
             {
-                string sqlQuery = "insert into ventas values (@monto, @fecha)";
+                string sqlQuery = "insert into ventas values (@monto_total, @fecha_venta)";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("monto", element.MontoTotal);
-                sqlCommand.Parameters.AddWithValue("fecha", element.Fecha);
+                sqlCommand.Parameters.AddWithValue("monto_total", element.MontoTotal);
+                sqlCommand.Parameters.AddWithValue("fecha_venta", element.Fecha);
                 sqlConnection.Open();
                 if (sqlCommand.ExecuteNonQuery() > 0)
                 {
-                    sqlQuery = "insert into ventas_detalle values (@idVenta, @idProducto, @cantidad, @precioPorProducto)";
+                    sqlQuery = "insert into ventas_detalle values (@id_venta, @id_producto, @cantidad_productos, @monto_por_producto)";
                     foreach (ProductoDetalleDataModel productoDetalle in element.DetalleVenta.Productos)
                     {
                         sqlCommand.CommandText = sqlQuery;
-                        sqlCommand.Parameters.AddWithValue("idVenta", element.Id);
-                        sqlCommand.Parameters.AddWithValue("idProducto", productoDetalle.Id);
-                        sqlCommand.Parameters.AddWithValue("cantidad", productoDetalle.CantidadPorProducto);
-                        sqlCommand.Parameters.AddWithValue("precioPorProducto", productoDetalle.PrecioTotalPorProducto);
+                        sqlCommand.Parameters.AddWithValue("id_venta", element.Id);
+                        sqlCommand.Parameters.AddWithValue("id_producto", productoDetalle.Id);
+                        sqlCommand.Parameters.AddWithValue("cantidad_productos", productoDetalle.CantidadPorProducto);
+                        sqlCommand.Parameters.AddWithValue("monto_por_producto", productoDetalle.PrecioTotalPorProducto);
                         sqlCommand.ExecuteNonQuery();
                     }
                 }
@@ -53,16 +53,16 @@ namespace Ventas.DAO
 
             try
             {
-                string sqlQueryDetalleVenta = "delete from ventas_detalle where @idVenta";
-                string sqlQueryVenta = "delete from ventas where @idVenta";
+                string sqlQueryDetalleVenta = "delete from ventas_detalle where @id_venta";
+                string sqlQueryVenta = "delete from ventas where @id_venta";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQueryDetalleVenta, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("idVenta", id);
+                sqlCommand.Parameters.AddWithValue("id_venta", id);
                 sqlConnection.Open();
                 if (sqlCommand.ExecuteNonQuery() > 0)
                 {
                     sqlCommand.CommandText = sqlQueryVenta;
-                    sqlCommand.Parameters.AddWithValue("idVenta", id);
+                    sqlCommand.Parameters.AddWithValue("id_venta", id);
                     sqlCommand.ExecuteNonQuery();
                 }
                 seEliminoElemento = true;
@@ -86,12 +86,11 @@ namespace Ventas.DAO
             int idProducto;
             try
             {
-                string sqlQueryVentas = "select v.id, v.monto, v.fecha, vd.idVenta, vd.idProducto,p.descripcion, p.precioUnitario vd.cantidad, vd.precioPorProducto " +
-                    "from ventas vd " +
-                    "inner join ventas_detalle vd on v.id = vd.idVenta " +
-                    "inner join producto p on p.id = vd.idProducto " +
-                    "order by v.id " +
-                    "group by v.id";
+                string sqlQueryVentas = "select v.id_venta,p.id_producto, p.descripcion,vd.cantidad_productos,p.precio,vd.monto_por_producto ,v.monto_total, v.fecha_venta " +
+                    "from ventas v " +
+                    "inner join ventas_detalle vd on v.id_venta = vd.id_venta " +
+                    "inner join producto p on p.id_producto = vd.id_producto " +
+                    "order by v.id_venta ";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQueryVentas, sqlConnection);
 
@@ -100,7 +99,6 @@ namespace Ventas.DAO
 
                 while (sqlDataReader.Read())
                 {
-
                     ventas.Add(new VentaDataModel());
                 }
             }
@@ -122,18 +120,18 @@ namespace Ventas.DAO
             List<ProductoDetalleDataModel> productoDetalles = new List<ProductoDetalleDataModel>();
             try
             {
-                string sqlQueryVentas = "select * from ventas where id = @id";
-                string sqlQueryVentasDetalle = "select * from ventas_detalle where id = @idVenta";
+                string sqlQueryVentas = "select * from ventas where id_venta = @id_venta";
+                string sqlQueryVentasDetalle = "select * from ventas_detalle where id_venta = @id_venta";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQueryVentas, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("id", id);
+                sqlCommand.Parameters.AddWithValue("id_venta", id);
 
                 sqlConnection.Open();
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 if (sqlDataReader != null)
                 {
                     sqlCommand.CommandText = sqlQueryVentasDetalle;
-                    sqlCommand.Parameters.AddWithValue("id", id);
+                    sqlCommand.Parameters.AddWithValue("id_venta", id);
 
                     SqlDataReader sqlDataReaderVentaDetalle = sqlCommand.ExecuteReader();
                     while (sqlDataReaderVentaDetalle.Read())

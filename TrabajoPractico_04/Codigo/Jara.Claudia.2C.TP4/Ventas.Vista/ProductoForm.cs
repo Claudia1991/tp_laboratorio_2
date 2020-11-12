@@ -41,7 +41,8 @@ namespace Ventas.Vista
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(false))
+            ProductoViewModel producto = (ProductoViewModel)this.dgvProductos.SelectedRows[0].DataBoundItem;
+            using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(false, producto.Id.ToString(), producto.Descripcion, producto.Precio.ToString()))
             {
                 altaModificacionProductoForm.ShowDialog();
             }

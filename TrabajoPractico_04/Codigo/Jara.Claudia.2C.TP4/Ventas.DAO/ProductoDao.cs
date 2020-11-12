@@ -37,7 +37,7 @@ namespace Ventas.DAO
             bool seElimino = false;
             try
             {
-                string sqlQuery = "delete from producto where id = @id";
+                string sqlQuery = "delete from producto where id_producto = @id";
                 sqlConnection = Connection.GetConnection();
                     SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
                     sqlCommand.Parameters.AddWithValue("id", id);
@@ -91,7 +91,7 @@ namespace Ventas.DAO
             ProductoDataModel producto =  null;
             try
             {
-                string sqlQuery = "select * from productos where id = @id";
+                string sqlQuery = "select * from producto where id_producto = @id";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("id", id);
@@ -121,7 +121,7 @@ namespace Ventas.DAO
             try
             {
                 string sqlQuery = "update producto set descripcion = @descripcion," +
-                                  "precio = @precion where id = @id";
+                                  "precio = @precio where id_producto = @id";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("id", element.Id);
