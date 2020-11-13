@@ -18,7 +18,6 @@ namespace Ventas.Vista
             InicializarCampos();
             this.btnAgregarALista.Enabled = false;
             this.btnVender.Enabled = false;
-            this.dgvVenta.Enabled = false;
         }
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,7 +45,7 @@ namespace Ventas.Vista
 
         private void InicializarCampos()
         {
-            this.venta = new VentaViewModel();
+            this.venta = new VentaViewModel() { DetalleVenta = new VentaDetalleViewModel() { Productos = new List<ProductoDetalleViewModel>() } };
         }
 
         private void VentasForm_MouseMove(object sender, MouseEventArgs e)
@@ -76,12 +75,12 @@ namespace Ventas.Vista
             ProductoViewModel producto = ProductoBussines.ObtenerProductos().First(p=>p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
             int cantidad = (int)this.nudCantidadProductos.Value;
             VentasBussines.AgregarProductoALaLista(venta, producto, cantidad);
-            this.dgvVenta.DataSource = venta.DetalleVenta.Productos;
-            this.lblMontoTotalVenta.Text = venta.MontoTotal.ToString();
+            this.ActualizarGrilla();
         }
 
         private void btnVender_Click(object sender, EventArgs e)
         {
+            this.venta.Fecha = DateTime.Now;
             bool seVendio = VentasBussines.Vender(this.venta); 
             if (seVendio)
             {
@@ -103,9 +102,17 @@ namespace Ventas.Vista
         private void Limpiar()
         {
             this.nudCantidadProductos.Value = 1;
-            this.cmbProductos.SelectedIndex = -1;
+            this.cmbProductos.SelectedIndex = 0;
             this.dgvVenta.DataSource = null;
             this.lblMontoTotalVenta.Text = string.Empty;
+            this.InicializarCampos();
+        }
+
+        private void ActualizarGrilla()
+        {
+            this.dgvVenta.DataSource = null;
+            this.dgvVenta.DataSource = venta.DetalleVenta.Productos;
+            this.lblMontoTotalVenta.Text = venta.MontoTotal.ToString();
         }
     }
 }

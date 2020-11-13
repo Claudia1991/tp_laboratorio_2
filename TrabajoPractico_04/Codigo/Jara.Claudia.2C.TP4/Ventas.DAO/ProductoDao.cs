@@ -27,7 +27,10 @@ namespace Ventas.DAO
             }
             finally
             {
-                sqlConnection.Close();
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
             }
             return seCreoElement;
         }
@@ -52,7 +55,10 @@ namespace Ventas.DAO
             }
             finally
             {
-                sqlConnection.Close();
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
             }
             return seElimino;
         }
@@ -81,7 +87,10 @@ namespace Ventas.DAO
             }
             finally
             {
-                sqlConnection.Close();
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
             }
             return productos;
         }
@@ -110,7 +119,10 @@ namespace Ventas.DAO
             }
             finally
             {
-                sqlConnection.Close();
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
             }
             return producto;
         }
@@ -138,7 +150,10 @@ namespace Ventas.DAO
             }
             finally
             {
-                sqlConnection.Close();
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
             }
             return seActualizo;
         }

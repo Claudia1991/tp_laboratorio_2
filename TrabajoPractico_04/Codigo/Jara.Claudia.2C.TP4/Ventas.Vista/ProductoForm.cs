@@ -36,6 +36,8 @@ namespace Ventas.Vista
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(true))
             {
                 altaModificacionProductoForm.ShowDialog();
+                this.RecargarProductos();
+
             }
         }
 
@@ -45,6 +47,8 @@ namespace Ventas.Vista
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(false, producto.Id.ToString(), producto.Descripcion, producto.Precio.ToString()))
             {
                 altaModificacionProductoForm.ShowDialog();
+                this.RecargarProductos();
+
             }
         }
 
@@ -54,7 +58,7 @@ namespace Ventas.Vista
             if (ProductoBussines.EliminarProducto(producto.Id))
             {
                 MessageBox.Show("Se elimino correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                this.RecargarProductos();
             }
             else
             {
@@ -66,5 +70,11 @@ namespace Ventas.Vista
         {
             this.Close();
         }
+
+        private void RecargarProductos()
+        {
+            this.dgvProductos.DataSource = ProductoBussines.ObtenerProductos();
+        }
+        //Por aca tengo que atrapar el evento del form y lanzar otro evento para que lo atrape ventas y se recargue el combo de productos
     }
 }

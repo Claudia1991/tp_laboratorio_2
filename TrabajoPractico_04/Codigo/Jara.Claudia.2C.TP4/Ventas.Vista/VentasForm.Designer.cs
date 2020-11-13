@@ -88,6 +88,7 @@
             // 
             // cmbProductos
             // 
+            this.cmbProductos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProductos.FormattingEnabled = true;
             this.cmbProductos.Location = new System.Drawing.Point(157, 34);
             this.cmbProductos.Margin = new System.Windows.Forms.Padding(4);
@@ -156,21 +157,21 @@
             this.reporteToolStripMenuItem});
             this.msBarra.Location = new System.Drawing.Point(0, 0);
             this.msBarra.Name = "msBarra";
-            this.msBarra.Size = new System.Drawing.Size(1067, 28);
+            this.msBarra.Size = new System.Drawing.Size(1067, 30);
             this.msBarra.TabIndex = 3;
             this.msBarra.Text = "menuStrip1";
             // 
             // productosToolStripMenuItem
             // 
             this.productosToolStripMenuItem.Name = "productosToolStripMenuItem";
-            this.productosToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.productosToolStripMenuItem.Size = new System.Drawing.Size(89, 26);
             this.productosToolStripMenuItem.Text = "Productos";
             this.productosToolStripMenuItem.Click += new System.EventHandler(this.productosToolStripMenuItem_Click);
             // 
             // reporteToolStripMenuItem
             // 
             this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
-            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
             this.reporteToolStripMenuItem.Text = "Reporte";
             this.reporteToolStripMenuItem.Click += new System.EventHandler(this.reporteToolStripMenuItem_Click);
             // 

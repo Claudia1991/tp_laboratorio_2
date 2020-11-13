@@ -19,6 +19,8 @@
             set { this.precio = value; }
         }
 
+
+        public ProductoDataModel() { }
         public ProductoDataModel(string descripcion, double precio) : base(0)
         {
             Descripcion = descripcion;

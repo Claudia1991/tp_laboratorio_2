@@ -4,6 +4,7 @@
     {
         public int CantidadPorProducto { get; set; }
         public double PrecioTotalPorProducto { get; set; }
+        public ProductoDetalleDataModel() { }
 
         public ProductoDetalleDataModel(int id, string descripcion, double precio, int cantidad, double precioTotal): base(id, descripcion, precio)
         {

@@ -39,7 +39,7 @@ namespace Ventas.Vista
                     if (ProductoBussines.AgregarProducto(this.txtDescripcion.Text, Convert.ToDouble(this.txtPrecio.Text)))
                     {
                         MessageBox.Show("Se agrego correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        //RaiseEvent
                     }
                     else
                     {
@@ -52,7 +52,7 @@ namespace Ventas.Vista
                     if (ProductoBussines.ModificarProductos(Convert.ToInt32(this.txtIdProducto.Text), this.txtDescripcion.Text, Convert.ToDouble(this.txtPrecio.Text)))
                     {
                         MessageBox.Show("Se modifico correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        //RaiseEvent
                     }
                     else
                     {

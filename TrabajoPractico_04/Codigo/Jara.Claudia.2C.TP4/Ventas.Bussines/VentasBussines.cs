@@ -23,7 +23,8 @@ namespace Ventas.Bussines
                 //si existe el producto, sumo la cantidad
                 int indiceProducto = venta.DetalleVenta.Productos.FindIndex(e => e.Id == producto.Id);
                 venta.DetalleVenta.Productos[indiceProducto].CantidadPorProducto += cantidad;
-                venta.DetalleVenta.Productos[indiceProducto].PrecioTotalPorProducto = venta.DetalleVenta.Productos[indiceProducto].CantidadPorProducto * venta.DetalleVenta.Productos[indiceProducto].Precio;
+                venta.DetalleVenta.Productos[indiceProducto].PrecioTotalPorProducto = 
+                    venta.DetalleVenta.Productos[indiceProducto].CantidadPorProducto * venta.DetalleVenta.Productos[indiceProducto].Precio;
             }
             else
             {
