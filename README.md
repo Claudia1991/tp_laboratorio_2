@@ -14,4 +14,7 @@ Utilizando plataforma Net Framework con C#
 4. TrabajoPractico_03
    - Proyecto de Control de una universidad con Consola.
 5. TrabajoPractico_04
-   - Proyecto
+   - Documentacion
+   - Codigo
+     - Proyecto de un Sistema de Ventas
+  
