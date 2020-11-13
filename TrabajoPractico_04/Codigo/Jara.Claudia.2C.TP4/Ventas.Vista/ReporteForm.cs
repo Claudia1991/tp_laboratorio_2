@@ -15,17 +15,16 @@ namespace Ventas.Vista
         private void btnTotalVentas_Click(object sender, System.EventArgs e)
         {
             //Trae todas las ventas y lo pone en el listviewreportes
-            this.lstReporte.Text = VentasBussines.ObtenerTodasLasVentas();
+            this.lstReporte.Items.AddRange(VentasBussines.ObtenerVentas().ToArray());
         }
 
         private void btnImprimir_Click(object sender, System.EventArgs e)
         {
             //agarra del lstviewReporte y lo guarda en un txt
-            if (!string.IsNullOrEmpty(this.lstReporte.Text))
+            Texto texto = new Texto();
+            if (texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas()))
             {
-                Texto texto = new Texto();
-                texto.Guardar(string.Concat("Reporte", DateTime.Now, ".txt"), this.lstReporte.Text);
-                MessageBox.Show("Se imprimio el reporte, revise si escritorio.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Se imprimio el reporte,revise la carpera 'Archivos Guardados' en la ruta del ejecutable.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             else

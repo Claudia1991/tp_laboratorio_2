@@ -16,5 +16,10 @@
             CantidadPorProducto = cantidad;
             PrecioTotalPorProducto = precioTotal;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"\t \nCantidad por producto: {this.CantidadPorProducto} - Precio total por producto: {this.PrecioTotalPorProducto}";
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Ventas.DAO;
 using Ventas.Modelos.DataModels;
 using Ventas.Modelos.ViewModels;
@@ -57,7 +60,25 @@ namespace Ventas.Bussines
 
         public static string ObtenerTodasLasVentas()
         {
-            return ventasDao.GetAllElements().ToString();
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (VentaDataModel venta in ventasDao.GetAllElements())
+            {
+                stringBuilder.AppendLine("=====================================================================");
+                stringBuilder.AppendLine(Mapper.Map<VentaDataModel, VentaViewModel>(venta).ToString());
+            }
+            return stringBuilder.ToString();
+        }
+
+        public static List<string> ObtenerVentas()
+        {
+            List<string> listaVentas = new List<string>();
+
+            foreach (VentaDataModel venta in ventasDao.GetAllElements())
+            {
+                listaVentas.Add(Mapper.Map<VentaDataModel, VentaViewModel>(venta).ToString());
+            }
+            return listaVentas;
         }
     }
 }

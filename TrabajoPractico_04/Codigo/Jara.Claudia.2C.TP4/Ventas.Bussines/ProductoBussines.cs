@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Ventas.DAO;
 using Ventas.Modelos.DataModels;
 using Ventas.Modelos.ViewModels;

@@ -92,6 +92,7 @@ namespace Ventas.DAO
             List<VentaDataModel> ventas = new List<VentaDataModel>();
             bool esPrimerRegistro = true;
             bool esMismaVenta = false;
+            int idVentaSiguiente;
             try
             {
                 string sqlQueryVentas = "select v.id_venta,p.id_producto, p.descripcion,vd.cantidad_productos,p.precio,vd.monto_por_producto ,v.monto_total, v.fecha_venta " +
@@ -109,7 +110,8 @@ namespace Ventas.DAO
                 {
                     if ( ventas.Count>0)
                     {
-                        esMismaVenta = (ventas[ventas.Count - 1].Id != Convert.ToInt32(sqlDataReader["id_venta"]));
+                        idVentaSiguiente = Convert.ToInt32(sqlDataReader["id_venta"]);
+                        esMismaVenta = ventas[ventas.Count - 1].Id == idVentaSiguiente;
                     }
                     if (esMismaVenta || esPrimerRegistro)
                     {
@@ -127,8 +129,10 @@ namespace Ventas.DAO
                     }
                     else
                     {
-                        ventas[ventas.Count - 1].DetalleVenta.Productos.Add(
-                                new ProductoDetalleDataModel(sqlDataReader.GetInt32(1), sqlDataReader.GetString(2), sqlDataReader.GetDouble(4), sqlDataReader.GetInt32(3), sqlDataReader.GetDouble(5)));
+                        ProductoDetalleDataModel productoDetalle = new ProductoDetalleDataModel(sqlDataReader.GetInt32(1), sqlDataReader.GetString(2), sqlDataReader.GetDouble(4), 
+                            sqlDataReader.GetInt32(3), sqlDataReader.GetDouble(5));
+
+                        ventas[ventas.Count - 1].DetalleVenta.Productos.Add(productoDetalle);
                     }
                 }
             }

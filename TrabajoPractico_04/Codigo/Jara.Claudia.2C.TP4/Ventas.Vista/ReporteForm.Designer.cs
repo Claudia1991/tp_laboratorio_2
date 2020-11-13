@@ -42,9 +42,9 @@
             this.gpbAcciones.Controls.Add(this.btnImprimir);
             this.gpbAcciones.Controls.Add(this.btnTotalVentas);
             this.gpbAcciones.Location = new System.Drawing.Point(16, 15);
-            this.gpbAcciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbAcciones.Margin = new System.Windows.Forms.Padding(4);
             this.gpbAcciones.Name = "gpbAcciones";
-            this.gpbAcciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpbAcciones.Padding = new System.Windows.Forms.Padding(4);
             this.gpbAcciones.Size = new System.Drawing.Size(179, 212);
             this.gpbAcciones.TabIndex = 0;
             this.gpbAcciones.TabStop = false;
@@ -53,7 +53,7 @@
             // btnAtras
             // 
             this.btnAtras.Location = new System.Drawing.Point(36, 157);
-            this.btnAtras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAtras.Margin = new System.Windows.Forms.Padding(4);
             this.btnAtras.Name = "btnAtras";
             this.btnAtras.Size = new System.Drawing.Size(100, 28);
             this.btnAtras.TabIndex = 3;
@@ -64,7 +64,7 @@
             // btnImprimir
             // 
             this.btnImprimir.Location = new System.Drawing.Point(36, 97);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(100, 28);
             this.btnImprimir.TabIndex = 2;
@@ -75,7 +75,7 @@
             // btnTotalVentas
             // 
             this.btnTotalVentas.Location = new System.Drawing.Point(36, 41);
-            this.btnTotalVentas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTotalVentas.Margin = new System.Windows.Forms.Padding(4);
             this.btnTotalVentas.Name = "btnTotalVentas";
             this.btnTotalVentas.Size = new System.Drawing.Size(100, 28);
             this.btnTotalVentas.TabIndex = 0;
@@ -87,10 +87,13 @@
             // 
             this.lstReporte.FormattingEnabled = true;
             this.lstReporte.ItemHeight = 16;
-            this.lstReporte.Location = new System.Drawing.Point(323, 26);
-            this.lstReporte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstReporte.Location = new System.Drawing.Point(203, 15);
+            this.lstReporte.Margin = new System.Windows.Forms.Padding(4);
+            this.lstReporte.MultiColumn = true;
             this.lstReporte.Name = "lstReporte";
-            this.lstReporte.Size = new System.Drawing.Size(600, 324);
+            this.lstReporte.ScrollAlwaysVisible = true;
+            this.lstReporte.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lstReporte.Size = new System.Drawing.Size(743, 356);
             this.lstReporte.TabIndex = 1;
             // 
             // ReporteForm
@@ -101,7 +104,7 @@
             this.Controls.Add(this.lstReporte);
             this.Controls.Add(this.gpbAcciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReporteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Sistema de Ventas - Reportes";

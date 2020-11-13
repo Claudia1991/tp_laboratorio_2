@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Ventas.Excepcion;
 
 namespace Ventas.Utilities
@@ -11,7 +8,7 @@ namespace Ventas.Utilities
     public class Texto : IArchivos<string>
     {
         #region Campos
-        private string nombreCarpetaArchivos = "Archivos Guardados";
+        private readonly string nombreCarpetaArchivos = "Archivos Guardados";
         private StreamWriter streamWriter;
         private StreamReader streamReader;
         #endregion

@@ -29,5 +29,10 @@
         {
             Id = id;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + $" \t \nDescripcion: {this.Descripcion} - Precio: {this.Precio}";
+        }
     }
 }

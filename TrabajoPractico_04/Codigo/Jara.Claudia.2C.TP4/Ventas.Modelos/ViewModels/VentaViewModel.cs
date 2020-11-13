@@ -16,5 +16,10 @@ namespace Ventas.Modelos.ViewModels
             MontoTotal = montoTotal;
             DetalleVenta = ventaDetalle;
         }
+
+        public override string ToString()
+        {
+            return string.Concat($"Fecha: {this.Fecha.ToString()} - Monto Total:{this.MontoTotal.ToString()} \n",this.DetalleVenta.ToString());
+        }
     }
 }
