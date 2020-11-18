@@ -39,9 +39,8 @@ namespace Ventas.DAO
                 }
                 seCreoElemento = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 throw;
             }
             finally
@@ -73,7 +72,7 @@ namespace Ventas.DAO
                 }
                 seEliminoElemento = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -136,7 +135,7 @@ namespace Ventas.DAO
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -179,7 +178,7 @@ namespace Ventas.DAO
                         });
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -205,7 +204,7 @@ namespace Ventas.DAO
                 sqlCommand.Parameters.AddWithValue("fecha_venta", element.Fecha);
                 seActualizo = sqlCommand.ExecuteNonQuery() > 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

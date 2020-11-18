@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Ventas.Bussines;
 using Ventas.Modelos.ViewModels;
+using Ventas.Utilities;
 
 namespace Ventas.Vista
 {
@@ -30,9 +31,15 @@ namespace Ventas.Vista
 
         private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (ReporteForm reporteForm = new ReporteForm())
+            //agarra del lstviewReporte y lo guarda en un txt
+            Texto texto = new Texto();
+            if (texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas()))
             {
-                reporteForm.ShowDialog();
+                MessageBox.Show("Se imprimio el reporte,revise la carpera 'Archivos Guardados' en la ruta del ejecutable.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No puede imprimir el reporte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

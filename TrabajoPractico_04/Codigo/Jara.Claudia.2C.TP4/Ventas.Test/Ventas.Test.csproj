@@ -54,11 +54,22 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="VentasTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ventas.DAO\Ventas.DAO.csproj">
+      <Project>{CC38F0FD-218F-477B-9DDF-15C2C8D45DD5}</Project>
+      <Name>Ventas.DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ventas.Modelos\Ventas.Modelos.csproj">
+      <Project>{11664D91-B7A0-48F5-97DC-709965BE20C1}</Project>
+      <Name>Ventas.Modelos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

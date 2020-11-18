@@ -10,6 +10,7 @@ namespace Ventas.DAO
     {
         public bool CreateElement(ProductoDataModel element)
         {
+
             bool seCreoElement = false;
             try
             {
@@ -21,8 +22,10 @@ namespace Ventas.DAO
                 sqlConnection.Open();
                 seCreoElement =  sqlCommand.ExecuteNonQuery() > 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                
+                
                 throw;
             }
             finally
@@ -48,9 +51,10 @@ namespace Ventas.DAO
                     sqlConnection.Open();
                     seElimino = sqlCommand.ExecuteNonQuery() > 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                
+                
                 throw;
             }
             finally
@@ -81,8 +85,10 @@ namespace Ventas.DAO
                     }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                
+                
                 throw;
             }
             finally
@@ -112,9 +118,10 @@ namespace Ventas.DAO
                     producto = new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), sqlDataReader.GetDouble(2));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                
+                
                 throw;
             }
             finally
@@ -143,9 +150,10 @@ namespace Ventas.DAO
                 sqlConnection.Open();
                 seActualizo = sqlCommand.ExecuteNonQuery() > 0;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                
+                
                 throw;
             }
             finally
