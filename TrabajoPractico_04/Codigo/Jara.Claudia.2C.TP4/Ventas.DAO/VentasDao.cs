@@ -59,8 +59,8 @@ namespace Ventas.DAO
 
             try
             {
-                string sqlQueryDetalleVenta = "delete from ventas_detalle where @id_venta";
-                string sqlQueryVenta = "delete from ventas where @id_venta";
+                string sqlQueryDetalleVenta = "delete from ventas_detalle where id_venta = @id_venta";
+                string sqlQueryVenta = "delete from ventas where id_venta =  @id_venta";
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQueryDetalleVenta, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("id_venta", id);
@@ -90,7 +90,7 @@ namespace Ventas.DAO
         {
             List<VentaDataModel> ventas = new List<VentaDataModel>();
             bool esPrimerRegistro = true;
-            bool esMismaVenta = false;
+            bool noEsMismaVenta = false;
             int idVentaSiguiente;
             try
             {
@@ -110,9 +110,9 @@ namespace Ventas.DAO
                     if ( ventas.Count>0)
                     {
                         idVentaSiguiente = Convert.ToInt32(sqlDataReader["id_venta"]);
-                        esMismaVenta = ventas[ventas.Count - 1].Id == idVentaSiguiente;
+                        noEsMismaVenta = ventas[ventas.Count - 1].Id != idVentaSiguiente;
                     }
-                    if (esMismaVenta || esPrimerRegistro)
+                    if (noEsMismaVenta || esPrimerRegistro)
                     {
                         esPrimerRegistro = false;
                         VentaDataModel venta = new VentaDataModel(Convert.ToInt32(sqlDataReader["id_venta"]), Convert.ToDateTime(sqlDataReader["fecha_venta"]), sqlDataReader.GetDouble(6),
@@ -151,7 +151,7 @@ namespace Ventas.DAO
 
         public VentaDataModel GetElementById(int id)
         {
-            VentaDataModel venta = new VentaDataModel();
+            VentaDataModel venta = null;
             try
             {
                 string sqlQueryVenta = "select v.id_venta,p.id_producto, p.descripcion,vd.cantidad_productos,p.precio,vd.monto_por_producto ,v.monto_total, v.fecha_venta " +
@@ -165,8 +165,9 @@ namespace Ventas.DAO
 
                 sqlConnection.Open();
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
-                if (sqlDataReader != null)
+                if (sqlDataReader.HasRows)
                 {
+                    sqlDataReader.Read();
                      venta = new VentaDataModel(Convert.ToInt32(sqlDataReader["id_venta"]), Convert.ToDateTime(sqlDataReader["fecha_venta"]), sqlDataReader.GetDouble(6),
                         new VentaDetalleDataModel()
                         {
@@ -199,6 +200,7 @@ namespace Ventas.DAO
             {
                 string sqlQueryVenta = "update ventas set fecha_venta = @fecha_venta where id_venta = @id_venta";
                 sqlConnection = Connection.GetConnection();
+                sqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand(sqlQueryVenta, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("id_venta", element.Id);
                 sqlCommand.Parameters.AddWithValue("fecha_venta", element.Fecha);
@@ -216,6 +218,32 @@ namespace Ventas.DAO
                 }
             }
             return seActualizo;
+        }
+
+        public int GetMaxId()
+        {
+            int idVenta;
+            try
+            {
+                sqlConnection = Connection.GetConnection();
+                sqlConnection.Open();
+                string sqlQuerySelectIdVenta = "select max(id_venta) from ventas";
+                SqlCommand sqlCommand1 = new SqlCommand(sqlQuerySelectIdVenta, sqlConnection);
+                idVenta = (int)sqlCommand1.ExecuteScalar();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (sqlConnection != null && sqlConnection.State == System.Data.ConnectionState.Open)
+                {
+                    sqlConnection.Close();
+                }
+            }
+            return idVenta;
         }
     }
 }
