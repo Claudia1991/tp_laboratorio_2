@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using Ventas.Bussines;
 using Ventas.Modelos.ViewModels;
@@ -10,7 +11,9 @@ namespace Ventas.Vista
 {
     public partial class VentasForm : Form
     {
+        private delegate void CallbackDelegate(string estadoReporte);
         private VentaViewModel venta;
+        private Thread threadReporte;
 
         public VentasForm()
         {
@@ -19,6 +22,7 @@ namespace Ventas.Vista
             InicializarCampos();
             this.btnAgregarALista.Enabled = false;
             this.btnVender.Enabled = false;
+            this.threadReporte = new Thread(ImprimirReporte);
         }
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,16 +36,12 @@ namespace Ventas.Vista
 
         private void reporteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //agarra del lstviewReporte y lo guarda en un txt
-            Texto texto = new Texto();
-            if (texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas()))
+            if (threadReporte.ThreadState == ThreadState.Stopped)
             {
-                MessageBox.Show("Se imprimio el reporte,revise la carpera 'Archivos Guardados' en la ruta del ejecutable.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.threadReporte = new Thread(ImprimirReporte);
             }
-            else
-            {
-                MessageBox.Show("No puede imprimir el reporte.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            threadReporte.Start();
+
         }
 
         private void InicializarProductos()
@@ -49,6 +49,34 @@ namespace Ventas.Vista
             this.cmbProductos.DataSource = ProductoBussines.ObtenerProductos(); 
             this.cmbProductos.ValueMember = "Id";
             this.cmbProductos.DisplayMember = "Descripcion";
+        }
+
+        private void ImprimirReporte()
+        {
+            Thread.Sleep(5000);
+            //pongo un delay, para simular que fue a la impresora, etc
+            Texto texto = new Texto();
+            texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas());
+            ActualizarInformacionReporte("El reporte se imprimio en la carpeta Archivos Guardados.");
+            //ActualizarInformacionReporte(string.Empty);
+        }
+
+        private void ActualizarInformacionReporte(string informeReporte)
+        {
+            if (this.lblInformacionReporte.InvokeRequired)
+            {
+                CallbackDelegate callback = new CallbackDelegate(ActualizarInformacionReporte);
+                object[] args = new object[]
+                {
+                    informeReporte
+                };
+
+                this.Invoke(callback, args);
+            }
+            else
+            {
+                this.lblInformacionReporte.Text = informeReporte;
+            }
         }
 
         private void InicializarCampos()
@@ -127,6 +155,14 @@ namespace Ventas.Vista
         {
             this.cmbProductos.DataSource = null;
             InicializarProductos();
+        }
+
+        private void VentasForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (threadReporte.IsAlive)
+            {
+                threadReporte.Abort();
+            }
         }
     }
 }

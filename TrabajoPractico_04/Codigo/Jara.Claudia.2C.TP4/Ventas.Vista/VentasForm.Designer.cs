@@ -41,6 +41,7 @@
             this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTotal = new System.Windows.Forms.Label();
             this.lblMontoTotalVenta = new System.Windows.Forms.Label();
+            this.lblInformacionReporte = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).BeginInit();
             this.gpbProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidadProductos)).BeginInit();
@@ -66,7 +67,7 @@
             this.gpbProductos.Controls.Add(this.btnAgregarALista);
             this.gpbProductos.Controls.Add(this.cmbProductos);
             this.gpbProductos.Controls.Add(this.nudCantidadProductos);
-            this.gpbProductos.Location = new System.Drawing.Point(55, 328);
+            this.gpbProductos.Location = new System.Drawing.Point(55, 299);
             this.gpbProductos.Margin = new System.Windows.Forms.Padding(4);
             this.gpbProductos.Name = "gpbProductos";
             this.gpbProductos.Padding = new System.Windows.Forms.Padding(4);
@@ -118,7 +119,7 @@
             // 
             this.gpbVentas.Controls.Add(this.btnVender);
             this.gpbVentas.Controls.Add(this.btnCancelar);
-            this.gpbVentas.Location = new System.Drawing.Point(599, 328);
+            this.gpbVentas.Location = new System.Drawing.Point(599, 299);
             this.gpbVentas.Margin = new System.Windows.Forms.Padding(4);
             this.gpbVentas.Name = "gpbVentas";
             this.gpbVentas.Padding = new System.Windows.Forms.Padding(4);
@@ -178,7 +179,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(652, 271);
+            this.lblTotal.Location = new System.Drawing.Point(652, 256);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(87, 17);
             this.lblTotal.TabIndex = 4;
@@ -187,16 +188,27 @@
             // lblMontoTotalVenta
             // 
             this.lblMontoTotalVenta.AutoSize = true;
+            this.lblMontoTotalVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMontoTotalVenta.Location = new System.Drawing.Point(792, 271);
             this.lblMontoTotalVenta.Name = "lblMontoTotalVenta";
             this.lblMontoTotalVenta.Size = new System.Drawing.Size(0, 17);
             this.lblMontoTotalVenta.TabIndex = 5;
+            // 
+            // lblInformacionReporte
+            // 
+            this.lblInformacionReporte.AutoSize = true;
+            this.lblInformacionReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInformacionReporte.Location = new System.Drawing.Point(469, 440);
+            this.lblInformacionReporte.Name = "lblInformacionReporte";
+            this.lblInformacionReporte.Size = new System.Drawing.Size(0, 17);
+            this.lblInformacionReporte.TabIndex = 6;
             // 
             // VentasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 484);
+            this.Controls.Add(this.lblInformacionReporte);
             this.Controls.Add(this.lblMontoTotalVenta);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.gpbVentas);
@@ -209,6 +221,7 @@
             this.Name = "VentasForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistemas de Ventas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.VentasForm_FormClosing);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.VentasForm_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVenta)).EndInit();
             this.gpbProductos.ResumeLayout(false);
@@ -236,5 +249,6 @@
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblMontoTotalVenta;
+        private System.Windows.Forms.Label lblInformacionReporte;
     }
 }
