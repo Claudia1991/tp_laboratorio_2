@@ -7,6 +7,8 @@ namespace Ventas.Vista
 {
     public partial class AltaModificacionProductoForm : Form
     {
+        public delegate void ActualizarProductosAltaModificacionProductoFormsDelegado();
+        public event ActualizarProductosAltaModificacionProductoFormsDelegado actualizarProductosProductosEvento;
         private bool agregarElemento = false;
         private Regex regex;
         private const string patronDescripcion = "[a-zA-Z]";
@@ -39,7 +41,7 @@ namespace Ventas.Vista
                     if (ProductoBussines.AgregarProducto(this.txtDescripcion.Text, Convert.ToDouble(this.txtPrecio.Text)))
                     {
                         MessageBox.Show("Se agrego correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //RaiseEvent
+                        this.actualizarProductosProductosEvento();
                     }
                     else
                     {
@@ -52,7 +54,7 @@ namespace Ventas.Vista
                     if (ProductoBussines.ModificarProductos(Convert.ToInt32(this.txtIdProducto.Text), this.txtDescripcion.Text, Convert.ToDouble(this.txtPrecio.Text)))
                     {
                         MessageBox.Show("Se modifico correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        //RaiseEvent
+                        this.actualizarProductosProductosEvento();
                     }
                     else
                     {

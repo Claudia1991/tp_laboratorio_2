@@ -25,6 +25,7 @@ namespace Ventas.Vista
         {
             using (ProductoForm productoForm = new ProductoForm())
             {
+                productoForm.actualizarProductosEvento += new ProductoForm.ActualizarProductosProductoFormDelegado(ActulizarComboProducto);
                 productoForm.ShowDialog();
             }
         }
@@ -120,6 +121,12 @@ namespace Ventas.Vista
             this.dgvVenta.DataSource = null;
             this.dgvVenta.DataSource = venta.DetalleVenta.Productos;
             this.lblMontoTotalVenta.Text = venta.MontoTotal.ToString();
+        }
+
+        private void ActulizarComboProducto()
+        {
+            this.cmbProductos.DataSource = null;
+            InicializarProductos();
         }
     }
 }

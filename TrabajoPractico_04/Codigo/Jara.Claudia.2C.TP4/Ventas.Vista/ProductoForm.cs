@@ -5,8 +5,12 @@ using Ventas.Modelos.ViewModels;
 
 namespace Ventas.Vista
 {
+
     public partial class ProductoForm : Form
     {
+        public delegate void ActualizarProductosProductoFormDelegado();
+        public event ActualizarProductosProductoFormDelegado actualizarProductosEvento;
+
         public ProductoForm()
         {
             InitializeComponent();
@@ -35,8 +39,9 @@ namespace Ventas.Vista
         {
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(true))
             {
+                altaModificacionProductoForm.actualizarProductosProductosEvento += new AltaModificacionProductoForm.ActualizarProductosAltaModificacionProductoFormsDelegado(this.RecargarProductos);
+
                 altaModificacionProductoForm.ShowDialog();
-                this.RecargarProductos();
 
             }
         }
@@ -46,9 +51,9 @@ namespace Ventas.Vista
             ProductoViewModel producto = (ProductoViewModel)this.dgvProductos.SelectedRows[0].DataBoundItem;
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(false, producto.Id.ToString(), producto.Descripcion, producto.Precio.ToString()))
             {
-                altaModificacionProductoForm.ShowDialog();
-                this.RecargarProductos();
+                altaModificacionProductoForm.actualizarProductosProductosEvento += new AltaModificacionProductoForm.ActualizarProductosAltaModificacionProductoFormsDelegado(this.RecargarProductos);
 
+                altaModificacionProductoForm.ShowDialog();
             }
         }
 
@@ -68,6 +73,7 @@ namespace Ventas.Vista
 
         private void btnAtras_Click(object sender, EventArgs e)
         {
+            this.actualizarProductosEvento();
             this.Close();
         }
 
@@ -75,6 +81,5 @@ namespace Ventas.Vista
         {
             this.dgvProductos.DataSource = ProductoBussines.ObtenerProductos();
         }
-        //Por aca tengo que atrapar el evento del form y lanzar otro evento para que lo atrape ventas y se recargue el combo de productos
     }
 }

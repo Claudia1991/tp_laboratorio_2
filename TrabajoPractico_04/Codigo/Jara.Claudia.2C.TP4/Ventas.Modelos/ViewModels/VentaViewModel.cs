@@ -19,7 +19,7 @@ namespace Ventas.Modelos.ViewModels
 
         public override string ToString()
         {
-            return string.Concat($"Fecha: {this.Fecha.ToString()} - Monto Total:{this.MontoTotal.ToString()} \n",this.DetalleVenta.ToString());
+            return string.Concat($"Id Venta {this.Id.ToString()} - Fecha: {this.Fecha.ToString()} - Monto Total:{this.MontoTotal.ToString()} \n",this.DetalleVenta.ToString());
         }
     }
 }
