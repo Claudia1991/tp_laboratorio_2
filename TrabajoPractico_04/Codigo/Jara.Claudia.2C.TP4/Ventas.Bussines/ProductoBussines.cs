@@ -9,8 +9,6 @@ namespace Ventas.Bussines
 {
     public static class ProductoBussines
     {
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger
-(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static ProductoDao productoDao;
 
         static ProductoBussines()
@@ -41,13 +39,11 @@ namespace Ventas.Bussines
 
         public static bool ModificarProductos(int id, string descripcion, double precio)
         {
-            //Verificar que el view model tenga todos los datos, pasarlo a datamodel y devolver el tema
             return productoDao.UpdateElement(new ProductoDataModel(id, descripcion, Convert.ToDouble(precio)));
         }
 
         public static bool EliminarProducto(int id)
         {
-            //verificar que el id no sea nulo y eliminar
             return productoDao.DeleteElementById(id);
         }
 
