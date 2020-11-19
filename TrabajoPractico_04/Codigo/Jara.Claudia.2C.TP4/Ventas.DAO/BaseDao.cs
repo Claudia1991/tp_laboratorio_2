@@ -4,6 +4,8 @@ namespace Ventas.DAO
 {
     public abstract class BaseDao
     {
-        protected SqlConnection sqlConnection;
+        #region Campos
+        protected SqlConnection sqlConnection; 
+        #endregion
     }
 }

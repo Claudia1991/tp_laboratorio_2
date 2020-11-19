@@ -53,12 +53,6 @@ namespace Ventas.Test
         }
 
         [TestMethod]
-        public void VentaDao_DeleteElementById_TestMethod()
-        {
-            Assert.IsTrue(ventasDao.DeleteElementById(ventasDao.GetMaxId()));
-        }
-
-        [TestMethod]
         public void VentaDao_GetAllElements_TestMethod()
         {
             List<VentaDataModel> ventaDataModel;
@@ -70,7 +64,7 @@ namespace Ventas.Test
         public void VentaDao_GetElementById_TestMethod()
         {
             VentaDataModel ventaDataModel;
-            ventaDataModel = ventasDao.GetElementById(ventasDao.GetMaxId()-1);
+            ventaDataModel = ventasDao.GetElementById(ventasDao.GetMaxId());
             Assert.IsNotNull(ventaDataModel);
         }
 
@@ -80,6 +74,12 @@ namespace Ventas.Test
             venta.Id = ventasDao.GetMaxId();
             venta.Fecha = DateTime.Now.AddDays(3);
             Assert.IsTrue(ventasDao.UpdateElement(venta));
+        }
+
+        [TestMethod]
+        public void VentaDao_DeleteElementById_TestMethod()
+        {
+            Assert.IsTrue(ventasDao.DeleteElementById(ventasDao.GetMaxId()));
         }
     }
 }

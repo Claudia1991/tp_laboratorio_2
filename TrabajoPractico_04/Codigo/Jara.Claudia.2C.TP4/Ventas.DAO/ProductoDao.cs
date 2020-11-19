@@ -8,6 +8,12 @@ namespace Ventas.DAO
 {
     public class ProductoDao : BaseDao, IDao<ProductoDataModel>
     {
+        #region Metodos CRUD
+        /// <summary>
+        /// Crea el elemento en la base
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public bool CreateElement(ProductoDataModel element)
         {
 
@@ -20,12 +26,12 @@ namespace Ventas.DAO
                 sqlCommand.Parameters.AddWithValue("descripcion", element.Descripcion);
                 sqlCommand.Parameters.AddWithValue("precio", element.Precio);
                 sqlConnection.Open();
-                seCreoElement =  sqlCommand.ExecuteNonQuery() > 0;
+                seCreoElement = sqlCommand.ExecuteNonQuery() > 0;
             }
             catch (Exception ex)
             {
-                
-                
+
+
                 throw;
             }
             finally
@@ -38,6 +44,11 @@ namespace Ventas.DAO
             return seCreoElement;
         }
 
+        /// <summary>
+        /// Elimina un elemento segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteElementById(int id)
         {
             bool seElimino = false;
@@ -45,16 +56,16 @@ namespace Ventas.DAO
             {
                 string sqlQuery = "delete from producto where id_producto = @id";
                 sqlConnection = Connection.GetConnection();
-                    SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("id", id);
-                    
-                    sqlConnection.Open();
-                    seElimino = sqlCommand.ExecuteNonQuery() > 0;
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("id", id);
+
+                sqlConnection.Open();
+                seElimino = sqlCommand.ExecuteNonQuery() > 0;
             }
             catch (Exception ex)
             {
-                
-                
+
+
                 throw;
             }
             finally
@@ -67,6 +78,10 @@ namespace Ventas.DAO
             return seElimino;
         }
 
+        /// <summary>
+        /// Obtiene todos los elementos
+        /// </summary>
+        /// <returns></returns>
         public List<ProductoDataModel> GetAllElements()
         {
             List<ProductoDataModel> productos = new List<ProductoDataModel>();
@@ -74,21 +89,21 @@ namespace Ventas.DAO
             {
                 string sqlQuery = "select * from producto";
                 sqlConnection = Connection.GetConnection();
-                    SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
 
-                    sqlConnection.Open();
-                    SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                sqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
 
-                    while (sqlDataReader.Read())
-                    {
-                        productos.Add(new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), Convert.ToDouble(sqlDataReader[2])));
-                    }
-                
+                while (sqlDataReader.Read())
+                {
+                    productos.Add(new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), Convert.ToDouble(sqlDataReader[2])));
+                }
+
             }
             catch (Exception ex)
             {
-                
-                
+
+
                 throw;
             }
             finally
@@ -101,9 +116,14 @@ namespace Ventas.DAO
             return productos;
         }
 
+        /// <summary>
+        /// Obtiene un elemento segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ProductoDataModel GetElementById(int id)
         {
-            ProductoDataModel producto =  null;
+            ProductoDataModel producto = null;
             try
             {
                 string sqlQuery = "select * from producto where id_producto = @id";
@@ -120,8 +140,8 @@ namespace Ventas.DAO
             }
             catch (Exception ex)
             {
-                
-                
+
+
                 throw;
             }
             finally
@@ -134,6 +154,11 @@ namespace Ventas.DAO
             return producto;
         }
 
+        /// <summary>
+        /// Actualiza un elemento
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public bool UpdateElement(ProductoDataModel element)
         {
             bool seActualizo = false;
@@ -152,8 +177,8 @@ namespace Ventas.DAO
             }
             catch (Exception ex)
             {
-                
-                
+
+
                 throw;
             }
             finally
@@ -164,6 +189,7 @@ namespace Ventas.DAO
                 }
             }
             return seActualizo;
-        }
+        } 
+        #endregion
     }
 }

@@ -8,6 +8,12 @@ namespace Ventas.DAO
 {
     public class VentasDao :BaseDao, IDao<VentaDataModel>
     {
+        #region Metodos CRUD
+        /// <summary>
+        /// Crea el elemento en la base
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public bool CreateElement(VentaDataModel element)
         {
             bool seCreoElemento = false;
@@ -53,6 +59,11 @@ namespace Ventas.DAO
             return seCreoElemento;
         }
 
+        /// <summary>
+        /// Elimina un elemento segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool DeleteElementById(int id)
         {
             bool seEliminoElemento = false;
@@ -86,6 +97,10 @@ namespace Ventas.DAO
             return seEliminoElemento;
         }
 
+        /// <summary>
+        /// Obtiene todos los elementos
+        /// </summary>
+        /// <returns></returns>
         public List<VentaDataModel> GetAllElements()
         {
             List<VentaDataModel> ventas = new List<VentaDataModel>();
@@ -107,7 +122,7 @@ namespace Ventas.DAO
 
                 while (sqlDataReader.Read())
                 {
-                    if ( ventas.Count>0)
+                    if (ventas.Count > 0)
                     {
                         idVentaSiguiente = Convert.ToInt32(sqlDataReader["id_venta"]);
                         noEsMismaVenta = ventas[ventas.Count - 1].Id != idVentaSiguiente;
@@ -116,19 +131,19 @@ namespace Ventas.DAO
                     {
                         esPrimerRegistro = false;
                         VentaDataModel venta = new VentaDataModel(Convert.ToInt32(sqlDataReader["id_venta"]), Convert.ToDateTime(sqlDataReader["fecha_venta"]), sqlDataReader.GetDouble(6),
-                        new VentaDetalleDataModel() 
+                        new VentaDetalleDataModel()
                         {
-                            Productos = 
-                            new List<ProductoDetalleDataModel>() 
-                            { 
+                            Productos =
+                            new List<ProductoDetalleDataModel>()
+                            {
                                 new ProductoDetalleDataModel(sqlDataReader.GetInt32(1),sqlDataReader.GetString(2),sqlDataReader.GetDouble(4),sqlDataReader.GetInt32(3),sqlDataReader.GetDouble(5))
-                            } 
+                            }
                         });
                         ventas.Add(venta);
                     }
                     else
                     {
-                        ProductoDetalleDataModel productoDetalle = new ProductoDetalleDataModel(sqlDataReader.GetInt32(1), sqlDataReader.GetString(2), sqlDataReader.GetDouble(4), 
+                        ProductoDetalleDataModel productoDetalle = new ProductoDetalleDataModel(sqlDataReader.GetInt32(1), sqlDataReader.GetString(2), sqlDataReader.GetDouble(4),
                             sqlDataReader.GetInt32(3), sqlDataReader.GetDouble(5));
 
                         ventas[ventas.Count - 1].DetalleVenta.Productos.Add(productoDetalle);
@@ -149,6 +164,11 @@ namespace Ventas.DAO
             return ventas;
         }
 
+        /// <summary>
+        /// Obtiene un elemento segun su id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public VentaDataModel GetElementById(int id)
         {
             VentaDataModel venta = null;
@@ -168,15 +188,15 @@ namespace Ventas.DAO
                 if (sqlDataReader.HasRows)
                 {
                     sqlDataReader.Read();
-                     venta = new VentaDataModel(Convert.ToInt32(sqlDataReader["id_venta"]), Convert.ToDateTime(sqlDataReader["fecha_venta"]), sqlDataReader.GetDouble(6),
-                        new VentaDetalleDataModel()
-                        {
-                            Productos =
-                            new List<ProductoDetalleDataModel>()
-                            {
+                    venta = new VentaDataModel(Convert.ToInt32(sqlDataReader["id_venta"]), Convert.ToDateTime(sqlDataReader["fecha_venta"]), sqlDataReader.GetDouble(6),
+                       new VentaDetalleDataModel()
+                       {
+                           Productos =
+                           new List<ProductoDetalleDataModel>()
+                           {
                                 new ProductoDetalleDataModel(sqlDataReader.GetInt32(1),sqlDataReader.GetString(2),sqlDataReader.GetDouble(4),sqlDataReader.GetInt32(3),sqlDataReader.GetDouble(5))
-                            }
-                        });
+                           }
+                       });
                 }
             }
             catch (Exception ex)
@@ -193,6 +213,11 @@ namespace Ventas.DAO
             return venta;
         }
 
+        /// <summary>
+        /// Actualiza un elemento
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
         public bool UpdateElement(VentaDataModel element)
         {
             bool seActualizo = false;
@@ -220,6 +245,10 @@ namespace Ventas.DAO
             return seActualizo;
         }
 
+        /// <summary>
+        /// Obtiene el id de la ultima venta generada
+        /// </summary>
+        /// <returns></returns>
         public int GetMaxId()
         {
             int idVenta;
@@ -244,6 +273,7 @@ namespace Ventas.DAO
                 }
             }
             return idVenta;
-        }
+        } 
+        #endregion
     }
 }

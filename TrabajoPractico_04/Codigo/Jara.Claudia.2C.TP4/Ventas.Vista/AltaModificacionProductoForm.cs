@@ -7,13 +7,16 @@ namespace Ventas.Vista
 {
     public partial class AltaModificacionProductoForm : Form
     {
+        #region Campos
         public delegate void ActualizarProductosAltaModificacionProductoFormsDelegado();
         public event ActualizarProductosAltaModificacionProductoFormsDelegado actualizarProductosProductosEvento;
         private bool agregarElemento = false;
         private Regex regex;
         private const string patronDescripcion = "[a-zA-Z]";
         private const string patronPrecio = "[0-9]";
+        #endregion
 
+        #region Constructores
         public AltaModificacionProductoForm()
         {
             InitializeComponent();
@@ -25,13 +28,15 @@ namespace Ventas.Vista
             this.agregarElemento = agregarElemento;
         }
 
-        public AltaModificacionProductoForm(bool agregarElemento,string id,  string descripcion, string precio) : this(agregarElemento)
+        public AltaModificacionProductoForm(bool agregarElemento, string id, string descripcion, string precio) : this(agregarElemento)
         {
             this.txtIdProducto.Text = id;
             this.txtDescripcion.Text = descripcion;
             this.txtPrecio.Text = precio;
         }
+        #endregion
 
+        #region Metodos
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             if (SonDatosCorrectos())
@@ -82,6 +87,7 @@ namespace Ventas.Vista
                 }
             }
             return sonDatosCorrectos;
-        }
+        } 
+        #endregion
     }
 }

@@ -5,8 +5,11 @@ namespace Ventas.Modelos.ViewModels
 {
     public class VentaDetalleViewModel
     {
-        public List<ProductoDetalleViewModel> Productos{get;set;}
+        #region Propiedades
+        public List<ProductoDetalleViewModel> Productos { get; set; }
+        #endregion
 
+        #region Sobre carga de metodos
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
@@ -15,6 +18,7 @@ namespace Ventas.Modelos.ViewModels
                 stringBuilder.AppendLine(producto.ToString());
             }
             return stringBuilder.ToString();
-        }
+        } 
+        #endregion
     }
 }

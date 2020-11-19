@@ -8,9 +8,12 @@ namespace Ventas.Vista
 
     public partial class ProductoForm : Form
     {
+        #region Campos
         public delegate void ActualizarProductosProductoFormDelegado();
         public event ActualizarProductosProductoFormDelegado actualizarProductosEvento;
 
+        #endregion
+        #region Constructores
         public ProductoForm()
         {
             InitializeComponent();
@@ -18,7 +21,9 @@ namespace Ventas.Vista
             this.dgvProductos.MultiSelect = false;
             this.dgvProductos.DataSource = ProductoBussines.ObtenerProductos();
         }
+        #endregion
 
+        #region Metodos
         private void ProductoForm_MouseMove(object sender, MouseEventArgs e)
         {
             //Verifico que el usuario haya seleccionado algo en la grilla para poder eliminar/Modificar
@@ -39,7 +44,7 @@ namespace Ventas.Vista
         {
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(true))
             {
-                altaModificacionProductoForm.actualizarProductosProductosEvento += new AltaModificacionProductoForm.ActualizarProductosAltaModificacionProductoFormsDelegado(this.RecargarProductos);
+                altaModificacionProductoForm.actualizarProductosProductosEvento += this.RecargarProductos;
 
                 altaModificacionProductoForm.ShowDialog();
 
@@ -51,7 +56,7 @@ namespace Ventas.Vista
             ProductoViewModel producto = (ProductoViewModel)this.dgvProductos.SelectedRows[0].DataBoundItem;
             using (AltaModificacionProductoForm altaModificacionProductoForm = new AltaModificacionProductoForm(false, producto.Id.ToString(), producto.Descripcion, producto.Precio.ToString()))
             {
-                altaModificacionProductoForm.actualizarProductosProductosEvento += new AltaModificacionProductoForm.ActualizarProductosAltaModificacionProductoFormsDelegado(this.RecargarProductos);
+                altaModificacionProductoForm.actualizarProductosProductosEvento += this.RecargarProductos;
 
                 altaModificacionProductoForm.ShowDialog();
             }
@@ -80,6 +85,7 @@ namespace Ventas.Vista
         private void RecargarProductos()
         {
             this.dgvProductos.DataSource = ProductoBussines.ObtenerProductos();
-        }
+        } 
+        #endregion
     }
 }
