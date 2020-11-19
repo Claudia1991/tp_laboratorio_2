@@ -64,7 +64,7 @@ namespace Ventas.Test
         public void VentaDao_GetElementById_TestMethod()
         {
             VentaDataModel ventaDataModel;
-            ventaDataModel = ventasDao.GetElementById(ventasDao.GetMaxId()-1);
+            ventaDataModel = ventasDao.GetElementById(ventasDao.GetMaxId());
             Assert.IsNotNull(ventaDataModel);
         }
 
