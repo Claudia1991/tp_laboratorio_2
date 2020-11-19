@@ -6,13 +6,19 @@ namespace Ventas.Utilities
 {
     public static class MapperConfiguration
     {
+        #region Metodos
+        /// <summary>
+        /// Obtiene la configuracion del mapper
+        /// </summary>
+        /// <returns></returns>
         public static AutoMapper.MapperConfiguration GetMapperConfiguration()
         {
-            var configuration = new AutoMapper.MapperConfiguration(cfg => {
+            var configuration = new AutoMapper.MapperConfiguration(cfg =>
+            {
                 cfg.CreateMap<ProductoDataModel, ProductoViewModel>()
                              .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                              .ForMember(d => d.Descripcion, o => o.MapFrom(s => s.Descripcion))
-                             .ForMember(d => d.Precio, o => o.MapFrom(s=>s.Precio))
+                             .ForMember(d => d.Precio, o => o.MapFrom(s => s.Precio))
                              .ReverseMap()
                              .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                              .ForMember(d => d.Descripcion, o => o.MapFrom(s => s.Descripcion))
@@ -40,6 +46,7 @@ namespace Ventas.Utilities
             });
 
             return configuration;
-        }
+        } 
+        #endregion
     }
 }

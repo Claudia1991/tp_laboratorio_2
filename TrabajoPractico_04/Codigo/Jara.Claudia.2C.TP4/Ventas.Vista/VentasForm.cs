@@ -11,10 +11,13 @@ namespace Ventas.Vista
 {
     public partial class VentasForm : Form
     {
+        #region Campos
         private delegate void CallbackDelegate(string estadoReporte);
         private VentaViewModel venta;
         private Thread threadReporte;
+        #endregion
 
+        #region Constructor
         public VentasForm()
         {
             InitializeComponent();
@@ -24,12 +27,15 @@ namespace Ventas.Vista
             this.btnVender.Enabled = false;
             this.threadReporte = new Thread(ImprimirReporte);
         }
+        #endregion
+
+        #region Metodos
 
         private void productosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (ProductoForm productoForm = new ProductoForm())
             {
-                productoForm.actualizarProductosEvento += new ProductoForm.ActualizarProductosProductoFormDelegado(ActulizarComboProducto);
+                productoForm.actualizarProductosEvento += this.ActulizarComboProducto;
                 productoForm.ShowDialog();
             }
         }
@@ -46,7 +52,7 @@ namespace Ventas.Vista
 
         private void InicializarProductos()
         {
-            this.cmbProductos.DataSource = ProductoBussines.ObtenerProductos(); 
+            this.cmbProductos.DataSource = ProductoBussines.ObtenerProductos();
             this.cmbProductos.ValueMember = "Id";
             this.cmbProductos.DisplayMember = "Descripcion";
         }
@@ -108,7 +114,7 @@ namespace Ventas.Vista
 
         private void btnAgregarALista_Click(object sender, EventArgs e)
         {
-            ProductoViewModel producto = ProductoBussines.ObtenerProductos().First(p=>p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
+            ProductoViewModel producto = ProductoBussines.ObtenerProductos().First(p => p.Id == Convert.ToInt32(this.cmbProductos.SelectedValue));
             int cantidad = (int)this.nudCantidadProductos.Value;
             VentasBussines.AgregarProductoALaLista(venta, producto, cantidad);
             this.ActualizarGrilla();
@@ -117,7 +123,7 @@ namespace Ventas.Vista
         private void btnVender_Click(object sender, EventArgs e)
         {
             this.venta.Fecha = DateTime.Now;
-            bool seVendio = VentasBussines.Vender(this.venta); 
+            bool seVendio = VentasBussines.Vender(this.venta);
             if (seVendio)
             {
                 MessageBox.Show("Se vendio, sos cra'.", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -163,6 +169,7 @@ namespace Ventas.Vista
             {
                 threadReporte.Abort();
             }
-        }
+        } 
+        #endregion
     }
 }

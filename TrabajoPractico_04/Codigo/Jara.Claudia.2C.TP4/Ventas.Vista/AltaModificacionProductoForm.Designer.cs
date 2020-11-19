@@ -52,7 +52,7 @@
             // btnAceptar
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAceptar.Location = new System.Drawing.Point(173, 208);
+            this.btnAceptar.Location = new System.Drawing.Point(225, 208);
             this.btnAceptar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(100, 28);
@@ -96,7 +96,7 @@
             this.txtIdProducto.Location = new System.Drawing.Point(141, 30);
             this.txtIdProducto.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdProducto.Name = "txtIdProducto";
-            this.txtIdProducto.Size = new System.Drawing.Size(132, 22);
+            this.txtIdProducto.Size = new System.Drawing.Size(184, 22);
             this.txtIdProducto.TabIndex = 5;
             // 
             // txtDescripcion
@@ -104,7 +104,7 @@
             this.txtDescripcion.Location = new System.Drawing.Point(141, 79);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(132, 22);
+            this.txtDescripcion.Size = new System.Drawing.Size(184, 22);
             this.txtDescripcion.TabIndex = 6;
             // 
             // txtPrecio
@@ -112,14 +112,14 @@
             this.txtPrecio.Location = new System.Drawing.Point(141, 128);
             this.txtPrecio.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(132, 22);
+            this.txtPrecio.Size = new System.Drawing.Size(184, 22);
             this.txtPrecio.TabIndex = 7;
             // 
             // AltaModificacionProductoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 256);
+            this.ClientSize = new System.Drawing.Size(426, 256);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtDescripcion);
             this.Controls.Add(this.txtIdProducto);

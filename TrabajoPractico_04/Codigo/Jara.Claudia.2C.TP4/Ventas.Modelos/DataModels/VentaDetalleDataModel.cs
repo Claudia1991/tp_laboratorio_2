@@ -4,6 +4,8 @@ namespace Ventas.Modelos.DataModels
 {
     public class VentaDetalleDataModel
     {
-        public List<ProductoDetalleDataModel> Productos { get; set; }
+        #region Propiedades
+        public List<ProductoDetalleDataModel> Productos { get; set; } 
+        #endregion
     }
 }

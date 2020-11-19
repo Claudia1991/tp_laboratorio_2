@@ -2,9 +2,12 @@
 {
     public class ProductoViewModel : BaseViewModel
     {
+        #region Campos
         private string descripcion;
         private double precio;
+        #endregion
 
+        #region Propiedades
         public string Descripcion
         {
             get { return descripcion; }
@@ -17,7 +20,9 @@
             get { return precio; }
             set { precio = value; }
         }
+        #endregion
 
+        #region Construcotes
         public ProductoViewModel() { }
         public ProductoViewModel(string descripcion, double precio) : base(0)
         {
@@ -29,10 +34,13 @@
         {
             Id = id;
         }
+        #endregion
 
+        #region Sobrecarga de Medos
         public override string ToString()
         {
             return base.ToString() + $" \t \nDescripcion: {this.Descripcion} - Precio: {this.Precio}";
-        }
+        } 
+        #endregion
     }
 }
