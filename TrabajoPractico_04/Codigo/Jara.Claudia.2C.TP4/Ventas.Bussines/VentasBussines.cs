@@ -76,8 +76,17 @@ namespace Ventas.Bussines
         /// <returns></returns>
         public static bool Vender(VentaViewModel venta)
         {
-            VentaDataModel ventaDataModel = Mapper.Map<VentaViewModel, VentaDataModel>(venta);
-            return ventasDao.CreateElement(ventaDataModel);
+            bool seVendio;
+            try
+            {
+                VentaDataModel ventaDataModel = Mapper.Map<VentaViewModel, VentaDataModel>(venta);
+                seVendio = ventasDao.CreateElement(ventaDataModel);
+            }
+            catch (System.Exception)
+            {
+                seVendio = false;
+            }
+            return seVendio;
         }
 
         /// <summary>

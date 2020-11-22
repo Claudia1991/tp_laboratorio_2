@@ -54,6 +54,7 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchivoTextoTest.cs" />
     <Compile Include="VentasTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,9 +67,17 @@
       <Project>{CC38F0FD-218F-477B-9DDF-15C2C8D45DD5}</Project>
       <Name>Ventas.DAO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ventas.Excepcion\Ventas.Excepcion.csproj">
+      <Project>{37F18860-1A03-481D-AF88-EC0F209A4005}</Project>
+      <Name>Ventas.Excepcion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ventas.Modelos\Ventas.Modelos.csproj">
       <Project>{11664D91-B7A0-48F5-97DC-709965BE20C1}</Project>
       <Name>Ventas.Modelos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ventas.Utilities\Ventas.Utilities.csproj">
+      <Project>{19D2BA38-F25B-4164-A79A-CDD6DD4E9EE8}</Project>
+      <Name>Ventas.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

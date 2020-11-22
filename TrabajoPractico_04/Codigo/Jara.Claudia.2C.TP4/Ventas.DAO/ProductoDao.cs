@@ -28,10 +28,12 @@ namespace Ventas.DAO
                 sqlConnection.Open();
                 seCreoElement = sqlCommand.ExecuteNonQuery() > 0;
             }
+            catch (SqlException ex) 
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-
-
                 throw;
             }
             finally
@@ -62,10 +64,12 @@ namespace Ventas.DAO
                 sqlConnection.Open();
                 seElimino = sqlCommand.ExecuteNonQuery() > 0;
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-
-
                 throw;
             }
             finally
@@ -100,10 +104,12 @@ namespace Ventas.DAO
                 }
 
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-
-
                 throw;
             }
             finally
@@ -138,10 +144,12 @@ namespace Ventas.DAO
                     producto = new ProductoDataModel(Convert.ToInt32(sqlDataReader[0]), Convert.ToString(sqlDataReader[1]), sqlDataReader.GetDouble(2));
                 }
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-
-
                 throw;
             }
             finally
@@ -166,6 +174,7 @@ namespace Ventas.DAO
             {
                 string sqlQuery = "update producto set descripcion = @descripcion," +
                                   "precio = @precio where id_producto = @id";
+
                 sqlConnection = Connection.GetConnection();
                 SqlCommand sqlCommand = new SqlCommand(sqlQuery, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("id", element.Id);
@@ -175,10 +184,12 @@ namespace Ventas.DAO
                 sqlConnection.Open();
                 seActualizo = sqlCommand.ExecuteNonQuery() > 0;
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-
-
                 throw;
             }
             finally

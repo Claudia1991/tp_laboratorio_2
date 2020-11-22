@@ -28,10 +28,11 @@ namespace Ventas.Bussines
         public static List<ProductoViewModel> ObtenerProductos()
         {
             //Obtengo los productos de la base, lo mappeo a viewmodel, y devueldo la vista de eso
-            List<ProductoViewModel> productos = new List<ProductoViewModel>();
+            List<ProductoViewModel> productos = null ;
             try
             {
                 List<ProductoDataModel> productoDataModels = productoDao.GetAllElements();
+                productos = new List<ProductoViewModel>();
 
                 foreach (ProductoDataModel productoDataModel in productoDataModels)
                 {
@@ -40,8 +41,7 @@ namespace Ventas.Bussines
             }
             catch (Exception)
             {
-
-                throw;
+                productos = new List<ProductoViewModel>();
             }
             return productos;
         }
@@ -55,7 +55,16 @@ namespace Ventas.Bussines
         /// <returns></returns>
         public static bool ModificarProductos(int id, string descripcion, double precio)
         {
-            return productoDao.UpdateElement(new ProductoDataModel(id, descripcion, Convert.ToDouble(precio)));
+            bool seModifico;
+            try
+            {
+                seModifico = productoDao.UpdateElement(new ProductoDataModel(id, descripcion, Convert.ToDouble(precio)));
+            }
+            catch (Exception)
+            {
+                seModifico = false;
+            }
+            return seModifico;
         }
 
         /// <summary>
@@ -65,7 +74,16 @@ namespace Ventas.Bussines
         /// <returns></returns>
         public static bool EliminarProducto(int id)
         {
-            return productoDao.DeleteElementById(id);
+            bool seElimino;
+            try
+            {
+                seElimino = productoDao.DeleteElementById(id);
+            }
+            catch (Exception)
+            {
+                seElimino = false;
+            }
+            return seElimino;
         }
 
         /// <summary>
@@ -76,7 +94,16 @@ namespace Ventas.Bussines
         /// <returns></returns>
         public static bool AgregarProducto(string descripcion, double precio)
         {
-            return productoDao.CreateElement(new ProductoDataModel(descripcion, precio));
+            bool seAgrego;
+            try
+            {
+                seAgrego = productoDao.CreateElement(new ProductoDataModel(descripcion, precio));
+            }
+            catch (Exception)
+            {
+                seAgrego = false;
+            }
+            return seAgrego;
         } 
         #endregion
     }

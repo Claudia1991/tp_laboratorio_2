@@ -43,10 +43,15 @@ namespace Ventas.Utilities
                         sePudoGuadar = true;
                     }
                 }
+                else
+                {
+                    throw new ArchivosException("El string datos esta null.");
+
+                }
             }
             catch (Exception ex)
             {
-                throw new ArchivosException();
+                throw new ArchivosException("Ocurrio un error al realizar el reporte.", ex);
             }
             return sePudoGuadar;
         }

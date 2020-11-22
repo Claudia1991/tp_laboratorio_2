@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -57,14 +58,24 @@ namespace Ventas.Vista
             this.cmbProductos.DisplayMember = "Descripcion";
         }
 
+        /// <summary>
+        /// Imprime el reporte de las ventas totales
+        /// </summary>
         private void ImprimirReporte()
         {
-            Thread.Sleep(5000);
-            //pongo un delay, para simular que fue a la impresora, etc
-            Texto texto = new Texto();
-            texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas());
-            ActualizarInformacionReporte("El reporte se imprimio en la carpeta Archivos Guardados.");
-            //ActualizarInformacionReporte(string.Empty);
+            try
+            {
+                Thread.Sleep(Convert.ToInt32(ConfigurationManager.AppSettings.Get("TiempoDelay")));
+                /*pongo un delay, para simular que fue a la impresora, etc, pero como corre en un hilo secundario, 
+                 * se puede seguir manejando la app*/
+                Texto texto = new Texto();
+                texto.Guardar(string.Concat("Reporte", DateTime.Now.Ticks, ".txt"), VentasBussines.ObtenerTodasLasVentas());
+                ActualizarInformacionReporte("El reporte se imprimio en la carpeta Archivos Guardados.");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocurrio un error al intentar realizar el reporte", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ActualizarInformacionReporte(string informeReporte)
@@ -87,7 +98,13 @@ namespace Ventas.Vista
 
         private void InicializarCampos()
         {
-            this.venta = new VentaViewModel() { DetalleVenta = new VentaDetalleViewModel() { Productos = new List<ProductoDetalleViewModel>() } };
+            this.venta = new VentaViewModel() 
+            { 
+                DetalleVenta = new VentaDetalleViewModel() 
+                { 
+                    Productos = new List<ProductoDetalleViewModel>() 
+                } 
+            };
         }
 
         private void VentasForm_MouseMove(object sender, MouseEventArgs e)

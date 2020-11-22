@@ -45,6 +45,10 @@ namespace Ventas.DAO
                 }
                 seCreoElemento = true;
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw;
@@ -82,6 +86,10 @@ namespace Ventas.DAO
                     sqlCommand.ExecuteNonQuery();
                 }
                 seEliminoElemento = true;
+            }
+            catch (SqlException ex)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -150,6 +158,10 @@ namespace Ventas.DAO
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw;
@@ -199,6 +211,10 @@ namespace Ventas.DAO
                        });
                 }
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw;
@@ -231,6 +247,10 @@ namespace Ventas.DAO
                 sqlCommand.Parameters.AddWithValue("fecha_venta", element.Fecha);
                 seActualizo = sqlCommand.ExecuteNonQuery() > 0;
             }
+            catch (SqlException ex)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw;
@@ -260,9 +280,12 @@ namespace Ventas.DAO
                 SqlCommand sqlCommand1 = new SqlCommand(sqlQuerySelectIdVenta, sqlConnection);
                 idVenta = (int)sqlCommand1.ExecuteScalar();
             }
-            catch (Exception)
+            catch (SqlException ex)
             {
-
+                throw;
+            }
+            catch (Exception ex)
+            {
                 throw;
             }
             finally
