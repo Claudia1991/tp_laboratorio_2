@@ -126,9 +126,11 @@ namespace Formulario
         private void DespacharServicio(int index)
         {
             this.fuegos[index].Visible = true;
-            //this.salidasEnAccion[index].
-            this.salidasEnAccion[index].Start();
-            this.bomberos[index].AtenderSalida(index);
+            if (this.salidasEnAccion[index].ThreadState == ThreadState.Stopped) 
+            {
+                this.salidasEnAccion[index] = new Thread(new ParameterizedThreadStart(this.bomberos[index].AtenderSalida));
+            }
+            this.salidasEnAccion[index].Start(index);
         }
 
         private void FinalDeSalida(int bomberoIndex)
@@ -165,7 +167,7 @@ namespace Formulario
         {
             foreach (Bombero bombero in this.bomberos)
             {
-                Thread _thread = new Thread(bombero.AtenderSalida);
+                Thread _thread = new Thread(new ParameterizedThreadStart(bombero.AtenderSalida));
                 this.salidasEnAccion.Add(_thread);
             }
         }
